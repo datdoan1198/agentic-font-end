@@ -1,0 +1,77 @@
+.boxMainLayout {
+  .headerBox {
+    @apply bg-gray-90 h-[74px] mb-[-74px]
+  }
+  @apply bg-gray-90
+}
+
+.mainLayoutWrap {
+  .mainWrap {
+    .mainContentWrap {
+      .content{
+        .headerMainWrap {
+          .titleWrap {
+            @apply text-lg text-black-20 font-bold
+          }
+        }
+
+        .breadcrumbWrap {
+          .text {
+            &:hover {
+              @apply text-blue-65
+            }
+            @apply text-xs text-gray-45 cursor-pointer transition-all duration-300
+          }
+        }
+
+        &::-webkit-scrollbar {
+          @apply w-[0px] sticky top-0 right-0 bottom-0 transition-all duration-200
+        }
+
+        &::-webkit-scrollbar-track {
+          @apply bg-transparent rounded-md
+        }
+
+        &::-webkit-scrollbar-thumb {
+          @apply bg-transparent rounded-lg transition-all duration-200
+        }
+
+        &:hover::-webkit-scrollbar-thumb:vertical {
+          @apply bg-black-75
+        }
+
+        &::-webkit-scrollbar-thumb:vertical:hover {
+          @apply bg-black-75
+        }
+
+        @apply max-h-[calc(100vh_-_74px)] overflow-y-auto overflow-x-hidden py-[25px] relative
+      }
+      @apply h-screen pt-[74px] bg-gray-90
+    }
+    @apply w-[calc(100%_-_265px)] ml-[265px] h-full transition-all duration-500 relative
+  }
+
+  .mainWrapWithConditionSideBarClose {
+    @apply w-[calc(100%_-_64px)] ml-[74px]
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .mainWrap {
+      @apply w-[calc(100%_-_64px)] ml-[64px] h-full transition-all duration-500
+    }
+    .mainWrapWithConditionSideBarClose {
+      @apply w-[calc(100%_-_64px)] ml-[74px]
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    .mainWrap {
+      @apply w-[100%] ml-[0] h-full transition-all duration-500
+    }
+    .mainWrapWithConditionSideBarClose {
+      @apply w-[100%] ml-[0]
+    }
+  }
+
+  @apply m-auto
+}

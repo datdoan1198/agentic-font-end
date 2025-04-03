@@ -1,0 +1,70 @@
+@import "@/assets/scss/variables.scss";
+.ant-popover-inner {
+  @apply p-0 bg-gray-100 rounded #{!important}
+}
+
+.ant-popover-arrow-content::before {
+  @apply bg-gray-100
+}
+
+.ant-badge-multiple-words {
+  @apply py-0 px-1
+}
+
+.ant-popover-arrow {
+  @apply hidden #{!important}
+}
+
+.ant-drawer{
+  z-index: 1030 !important;
+  .ant-drawer-title{
+    @apply text-[#344767]
+  }
+  .ant-drawer-content-wrapper{
+    @apply p-5 shadow-none;
+
+    .ant-drawer-content{
+      @apply rounded-2xl;
+    }
+  }
+}
+
+.upload-avatar-admin {
+  .ant-upload.ant-upload-select {
+    width: 130px !important;
+    height: 130px !important;
+  }
+}
+
+.badge-admin{
+  .ant-badge-dot {
+      top: 7px !important;
+      right: 13px !important;
+      width: 10px !important;
+      height: 10px !important;
+  }
+}
+
+.svg-check-all, .chevon-icon-admin{
+  cursor: pointer;
+  path {
+    fill: #363636;
+  }
+}
+
+.popover-notification{
+  .ant-popover-content{
+    width: 600px;
+    height: 80vh;
+  }
+  .ant-popover-inner {
+    border-radius: 12px !important;
+    height: 100%;
+  }
+}
+
+.svg-admin-notification{
+ path{
+    fill: $colorBranda;
+  }
+}

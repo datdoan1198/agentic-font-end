@@ -1,0 +1,14 @@
+.modal-feature{
+  .ant-modal-content{
+      padding: 0 !important;
+      border-radius: 16px;
+  }
+}
+
+.ant-modal-wrap {
+  z-index: 1010 !important;
+}
+
+.ant-modal-mask{
+  z-index: 1010 !important;
+}

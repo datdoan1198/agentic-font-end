@@ -1,0 +1,12 @@
+@import "../../assets/scss/variables";
+
+.general-dialog-wrap {
+  .ant-modal-content {
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 0;
+  }
+  .ant-modal-footer {
+    display: none;
+  }
+}

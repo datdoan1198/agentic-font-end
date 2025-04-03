@@ -1,0 +1,194 @@
+/* Nav item */
+.navItemWrap {
+  .textWrap {
+    .iconWrap {
+      @apply h-8 w-8 flex justify-center items-center rounded-lg bg-[#e9ecef];
+      svg{
+        g{
+          @apply text-gray-75 #{!important};
+        }
+        ellipse, rect, path {
+          @apply text-gray-65
+        }
+      }
+    }
+
+    .text {
+      @apply font-bold text-gray-60 ml-[5px] clear-both inline-block overflow-hidden whitespace-nowrap
+    }
+    &:hover {
+      // .text{
+      //   @apply text-gray-60 transition-all duration-200 #{!important}
+      // }
+      .iconWrap{
+        // svg{
+        //   g{
+        //     @apply text-gray-100
+        //   }
+        //   path:first-child{
+        //     @apply text-gray-100
+        //   }
+        //   circle:first-child {
+        //     @apply text-gray-100;
+        //     ~ path {
+        //       @apply text-gray-100;
+        //     }
+        //   }
+        // }
+        @apply transition-all duration-200
+      }
+
+    }
+    @apply flex justify-start items-center
+  }
+
+  .btnDrop {
+    svg {
+      @apply text-gray-60
+    }
+    @apply text-[11px] transition-all duration-300
+  }
+  @apply flex justify-between items-center cursor-pointer py-[9px] px-[13px] my-1 rounded-sm;
+}
+
+.navItemWrap:hover {
+  @apply bg-brandb-50 rounded-md #{!important};
+}
+
+.navItemCloseWrap {
+  @apply justify-center
+}
+
+.navItemActiveWrap {
+  .textWrap {
+    .text{
+      @apply text-[#344767];
+    }
+    
+    g{
+      @apply text-gray-100;
+    }
+    g{
+      path:last-child{
+        @apply text-gray-100 #{!important}
+      }
+    }
+    .iconWrap{
+      svg {
+        ellipse, rect, path{
+          @apply text-gray-100  #{!important}
+        }
+        circle:first-child {
+          @apply text-gray-100  #{!important};
+          ~ path {
+            @apply text-gray-100  #{!important};
+          }
+        }
+      }
+      @apply bg-brandb-500;
+    }
+  }
+
+  .btnDrop {
+    @apply transition-all duration-300 transform rotate-180
+  }
+  @apply bg-brandb-100 rounded-md;
+}
+
+.activeNavItemAndSubMenuWrap {
+  .btnDrop {
+    @apply transition-all duration-300 transform rotate-180
+  }
+  .textWrap {
+    .text{
+      @apply text-[#344767];
+    }
+    
+    g{
+      @apply text-gray-100;
+    }
+    g{
+      path:last-child{
+        @apply text-gray-100 #{!important}
+      }
+    }
+    .iconWrap{
+      svg {
+        ellipse, rect, path{
+          @apply text-gray-100  #{!important}
+        }
+        circle:first-child {
+          @apply text-gray-100  #{!important};
+          ~ path {
+            @apply text-gray-100  #{!important};
+          }
+        }
+      }
+      @apply bg-brandb-500;
+    }
+  }
+}
+
+/* Sub menu */
+.menuSubNav {
+  .menuSubNavItem {
+    &:hover {
+      @apply transition-all duration-200
+    }
+
+    .contentSubNavItemWrap {
+      .textWrap {
+        .text {
+          @apply ml-2.5
+        }
+        .iconWrap{
+          .dotted{
+            @apply w-1 h-1 bg-gray-60 rounded-full
+          }
+          @apply flex items-center
+        }
+        @apply flex justify-start clear-both inline-block overflow-hidden whitespace-nowrap
+      }
+      @apply flex justify-between items-center cursor-pointer p-[9px] pl-[25px] mx-3 font-bold text-gray-60 hover:bg-brandb-50 hover:rounded-md
+    }
+
+    .menuSubFoSubItemActive {
+      .textWrap {
+        .iconWrap{
+          .dotted{
+            @apply bg-brandb-500 text-[#344767]
+          }
+        }
+        @apply transition-all duration-500 text-[#344767]
+      }
+      @apply bg-brandb-100 rounded-md
+    }
+    @apply w-full bg-gray-100 text-gray-60 transition-all duration-300 my-1
+  }
+  @apply max-h-0 p-0 overflow-hidden transition-all duration-200
+}
+
+.menuSubForSubItemActive {
+
+  &::-webkit-scrollbar {
+    @apply w-[5px] transition-all duration-200
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent rounded-md
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-transparent rounded-lg transition-all duration-200
+  }
+
+  &:hover::-webkit-scrollbar-thumb:vertical {
+    @apply bg-black-75
+  }
+
+  &::-webkit-scrollbar-thumb:vertical:hover {
+    @apply bg-black-75
+  }
+  @apply w-full max-h-[80vh] overflow-y-auto overflow-x-hidden transition-all duration-500
+}
+

@@ -1,0 +1,74 @@
+.authLoginWrap {
+
+    .viewWrap {
+        .contentWrap {
+            .contentContainer {
+                .companyMobile{
+                    img {
+                       max-width: 310px;
+                       margin-top: 16px;
+                    }
+                    @apply w-full flex justify-center py-2;
+                }
+                .formWrap {
+                    .content {
+                        .header {
+                            @apply font-semibold text-[24px] text-center mb-5;
+                        }
+
+                        .headerDetail {
+                            @apply text-center text-gray-75 mb-5 mt-3;
+                        }
+
+                        @apply w-full;
+                    }
+
+                    @apply w-full flex justify-center justify-items-center items-center bg-white px-14 pb-8 rounded-xl;
+                }
+                box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+                border-radius: 0.75rem;
+            }
+
+            @apply w-full max-w-[425px] bg-white max-h-[500px] shadow-md rounded-xl;
+
+        }
+
+        @apply flex justify-center justify-items-center items-center w-full h-screen bg-cover bg-no-repeat;
+    }
+
+    @apply flex
+}
+
+@media only screen and (max-width: 576px) {
+    .authLoginWrap {
+        .viewWrap {
+            .contentWrap {
+                .contentContainer {
+                    .companyMobile{
+                        img {
+                           max-width: 280px;
+                        }
+                        @apply rounded-t-xl bg-[#fff] py-2 px-6;
+                    }
+                    .formWrap {
+                        .content {
+                            .header {
+                                @apply text-[22px];
+                            }
+
+                            @apply w-full px-6 pb-6 ;
+                        }
+
+                        @apply  bg-[#fff] w-full h-[50%] px-0 pb-1 rounded-b-xl rounded-t-none mt-[-1px];
+                    }
+
+                    @apply absolute w-max rounded-xl top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2;
+                }
+            }
+
+            @apply w-full block;
+        }
+
+        @apply text-sm;
+    }
+}

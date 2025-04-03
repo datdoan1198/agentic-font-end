@@ -1,0 +1,78 @@
+.headerWrap {
+  .headerLeftWrap {
+    .itemHeaderLeft {
+      .iconWrap {
+        @apply text-[22px] text-gray-50 transition-all duration-300
+      }
+      @apply mr-2.5 p-2.5 cursor-pointer
+    }
+
+    .btnToggleSideBar {
+      @apply text-lg font-bold transition-all duration-500 hidden
+    }
+
+    .btnToggleSideBarClose {
+      @apply text-lg font-bold transition-all duration-500 transform rotate-180
+    }
+
+    @apply flex items-center
+  }
+
+  .headerRightWrap {
+    .itemHeaderRight {
+      &:hover {
+        .iconWrap {
+          @apply text-blue-65
+        }
+      }
+
+      .iconWrap {
+        @apply flex items-center text-base transition-all duration-300 text-black-20
+      }
+
+      .infoWrap {
+        .avatarWrap {
+          img {
+            @apply w-full h-full object-cover
+          }
+          @apply w-[35px] h-[35px] cursor-pointer rounded-lg overflow-hidden mr-1.5 flex items-center justify-center bg-gray-90
+        }
+
+        .info {
+          span {
+            @apply leading-none block
+          }
+
+          .name {
+            @apply font-bold flex items-center
+          }
+          @apply not-italic font-normal text-sm text-black-20 mr-1
+        }
+
+        .btnWrap {
+          @apply flex items-center mr-0.5
+        }
+        @apply flex justify-start items-center
+      }
+
+      @apply p-2.5 my-0 mx-[5px] flex items-center
+    }
+    .itemChangeTheme {
+      @apply py-2.5 px-2
+    }
+
+    @apply flex items-center
+  }
+
+  @apply w-[calc(100%_-_32px)] h-[74px] bg-gray-100 flex items-center justify-between py-2.5 px-[15px] shadow-[0_10px_30px_0_rgba(82,63,105,0.05)] absolute z-10 top-3 left-4 rounded-2xl
+}
+
+@media only screen and (max-width: 375px) {
+  .headerWrap {
+    .headerLeftWrap {
+      .btnToggleSideBar {
+        @apply block
+      }
+    }
+  }
+}

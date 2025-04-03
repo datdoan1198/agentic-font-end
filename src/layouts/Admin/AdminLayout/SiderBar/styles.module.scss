@@ -1,0 +1,163 @@
+.sideBarWrap {
+  .logoWrap {
+    .imgWrap {
+      img {
+        @apply object-contain cursor-pointer w-full h-[80%] mt-2;
+
+        @media only screen and (max-width: 576px) {
+          @apply cursor-default;
+        }
+      }
+      @apply w-4/5 h-full flex justify-center;
+    }
+
+    .imgWrapDesktop{
+      @apply w-10/12 h-auto flex justify-center;
+      img {
+        @apply w-3/5
+      }
+    }
+
+    .btnToggleSideBar {
+      @apply text-lg font-bold transition-all duration-500 absolute top-[13px] right-[13px]
+    }
+
+    .btnToggleSideBarMobi {
+      @apply hidden
+    }
+
+    .btnToggleSideBarClose {
+      @apply text-lg font-bold transition-all duration-500 transform rotate-180
+    }
+    @apply flex justify-center items-center h-[74px] transition-all duration-500 overflow-hidden bg-white relative rounded-t-2xl
+  }
+
+  .navbarWrap {
+    .menuNav {
+      .menuSession {
+        @apply text-black-30
+      }
+
+      .menuNavItem {
+        @apply w-full bg-white text-gray-50 transition-all duration-300 overflow-hidden rounded-sm #{!important}
+      }
+      @apply list-none m-0 p-0 font-normal text-sm transition-all duration-500
+    }
+
+    &::-webkit-scrollbar {
+      @apply w-[5px] transition-all duration-200
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-transparent rounded-md
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-transparent rounded-lg transition-all duration-200
+    }
+
+    &:hover::-webkit-scrollbar-thumb:vertical {
+      @apply bg-black-75
+    }
+
+    &::-webkit-scrollbar-thumb:vertical:hover {
+      @apply bg-black-75
+    }
+
+    @apply h-[calc(100vh_-_74px_-_50px_-_50px)] transition-all duration-500 overflow-hidden py-5 relative border-b border-t bg-white border-gray-80 mx-2
+  }
+
+  .navbarWrap:hover {
+    @apply overflow-y-auto
+  }
+
+  .btnToggleIsShowSideBar {
+    svg {
+      @apply transition-all duration-500 cursor-pointer text-gray-60
+    }
+    @apply flex justify-between items-center px-3 py-3.5 h-[50px] transition-all duration-500 bg-white overflow-hidden rounded-b-2xl 
+  }
+
+  .btnToggleIsHideSideBar {
+    svg {
+      @apply transition-all duration-500 transform rotate-180 translate-x-[-10px]
+    }
+  }
+
+  .boxMenuSubWrap {
+    .listMenuSub {
+      .menuSubClose {
+        .menuSubCloseItem {
+          &:hover {
+            @apply bg-gray-100 text-blue-65
+          }
+
+          .contentSubItemWrap {
+            .textWrap {
+              .text {
+                @apply not-italic font-light clear-both inline-block overflow-hidden whitespace-nowrap text-sm
+              }
+              @apply flex justify-start
+            }
+
+            .btnDrop {
+              @apply transition-all duration-300 text-[11px]
+            }
+            @apply flex justify-between items-center cursor-pointer py-2.5 px-[15px]
+          }
+
+          .menuSubItemActive {
+            .btnDrop {
+              @apply transition-all duration-200 transform rotate-180
+            }
+            @apply bg-gray-100 text-blue-65 transition-all duration-500
+          }
+
+          @apply w-full bg-gray-100 text-black-20 transition-all duration-300
+        }
+        @apply border list-none p-0 overflow-hidden transition-all duration-200 rounded-tl
+      }
+    }
+    @apply absolute left-[64px] top-0 min-w-[200px] animate-sub-wrap opacity-100 pl-[5px]
+  }
+
+  @apply w-[255px] h-[calc(100vh_-_43px)] fixed transition-all duration-500 bg-gray-100 text-black-20 text-base z-[100] top-3 rounded-2xl left-3 shadow-md;
+}
+
+.sideBarWrapClose {
+  .navbarWrap {
+    .menuNav {
+      .menuNavItem {
+        .contentNavItemWrap {
+          @apply justify-center
+        }
+      }
+    }
+  }
+  @apply w-[64px]
+}
+
+@media only screen and (max-width: 576px) {
+  .sideBarWrap {
+    .logoWrap {
+      .imgWrap {
+        @apply flex justify-center ;
+        img {
+        @apply h-full w-4/5;
+        }
+      }
+    }
+
+    @apply w-screen
+  }
+  .sideBarWrapClose {
+    @apply w-0 ;
+    .navbarWrap {
+    @apply p-0 ;
+    }
+    .btnToggleIsShowSideBar {
+      @apply p-0 ;
+    }
+  }
+}
+

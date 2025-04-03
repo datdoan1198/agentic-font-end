@@ -1,0 +1,28 @@
+.modalInfoWrap {
+  &::before {
+    @apply absolute content-[''] h-3 w-3 -top-1.5 right-5 rounded-t-[1px] bg-gray-100 transform rotate-45
+  }
+
+  .personalInformationWrap {
+    .name {
+      @apply text-sm text-black-20 font-bold
+    }
+    .role {
+      @apply text-xs text-gray-75
+    }
+    @apply flex justify-center items-center flex-col p-[13px] border-b
+  }
+
+  .mainModalInfoWrap {
+    .menuInfoWrap {
+      .itemInfoWrap {
+        &:hover {
+          @apply text-blue-65 bg-black-110 rounded-md
+        }
+        @apply p-2 cursor-pointer font-medium text-sm transition-all duration-300 text-black-20 flex justify-start items-center
+      }
+      @apply list-none m-0 p-3 border-0
+    }
+  }
+  @apply min-w-[177px] bg-gray-100 rounded
+}
