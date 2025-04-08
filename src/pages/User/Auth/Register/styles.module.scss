@@ -1,12 +1,12 @@
 @import "@/assets/scss/variables";
 
-.boxLogin {
+.boxRegister {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .formLoginWrap {
+  .formRegisterWrap {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -24,18 +24,13 @@
       .description {
         color: $colorDescription;
       }
-
-      .messageError {
-        margin-top: 15px;
-        color: rgb(255, 77, 77);
-      }
     }
 
-    .formLogin {
+    .formRegister {
       width: 100%;
       margin-bottom: 20px;
 
-      .btnLogin {
+      .btnRegister {
         border: none;
         background: $mainColor;
         width: 100%;
@@ -46,16 +41,6 @@
     }
 
     .tooltipWrap {
-      .btnForgotPassword {
-        text-align: center;
-        cursor: pointer;
-        color: $mainColor;
-        margin-bottom: 20px;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
       .policyWrap {
         text-align: center;
         color: $colorDescription;

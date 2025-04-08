@@ -1,0 +1,41 @@
+.boxSideBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 285px;
+  height: 100vh;
+  border-right: 1px solid rgb(229 231 235 / 1);
+  transition: all 0.3s;
+  .logoWrap {
+    height: 64px;
+    border-bottom: 1px solid rgb(229 231 235 / 1);
+  }
+
+  .mainSidebar {
+    height: calc(100vh - 64px);
+    padding: 10px;
+
+    .boxChatBot {
+      padding: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .itemActive {
+      background: #f2f4f7;
+    }
+
+    .groupItemWrap {
+
+    }
+  }
+}
+
+.closeBoxSideBar {
+  left: -285px;
+}

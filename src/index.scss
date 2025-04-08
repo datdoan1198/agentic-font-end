@@ -8,28 +8,6 @@
     font-family: 'Inter', Helvetica, sans-serif;
 }
 
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
 /* Input */
 .main-input{
     &:focus, &:hover, &:focus-within{
@@ -43,32 +21,10 @@
     .ant-input{
       @apply text-black-20 #{!important}
     }
-    @apply  text-black-20 py-2.5 px-5 rounded-[0.425rem] text-sm font-medium h-[44px]
+    @apply  text-black-20 py-2.5 px-5 rounded-[0.425rem] text-sm font-medium h-[40px]
 }
 
-.main-input-teacher{
-  &:focus, &:hover, &:focus-within{
-      @apply border-brandb-base bg-brandb-50 #{!important}
-  }
-  &.ant-input{
-      &:focus, &:hover, &:focus-within{
-          @apply border-brandb-base #{!important}
-      }
-  }
-  .ant-input{
-    @apply text-black-20 #{!important}
-  }
-  font-family: 'Montserrat', sans-serif;
-  @apply text-black-20 py-2.5 px-5 rounded-2xl text-sm font-medium h-[44px] bg-[#E1F5FB80] border-[#e2e8f0]
-}
-
-
-
-.error-input {
-  @apply border-red-65 #{!important}
-}
-
-.input-wrap, .input-wrap-teacher {
+.input-wrap {
   @apply w-full mb-[15px];
   .label-wrap {
     @apply text-[14px] font-medium mb-[5px];
@@ -88,12 +44,6 @@
       @apply
       w-3.5 mt-[-1px] mr-[3px]
     }
-  }
-}
-
-.input-wrap-teacher {
-  .label-wrap, .error {
-    font-family: 'Montserrat', sans-serif;
   }
 }
 
@@ -273,42 +223,9 @@
 }
 
 /* Button */
-.main-btn-primary{
-    &.ant-btn-primary{
-        &:hover{
-            @apply bg-brandb-400 #{!important}
-        }
-        @apply bg-brandb-base text-white #{!important}
-    }
-}
-
-.main-btn-teacher{
-  &.ant-btn-primary{
-      &:hover{
-          @apply bg-branda-400 #{!important}
-      }
-      font-family: 'Montserrat', sans-serif;
-      @apply bg-branda-base text-white rounded-[30px] #{!important};
-  }
-}
-
-.ant-btn-primary{
-  &:hover{
-    @apply bg-blue-55 #{!important}
-  }
-  @apply bg-blue-60 text-white #{!important}
-}
-
-.main-btn-close{
-  @apply mr-2.5;
-  @apply bg-gray-80 border-transparent #{!important};
-  &:hover{
-    @apply text-black-10 bg-gray-75 #{!important};
-  }
-}
-
-.ant-btn-lg {
-  @apply h-[44px] text-sm #{!important};
+.ant-btn {
+  border: none;
+  height: 40px;
 }
 
 /* Notification */

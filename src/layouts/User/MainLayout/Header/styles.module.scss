@@ -1,0 +1,55 @@
+.boxHeader {
+  padding: 0 10px;
+  box-shadow: 15px -12px 10px 13px rgba(0, 0, 0, 0.09);
+  background: #ffffff;
+  position: fixed;
+  width: calc(100% - 285px);
+  transition: all .3s;
+  .mainHeader {
+    height: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .mainRight {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+
+
+.closeSideBar {
+  width: 100%;
+}
+
+.menuInfoWrap {
+  margin: -12px;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border-radius: 8px;
+  min-width: 200px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  .itemMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all .3s;
+    &:hover {
+      background: #f9fafb;
+    }
+  }
+
+  .btnLogout {
+    border-top: 1px solid rgb(228, 228, 231);
+  }
+  .itemMenuActive {
+    background: #f3f4f6;
+  }
+}
