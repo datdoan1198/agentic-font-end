@@ -1,0 +1,36 @@
+@import "@/assets/scss/variables";
+
+.boxBotChats {
+  .boxFilterWrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    .btnAddBot {
+      color: $colorWhite;
+      background: $mainColor;
+      &:hover {
+        color: $colorWhite;
+        background: $mainColor;
+      }
+    }
+  }
+}
+
+.boxFormSubmitLink {
+  width: 450px;
+  padding: 10px;
+  .formSubmitLink {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .btnConfirm {
+      color: $colorWhite !important;
+      background: $mainColor ;
+      &:hover {
+        color: $colorWhite;
+        background: $mainColor !important;
+      }
+    }
+  }
+}

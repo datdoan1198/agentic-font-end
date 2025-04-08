@@ -1,2 +1,20 @@
 .boxMainLayout {
+  .boxMain {
+    position: fixed;
+    width: calc(100% - 285px);
+    height: 100vh;
+    left: 285px;
+    overflow: auto;
+    transition: all 0.3s;
+
+    .mainWrap{
+      padding: 10px;
+      margin-top: 64px;
+    }
+  }
+
+  .closeSideBar {
+    width: 100%;
+    left: 0;
+  }
 }
