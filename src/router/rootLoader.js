@@ -8,6 +8,9 @@ import {getAuthToken, getAuthTokenAdmin, removeAuthToken, removeAuthTokenAdmin} 
 import {hasPermissions} from "../utils/helper.js";
 import _ from "lodash";
 import {getMeForUser} from "@/api/user/auth/index.js";
+import {setBot} from "@/states/modules/detailBot/index.js";
+import {setBotChats} from "@/states/modules/bot/index.js";
+import {getInfoBot} from "@/api/user/bot/index.js";
 
 export const rootLoader = async ({request, params}, requiredAuth, saga = null, permissions = []) => {
     const url = new URL(request.url);
@@ -48,6 +51,7 @@ export const rootLoader = async ({request, params}, requiredAuth, saga = null, p
                 const {data: res} = await getMeForUser();
                 isAuthUserSuccess = true;
                 store.dispatch(setAuthUser({isAuthUserSuccess, data: res.data}));
+                store.dispatch(setBotChats(res.data.botChats));
             } catch (error) {
                 if (error.response?.data?.status === 401) {
                     removeAuthToken();
@@ -63,6 +67,20 @@ export const rootLoader = async ({request, params}, requiredAuth, saga = null, p
             if (requiredAuth) {
                 return redirect("/login");
             }
+        }
+    }
+
+    let {bot} = store.getState().detailBot;
+    if (!_.isEmpty(params.botId) && bot._id !== params.botId) {
+        let isSuccess = true
+        await getInfoBot(params.botId).then((res) => {
+            store.dispatch(setBot(res.data.data));
+        }).catch(() => {
+            isSuccess = false
+        })
+
+        if (!isSuccess) {
+            return redirect("/bot-chats");
         }
     }
 

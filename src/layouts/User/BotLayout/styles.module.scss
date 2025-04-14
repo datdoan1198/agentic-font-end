@@ -1,0 +1,15 @@
+.boxBotLayout {
+  .boxMain {
+    position: fixed;
+    width: calc(100% - 285px);
+    height: 100vh;
+    left: 285px;
+    overflow: auto;
+    transition: all 0.3s;
+  }
+
+  .closeSideBar {
+    width: calc(100% - 65px);
+    left: 65px;
+  }
+}

@@ -18,7 +18,7 @@ export default function SideBar({isShowSideBar}) {
                     <div><InlineSVG src={Robot} width={24}/></div> Bot Chats
                 </div>
                 <div className={styles.groupItemWrap}>
-                    <div>Chung</div>
+                    {/*<div>Chung</div>*/}
                 </div>
             </div>
         </div>

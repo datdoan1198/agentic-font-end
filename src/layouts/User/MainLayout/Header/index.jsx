@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import {Avatar, Button, Col, Popover, Row} from "antd";
+import {Avatar, Col, Popover, Row} from "antd";
 import {UserOutlined} from "@ant-design/icons";
 import InlineSVG from "react-inlinesvg";
 import Robot from "@/assets/images/icons/solid/robot.svg";
+import Slider from "@/assets/images/icons/solid/sliders.svg";
 import User from "@/assets/images/icons/solid/user.svg";
 import Logout from "@/assets/images/icons/solid/right-from-bracket.svg";
 import Crow from "@/assets/images/icons/solid/crown.svg";
@@ -28,7 +29,7 @@ export default function Header({isShowSideBar, handleToggleShowMenu}) {
         <div className={`${styles.boxHeader} ${!isShowSideBar && styles.closeSideBar}`}>
             <Row className={styles.mainHeader}>
                 <Col span={12}>
-                    <Button onClick={() => handleToggleShowMenu()}>sdsdsd</Button>
+                    <InlineSVG onClick={() => handleToggleShowMenu()} src={Slider} width={24}/>
                 </Col>
                 <Col span={12} className={styles.mainRight}>
                     <Popover

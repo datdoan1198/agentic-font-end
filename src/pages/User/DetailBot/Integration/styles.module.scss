@@ -1,0 +1,48 @@
+.headerWrap {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  box-shadow: 15px -12px 10px 13px rgba(0, 0, 0, 0.09);
+  padding: 10px;
+}
+
+.mainWrap {
+  padding: 10px;
+
+  .groupService {
+    .serviceItem {
+      box-shadow: 0 4px 8px 0 rgba(158, 158, 158, 0.5294117647);
+      padding: 10px;
+      border-radius: 8px;
+
+      .btnAction {
+        margin-top: 10px;
+
+        .btnLoginFB {
+          width: 100%;
+          color: #ffffff;
+          background: cadetblue;
+        }
+
+        .selectPage {
+          width: 100%;
+          color: #ffffff;
+          background: cornflowerblue;
+        }
+      }
+    }
+  }
+}
+
+.listPageFB {
+  width: 200px;
+  .pageItem {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .3s;
+    &:hover {
+      background: #f3f4f6;
+    }
+  }
+}

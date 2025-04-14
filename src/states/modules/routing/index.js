@@ -4,12 +4,13 @@ const routingSlice = createSlice({
   name: 'routing',
   initialState: {},
   reducers: {
-    initialSaga: (state) => ({ ...state })
+    initialSaga: (state) => ({ ...state }),
+  goToPage: (state) => ({ ...state }),
   }
 })
 
 export const {
-  initialSaga
+  initialSaga, goToPage
 } = routingSlice.actions
 
 export default routingSlice.reducer;
