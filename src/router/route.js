@@ -5,6 +5,8 @@ import UserHome from '@/pages/User/Home';
 import UserLogin from '@/pages/User/Auth/Login';
 import UserRegister from '@/pages/User/Auth/Register';
 import UserBotChats from '@/pages/User/Bot';
+import UserDashBoardDetailBotChats from '@/pages/User/DetailBot/DashBoard';
+import UserIntegrationDetailBotChats from '@/pages/User/DetailBot/Integration';
 
 const router = createBrowserRouter([
     {
@@ -32,7 +34,21 @@ const router = createBrowserRouter([
         path: '/bot-chats',
         element: <UserBotChats/>,
         loader: ({request, params}) => rootLoader(
-            {request, params}, true, 'LOAD_HOME_PAGE',
+            {request, params}, true, 'LOAD_BOT_PAGE',
+        )
+    },
+    {
+        path: '/bot-chats/:botId',
+        element: <UserDashBoardDetailBotChats/>,
+        loader: ({request, params}) => rootLoader(
+            {request, params}, true, 'LOAD_DETAIL_BOT_PAGE'
+        )
+    },
+    {
+        path: '/bot-chats/:botId/integration',
+        element: <UserIntegrationDetailBotChats/>,
+        loader: ({request, params}) => rootLoader(
+            {request, params}, true, 'LOAD_DETAIL_BOT_PAGE'
         )
     }
 ]);

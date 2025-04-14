@@ -8,7 +8,7 @@ function AuthLayout({ children }) {
     return (
         <Row className={styles.authLoginWrap}>
             <Col span={12} className={styles.bannerWrap}>
-                
+
             </Col>
             <Col span={12}>
                 {children}

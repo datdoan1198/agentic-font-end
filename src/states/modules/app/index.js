@@ -4,7 +4,7 @@ const appSlice = createSlice({
   name: 'app',
   initialState: {
     breadcrumb: [],
-    isShowSideBar: window.innerWidth <= 576 ? false : true,
+    isShowSideBar: window.innerWidth > 576,
     location: {
       pathName: '',
       prevPathName: '',

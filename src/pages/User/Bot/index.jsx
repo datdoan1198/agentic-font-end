@@ -1,63 +1,18 @@
-import React, {useState} from 'react'
+import React from 'react'
 import MainLayout from "@/layouts/User/MainLayout/index.jsx";
 import styles from './styles.module.scss'
-import {Button, Col, Popover, Row, Steps} from "antd";
+import {Avatar, Button, Col, Empty, Popover, Row, Steps} from "antd";
 import InlineSVG from "react-inlinesvg";
 import Robot from "@/assets/images/icons/solid/robot.svg";
 import InputForm from "@/components/InputForm/index.jsx";
-import _ from "lodash";
-import {LoadingOutlined} from "@ant-design/icons";
+import Handle from "@/pages/User/Bot/handle.js";
+import Loading from "@/components/Loading/index.jsx";
 
 export default function Bot() {
-    const [dataForm, setDataForm] = useState({link: ''})
-    const [errorDataForm, setErrorDataForm] = useState({link: ''})
-    const [loadingStep, setLoadingStep] = useState(null)
-    const itemStep = [
-        {
-            title: 'Tự động khai thác liên kết',
-            description: 'Hệ thống của chúng tôi sẽ tự động quét trang web của bạn và thu thập mọi liên kết quan trọng, giúp nắm bắt cấu trúc trang web toàn diện mà không cần phải thực hiện thủ công.',
-            icon: loadingStep === 1 && <LoadingOutlined />,
-        },
-        {
-            title: 'Trích xuất dữ liệu',
-            description: 'Dựa trên dữ liệu đã thu thập, hệ thống của chúng tôi sẽ tự động xây dựng nhân vật cho bot, đảm bảo phù hợp với nội dung trang web và đáp ứng đúng nhu cầu của người dùng.',
-            icon: loadingStep === 2 && <LoadingOutlined />,
-        },
-        {
-            title: 'Tự động xây dựng tính cách cho bot',
-            description: 'Các công cụ thu thập dữ liệu tiên tiến của chúng tôi sẽ tự động truy cập từng liên kết, trích xuất thông tin liên quan từ trang web của bạn, giúp trợ lý ảo có đủ kiến thức để hỗ trợ chính xác sau này.',
-            icon: loadingStep === 3 && <LoadingOutlined />,
-        },
-        {
-            title: 'Huấn luyện',
-            description: 'Bot sẽ được đào tạo tự động dựa trên dữ liệu đã thu thập, giúp bot hiểu câu hỏi của người dùng và đưa ra câu trả lời hỗ trợ hữu ích mà không cần can thiệp từ con người.',
-            icon: loadingStep === 4 && <LoadingOutlined />,
-        }
-    ]
-
-    const handleChangeData = (type, value) => {
-        let data = _.cloneDeep(dataForm);
-        data[type] = value
-        setDataForm(data)
-    }
-
-    const onFocusInputLesson = (type) => {
-        let errorData = _.cloneDeep(errorDataForm);
-        errorData[type] = ''
-        setErrorDataForm(errorData)
-    }
-
-    const handleConfirmSubmitLink = () => {
-        const interval = setInterval(() => {
-            setLoadingStep(prev => {
-                if (prev >= 3) {
-                    clearInterval(interval);
-                    return prev;
-                }
-                return prev + 1;
-            });
-        }, 1000);
-    }
+    const {
+        dataForm, loadingStep, errorDataForm, itemStep, botChats, loadingListBot, loadingBtnSubmitUrl,
+        handleChangeData, onFocusInputLesson, handleConfirmSubmitLink, handleRedirectDetailBot
+    } = Handle()
 
     return(
         <MainLayout>
@@ -70,9 +25,9 @@ export default function Bot() {
                                 <div className={styles.formSubmitLink}>
                                     <InputForm
                                         placeholder={'Nhập địa chỉ Website'}
-                                        type={'link'}
-                                        value={dataForm.link}
-                                        error={errorDataForm.link}
+                                        type={'url'}
+                                        value={dataForm.url}
+                                        error={errorDataForm.url}
                                         handleChangeData={(type, value) => handleChangeData(type, value)}
                                         onFocusInputLesson={(type) => onFocusInputLesson(type)}
                                     />
@@ -95,25 +50,56 @@ export default function Bot() {
                     >
                         <Button
                             className={styles.btnAddBot}
+                            loading={loadingBtnSubmitUrl}
                         ><InlineSVG src={Robot} width={24}/>Thêm Bot
                         </Button>
                     </Popover>
                 </div>
 
                 <div>
-                    <Row gutter={10}>
-                        <Col span={8}>
-                            Item 1
-                        </Col>
-                        <Col span={8}>
-                            Item 1
-                        </Col>
-                        <Col span={8}>
-                            Item 1
-                        </Col>
-                    </Row>
+                    {
+                        !loadingListBot ?
+                        <>
+                            {
+                                botChats && botChats.length > 0 ?
+                                <Row gutter={10}>
+                                    {
+                                        botChats.map((bot) => {
+                                            return (
+                                                <Col key={bot._id} span={8}>
+                                                    <div className={styles.itemBotWrap}>
+                                                        <Row
+                                                            className={styles.mainWrap}
+                                                            onClick={() => handleRedirectDetailBot(bot._id)}
+                                                        >
+                                                            <Col span={4}>
+                                                                <Avatar size={50} src={bot.favicon} />
+                                                            </Col>
 
-                    {/*<Empty />*/}
+                                                            <Col span={20}>
+                                                                <div className="font-bold mb-[1px]">{bot.name}</div>
+                                                            </Col>
+                                                        </Row>
+
+                                                        <Row className={styles.btnActionWrap}>
+                                                            <Col span={12} className={styles.btnItem}>
+                                                                Change Status
+                                                            </Col>
+
+                                                            <Col span={12} className={styles.btnItem}>
+                                                                <Button>Delete</Button>
+                                                            </Col>
+                                                        </Row>
+                                                    </div>
+                                                </Col>
+                                            )
+                                        })
+                                    }
+                                </Row>:
+                                <Empty />
+                            }
+                        </> : <Loading/>
+                    }
                 </div>
             </div>
         </MainLayout>

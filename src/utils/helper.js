@@ -34,45 +34,6 @@ export const getNotification = (type, content, duration = 2500, align = "top-rig
   });
 };
 
-// Validate
-export const isValidEmail = (email) => {
-  let result = false
-  if (email && typeof email === 'string') {
-    const regex = RegExp(VALIDATE_EMAIL_REGEX);
-    result = regex.test(email.trim())
-  }
-  return result
-}
-
-
-export const isValidPassword = (password) => {
-  let result = false
-  if (password && typeof password === 'string') {
-    const regex = RegExp(VALIDATE_PASSWORD_REGEX);
-    result = regex.test(password.trim())
-  }
-  return result
-}
-
-export const isValidPhone = (phone) => {
-  let result = false
-
-  if (phone && typeof phone === 'string') {
-    let trimPhone = phone.trim()
-
-    if (trimPhone) {
-      const regexRule = RegExp(VALIDATE_PHONE_REGEX_RULE);
-
-      let ruleMatchs = trimPhone.match(regexRule);
-
-      if (ruleMatchs && ruleMatchs.length > 0) {
-        result = (ruleMatchs[0] === trimPhone)
-      }
-    }
-  }
-  return result
-}
-
 export const handleCheckRoute = (routes, currentRoute, params = {}) => {
   let keys = Object.keys(params);
   let param = ''
@@ -85,44 +46,6 @@ export const handleCheckRoute = (routes, currentRoute, params = {}) => {
   }
 };
 
-
-export const convertQueryStringToObject = (queryString) => {
-  if (queryString.charAt(0) === '?') {
-    queryString = queryString.substring(1);
-  }
-
-  var pairs = queryString.split('&');
-  var result = {};
-
-  for (var i = 0; i < pairs.length; i++) {
-    var pair = pairs[i].split('=');
-    var key = decodeURIComponent(pair[0]);
-    var value = decodeURIComponent(pair[1] || '');
-
-    if (Object.prototype.hasOwnProperty.call(result, key)) {
-      if (!Array.isArray(result[key])) {
-        result[key] = [result[key]];
-      }
-
-      result[key].push(value);
-    } else {
-      result[key] = value;
-    }
-  }
-
-  return result;
-}
-
-export const handleSetTimeOut = (func, delay = 1000, timeoutId = null) => {
-  let handleSetTimeOut;
-  if (timeoutId) {
-    clearTimeout(timeoutId);
-  }
-  handleSetTimeOut = setTimeout(func, delay);
-
-  return handleSetTimeOut;
-}
-
 export const formatDate = (date) => {
   return  moment(date).format('DD/MM/YYYY');
 }
@@ -131,40 +54,6 @@ export const formatDateTime = (date) => {
   return dayjs(date).format('HH:mm DD [thg] MM');
 }
 
-export const formatDateTimeTable = (date) => {
-  return dayjs(date).format('HH:mm DD-MM-YYYY');
-}
-
-export const formatNumber = (number) => {
-  const hasDecimal = number % 1 !== 0;
-  if (hasDecimal) {
-    return number.toLocaleString('en-US', {
-      minimumFractionDigits: 3,
-      maximumFractionDigits: 3
-    });
-  } else {
-    return number.toLocaleString('en-US');
-  }
-}
-
-export const handleConvertSportToUSDT = (sport) => {
-  return sport * parseFloat(import.meta.env.VITE_EXCHANGE_VALUE_SPORT);
-}
-
-export const handleGetTotalBalance = (sport, usdt ) => {
-  return (sport * parseFloat(import.meta.env.VITE_EXCHANGE_VALUE_SPORT)) + usdt;
-}
-
-export const handleGetTextSelectPage = (totalRecord, currentPage, perPage) => {
-  if (totalRecord < 1) {
-    return 'Không có bản ghi nào.'
-  }
-  let text = 'Hiển thị ';
-  text += ((currentPage - 1) * perPage + 1) + ' - ';
-  text += handleGetLastRecordFlowPage(totalRecord, currentPage, perPage) + ' trên tổng ';
-  text += totalRecord + ' bản ghi.';
-  return text;
-}
 
 export const handleGetLastRecordFlowPage = (totalRecord, currentPage, perPage) => {
   let number = (currentPage - 1) * perPage + perPage;
@@ -196,17 +85,6 @@ export const formatLocalDateTime = {
     shortQuarter: ["Quý 1", "Quý 2", "Quý 3", "Quý 4"],
       "now": "Hiện tại",
   },
-}
-
-export const isMobileDevice = () => {
-  return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-}
-
-export const compareValues = (value1, value2) => {
-  if (value1 === value2) {
-    return value1;
-  }
-  return null;
 }
 
 export const getFileType = (attachment) => {
