@@ -43,11 +43,11 @@ export default function Sidebar() {
                                         botChats.map((botChat) => {
                                             return (
                                                 <div
-                                                    onClick={() => handleRedirectDetailBot(bot._id)}
-                                                    key={bot._id}
+                                                    onClick={() => handleRedirectDetailBot(botChat._id)}
+                                                    key={botChat._id}
                                                     className={`${styles.botItemWrap} ${botChat._id === bot._id && styles.botItemActive}`}
                                                 >
-                                                    {bot.url}
+                                                    {botChat.url}
                                                 </div>
                                             )
                                         })
