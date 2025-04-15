@@ -1,0 +1,27 @@
+:golbal {
+  .ant-input-group-wrapper {
+    width: auto;
+  }
+}
+
+.headerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  box-shadow: 15px -12px 10px 13px rgba(0, 0, 0, 0.09);
+  padding: 10px;
+}
+
+.mainWrap {
+  @apply p-[10px];
+  .groupFilter {
+    @apply flex items-center gap-3 h-[60px] mb-3;
+    .buttonSelect {
+      @apply w-40 h-[40px];
+    }
+    .buttonAdd {
+      @apply h-[40px];
+    }
+  }
+}
