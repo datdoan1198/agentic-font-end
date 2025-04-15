@@ -1,30 +1,31 @@
-import React from "react";
-import styles from "./styles.module.scss";
-import { Avatar, Button, Popover } from "antd";
-import { routeBotMap } from "@/router/routeBotMap.js";
-import InlineSVG from "react-inlinesvg";
-import _ from "lodash";
-import { useLocation, useNavigate } from "react-router-dom";
-import { handleCheckRoute } from "@/utils/helper.js";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsShowSideBar } from "@/states/modules/detailBot/index.js";
-import { CircleArrowLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react";
+import React from "react"
+import styles from "./styles.module.scss"
+import { Avatar, Button, Popover } from "antd"
+import { routeBotMap } from "@/router/routeBotMap.js"
+import InlineSVG from "react-inlinesvg"
+import _ from "lodash"
+import { useLocation, useNavigate } from "react-router-dom"
+import { handleCheckRoute } from "@/utils/helper.js"
+import { useDispatch, useSelector } from "react-redux"
+import { setIsShowSideBar } from "@/states/modules/detailBot/index.js"
+import { CircleArrowLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react"
 
 export default function Sidebar() {
-  const isShowSideBar = useSelector((state) => state.detailBot.isShowSideBar);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const bot = useSelector((state) => state.detailBot.bot);
-  const botChats = useSelector((state) => state.bot.botChats);
-  const dispatch = useDispatch();
+  const isShowSideBar = useSelector((state) => state.detailBot.isShowSideBar)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const bot = useSelector((state) => state.detailBot.bot)
+  const botChats = useSelector((state) => state.bot.botChats)
+  console.log("botChats", botChats)
+  const dispatch = useDispatch()
 
   const handleGetBotSelect = () => {
-    return botChats.find((botChat) => botChat._id === bot._id);
-  };
+    return botChats.find((botChat) => botChat._id === bot._id)
+  }
 
   const handleRedirectDetailBot = (botId) => {
-    navigate(`/bot-chats/${botId}`);
-  };
+    navigate(`/bot-chats/${botId}`)
+  }
 
   return (
     <div className={`${styles.boxSideBar} ${!isShowSideBar && styles.closeBoxSideBar}`}>
@@ -48,7 +49,7 @@ export default function Sidebar() {
                       >
                         {botChat.url}
                       </div>
-                    );
+                    )
                   })}
                   <div className={`${styles.botItemWrap}`} onClick={() => navigate("/bot-chats")}>
                     Tạo Bot
@@ -101,11 +102,11 @@ export default function Sidebar() {
                       )}
                       <div className={styles.text}>{router.label}</div>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>
-          );
+          )
         })}
       </div>
 
@@ -113,5 +114,5 @@ export default function Sidebar() {
         {isShowSideBar ? <CircleChevronLeft /> : <CircleChevronRight />}
       </div>
     </div>
-  );
+  )
 }

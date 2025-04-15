@@ -1,14 +1,16 @@
-import React from "react";
-import BotLayout from "@/layouts/User/BotLayout";
-import styles from "./styles.module.scss";
-
-import TagCustom from "../../../../components/Tag";
-import Search from "antd/es/input/Search";
-import { Button, Select, Space, Table } from "antd";
+import React, { useEffect, useState } from "react"
+import BotLayout from "@/layouts/User/BotLayout"
+import styles from "./styles.module.scss"
+import TagCustom from "../../../../components/Tag"
+import Search from "antd/es/input/Search"
+import { Button, Select, Space, Table } from "antd"
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import { getLinks } from "../../../../api/bot"
 
 const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
+  console.log(`selected ${value}`)
+}
 
 const columns = [
   {
@@ -56,7 +58,7 @@ const columns = [
       </Space>
     ),
   },
-];
+]
 const data = [
   {
     _id: 1,
@@ -91,9 +93,29 @@ const data = [
     type: "full",
     updated_at: "2025-04-13T08:00:00Z",
   },
-];
+]
 
 export default function Links() {
+  const dispatch = useDispatch()
+  const params = useParams()
+  const { botId } = params
+  // ========== STATE FROM REDUX ========== //
+  const { botChats, isLoadingGetLinks, links } = useSelector((state) => state.bot)
+
+  console.log("links", links)
+
+  // ========== STATE ========== //
+  const [pagination, setPagination] = useState({
+    keySearch: "",
+    page: 1,
+    perPage: 10,
+  })
+
+  // ========== USE EFFECT ========== //
+  useEffect(() => {
+    dispatch(getLinks(botId, pagination))
+  }, [dispatch])
+
   return (
     <BotLayout>
       <div className={styles.headerWrap}>
@@ -116,9 +138,9 @@ export default function Links() {
           <Button className={styles.buttonAdd}>Thêm mới</Button>
         </div>
         <div className="groupTable">
-          <Table bordered columns={columns} dataSource={data} />
+          <Table bordered columns={columns} dataSource={links} />
         </div>
       </div>
     </BotLayout>
-  );
+  )
 }
