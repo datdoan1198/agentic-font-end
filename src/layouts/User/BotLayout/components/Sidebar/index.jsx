@@ -16,7 +16,6 @@ export default function Sidebar() {
   const navigate = useNavigate()
   const bot = useSelector((state) => state.detailBot.bot)
   const botChats = useSelector((state) => state.bot.botChats)
-  console.log("botChats", botChats)
   const dispatch = useDispatch()
 
   const handleGetBotSelect = () => {
