@@ -100,6 +100,23 @@ const botSlice = createSlice({
       ...state,
       isLoadingViewLinkContent: false,
     }),
+    // ========== RE-SCAN LINK ========== //
+    requestRescanLink: (state) => ({
+      ...state,
+      isLoadingRescanLink: true,
+    }),
+    rescanLinkSuccess: (state, action) => ({
+      ...state,
+      links: state.links.map((link) => {
+        if (link._id === action.payload.data.link._id) return action.payload.data.link
+        return link
+      }),
+      isLoadingRescanLink: false,
+    }),
+    rescanLinkFailed: (state) => ({
+      ...state,
+      isLoadingRescanLink: false,
+    }),
   },
 })
 
@@ -126,6 +143,10 @@ export const {
   requestViewLinkContent,
   viewLinkContentSuccess,
   viewLinkContentFailed,
+  // RE-SCAN LINK
+  requestRescanLink,
+  rescanLinkSuccess,
+  rescanLinkFailed,
 } = botSlice.actions
 
 export default botSlice.reducer

@@ -21,6 +21,10 @@ import {
   requestViewLinkContent,
   viewLinkContentSuccess,
   viewLinkContentFailed,
+  // RE-SCAN LINK
+  requestRescanLink,
+  rescanLinkSuccess,
+  rescanLinkFailed,
 } from "../../states/modules/bot"
 
 // ========== DELETE BOT ========== //
@@ -98,6 +102,21 @@ export const viewLinkContent = (link) => async (dispatch, getState) => {
     method: "get",
     apiPath: path,
     actionTypes: [requestViewLinkContent, viewLinkContentSuccess, viewLinkContentFailed],
+    variables: {},
+    dispatch,
+    getState,
+  })
+}
+
+// ========== RE-SCAN LINK ========== //
+export const rescanLink = (link) => async (dispatch, getState) => {
+  const { bot_id, _id } = link
+  let path = `/bots/${bot_id}/links/${_id}/re-scan`
+
+  return callAPI({
+    method: "get",
+    apiPath: path,
+    actionTypes: [requestRescanLink, rescanLinkSuccess, rescanLinkFailed],
     variables: {},
     dispatch,
     getState,
