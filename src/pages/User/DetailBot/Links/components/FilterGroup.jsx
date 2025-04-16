@@ -15,8 +15,8 @@ const FilterGroup = ({ onSearch, onStatusChange, onAddNew }) => {
           onChange={onStatusChange}
           placeholder="Lọc trạng thái các đường dẫn"
           options={[
-            { value: "trained", label: "Đã huấn luyện" },
-            { value: "open", label: "Chưa xử lý" },
+            { value: "TRAINED", label: "Đã huấn luyện" },
+            { value: "UNTRAINED", label: "Chưa xử lý" },
           ]}
         />
         <CustomButton className={styles.btnAdd} variant="primary" onClick={() => onAddNew(true)}>

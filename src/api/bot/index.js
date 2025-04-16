@@ -50,6 +50,9 @@ export const getLinks = (botId, payload) => async (dispatch, getState) => {
   if (payload && payload.perPage) {
     path += `&per_page=${payload.perPage}`
   }
+  if (payload && payload.status) {
+    path += `&status=${payload.status}`
+  }
   if (payload && payload.keySearch) {
     path += `&q=${payload.keySearch}`
   }
