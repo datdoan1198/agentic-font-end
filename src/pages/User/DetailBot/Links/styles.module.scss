@@ -25,3 +25,14 @@
     }
   }
 }
+
+.descriptionTable {
+  @apply line-clamp-2;
+}
+
+.button {
+  @apply p-0 w-8 h-8;
+}
+.icon {
+  @apply w-4 h-4;
+}

@@ -1,24 +1,29 @@
 import { Button } from "antd";
-import { cn } from "@/lib/utils";
+import styles from "./styles.module.scss";
 
 export const CustomButton = ({ variant = "primary", fullWidth = false, className, children, ...props }) => {
-  const getVariantStyles = () => {
+  const getVariantClass = () => {
     switch (variant) {
       case "primary":
-        return "bg-blue-500 hover:bg-blue-600 text-white border-blue-500";
+        return styles.primary;
       case "secondary":
-        return "bg-gray-200 hover:bg-gray-300 text-gray-800 border-gray-200";
+        return styles.secondary;
       case "danger":
-        return "bg-red-500 hover:bg-red-600 text-white border-red-500";
+        return styles.danger;
       case "success":
-        return "bg-green-500 hover:bg-green-600 text-white border-green-500";
+        return styles.success;
       default:
-        return "bg-blue-500 hover:bg-blue-600 text-white border-blue-500";
+        return styles.primary;
     }
   };
 
+  // Combine all classes, ensuring our custom class comes last for higher specificity
+  const buttonClass = `ant-override ${className || ""} ${styles.button} ${getVariantClass()} ${
+    fullWidth ? styles.fullWidth : ""
+  }`;
+
   return (
-    <Button className={cn(getVariantStyles(), fullWidth ? "w-full" : "", className)} {...props}>
+    <Button className={buttonClass} {...props}>
       {children}
     </Button>
   );
