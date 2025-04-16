@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import BotLayout from "@/layouts/User/BotLayout"
 import styles from "./styles.module.scss"
 
@@ -26,28 +26,28 @@ export default function Links() {
 
   const { openModalDelete, handleOpenModalDelete } = useSelector((state) => state.link)
 
-  const dispatch = useDispatch()
-  const params = useParams()
-  const { botId } = params
-  // ========== STATE FROM REDUX ========== //
-  const { isLoadingGetLinks, links } = useSelector((state) => state.bot)
+  // const dispatch = useDispatch()
+  // const params = useParams()
+  // const { botId } = params
+  // // ========== STATE FROM REDUX ========== //
+  // const { isLoadingGetLinks, links } = useSelector((state) => state.bot)
 
-  // ========== STATE ========== //
-  const [pagination, setPagination] = useState({
-    keySearch: "",
-    page: 1,
-    perPage: 10,
-  })
+  // // ========== STATE ========== //
+  // const [pagination, setPagination] = useState({
+  //   keySearch: "",
+  //   page: 1,
+  //   perPage: 10,
+  // })
 
-  // ========== USE EFFECT ========== //
-  useEffect(() => {
-    dispatch(getLinks(botId, pagination))
-  }, [dispatch])
+  // // ========== USE EFFECT ========== //
+  // useEffect(() => {
+  //   dispatch(getListLinks(botId, pagination))
+  // }, [dispatch])
 
-  // ========== FUNCTION ========== //
-  const handleDeleteLink = (link) => {
-    dispatch(deleteLink(link.bot_id, link._id))
-  }
+  // // ========== FUNCTION ========== //
+  // const handleDeleteLink = (link) => {
+  //   dispatch(deleteLink(link.bot_id, link._id))
+  // }
   return (
     <BotLayout>
       <div className={styles.headerWrap}>
