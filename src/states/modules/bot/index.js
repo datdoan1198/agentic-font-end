@@ -14,6 +14,9 @@ const botSlice = createSlice({
     isLoadingCreateLink: false,
     // ========== DELETE LINK ========== //
     isLoadingDeleteLink: false,
+    // ========== VIEW LINK CONTENT ========== //
+    isLoadingViewLinkContent: false,
+    linkContent: null,
   },
   reducers: {
     setBotChats: (state, action) => ({
@@ -79,6 +82,24 @@ const botSlice = createSlice({
       links: state.links.filter((link) => link._id !== action.payload.data.link_id),
       isLoadingDeleteLink: false,
     }),
+    deleteLinkFailed: (state) => ({
+      ...state,
+      isLoadingDeleteLink: false,
+    }),
+    // ========== VIEW LINK CONTENT ========== //
+    requestViewLinkContent: (state) => ({
+      ...state,
+      isLoadingViewLinkContent: true,
+    }),
+    viewLinkContentSuccess: (state, action) => ({
+      ...state,
+      linkContent: action.payload.data,
+      isLoadingViewLinkContent: false,
+    }),
+    viewLinkContentFailed: (state) => ({
+      ...state,
+      isLoadingViewLinkContent: false,
+    }),
   },
 })
 
@@ -101,6 +122,10 @@ export const {
   requestDeleteLink,
   deleteLinkSuccess,
   deleteLinkFailed,
+  // VIEW LINK CONTENT
+  requestViewLinkContent,
+  viewLinkContentSuccess,
+  viewLinkContentFailed,
 } = botSlice.actions
 
 export default botSlice.reducer

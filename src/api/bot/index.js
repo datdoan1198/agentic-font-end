@@ -17,6 +17,10 @@ import {
   requestDeleteLink,
   deleteLinkSuccess,
   deleteLinkFailed,
+  // VIEW LINK CONTENT
+  requestViewLinkContent,
+  viewLinkContentSuccess,
+  viewLinkContentFailed,
 } from "../../states/modules/bot"
 
 // ========== DELETE BOT ========== //
@@ -71,13 +75,29 @@ export const createLink = (botId, url) => async (dispatch, getState) => {
 }
 
 // ========== DELETE LINK ========== //
-export const deleteLink = (botId, linkId) => async (dispatch, getState) => {
-  let path = `/bots/${botId}/links/${linkId}`
+export const deleteLink = (link) => async (dispatch, getState) => {
+  const { bot_id, _id } = link
+  let path = `/bots/${bot_id}/links/${_id}`
 
   return callAPI({
     method: "delete",
     apiPath: path,
     actionTypes: [requestDeleteLink, deleteLinkSuccess, deleteLinkFailed],
+    variables: {},
+    dispatch,
+    getState,
+  })
+}
+
+// ========== VIEW LINK CONTENT ========== //
+export const viewLinkContent = (link) => async (dispatch, getState) => {
+  const { bot_id, _id } = link
+  let path = `/bots/${bot_id}/links/${_id}/content`
+
+  return callAPI({
+    method: "get",
+    apiPath: path,
+    actionTypes: [requestViewLinkContent, viewLinkContentSuccess, viewLinkContentFailed],
     variables: {},
     dispatch,
     getState,
