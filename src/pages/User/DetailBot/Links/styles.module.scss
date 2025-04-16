@@ -16,12 +16,18 @@
 .mainWrap {
   @apply p-[10px];
   .groupFilter {
-    @apply flex items-center gap-3 h-[60px] mb-3;
+    @apply flex flex-col sm:flex-row items-center gap-3 h-[60px] mb-11 sm:mb-3;
     .buttonSelect {
       @apply w-40 h-[40px];
     }
     .buttonAdd {
       @apply h-[40px];
+    }
+    .filterWrap {
+      @apply flex items-center gap-3 w-full sm:w-auto;
+      .btnAdd {
+        @apply w-full sm:w-auto;
+      }
     }
   }
 }
@@ -35,4 +41,21 @@
 }
 .icon {
   @apply w-4 h-4;
+}
+
+.icon {
+  transition: all 0.3s ease;
+}
+
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }

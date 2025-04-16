@@ -1,67 +1,114 @@
-import React, { useState } from "react";
-import { Modal, Tabs } from "antd";
-import { CustomButton } from "../../../../../../components/Button";
-import styles from "./styles.module.scss";
-const ModalFooter = ({ onClose }) => (
-  <div className={styles.groupFooter}>
-    <CustomButton className={styles.buttonFooter} key={1} variant="secondary" onClick={() => onClose()}>
-      Hủy
-    </CustomButton>
-    <CustomButton className={styles.buttonFooter} key={2} variant="primary">
-      Quét
-    </CustomButton>
-  </div>
-);
+import React, { useState } from "react"
+import { Modal, Form, Input, Select } from "antd"
+import { CustomButton } from "../../../../../../components/Button"
+import styles from "./styles.module.scss"
 
-const ModalAdd = ({ open, onClose }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
-  const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setConfirmLoading(false);
-    }, 2000);
-  };
+const ModalAdd = ({ open, onClose, onAddLink, isLoading }) => {
+  const [form] = Form.useForm()
+  const [setActiveTab] = useState("1")
+
+  const handleSubmit = () => {
+    form.validateFields().then((values) => {
+      const { url, scan_type } = values
+      onAddLink(url, scan_type)
+      form.resetFields()
+    })
+  }
 
   const onChange = (key) => {
-    console.log(key);
-  };
+    setActiveTab(key)
+    form.resetFields()
+  }
+
+  const ModalFooter = () => (
+    <div className={styles.groupFooter}>
+      <CustomButton className={styles.buttonFooter} key={1} variant="secondary" onClick={onClose}>
+        Hủy
+      </CustomButton>
+      <CustomButton
+        className={styles.buttonFooter}
+        key={2}
+        variant="primary"
+        onClick={handleSubmit}
+        loading={isLoading}
+      >
+        Quét
+      </CustomButton>
+    </div>
+  )
+
+  const ContentModalAdd = () => (
+    <Form form={form} layout="vertical">
+      <Form.Item name="url" label="Link" rules={[{ required: true, message: "Vui lòng nhập đường dẫn!" }]}>
+        <Input className={styles.inputAdd} placeholder="Nhập đường dẫn" />
+      </Form.Item>
+      <Form.Item name="scan_type" label="Thể loại" initialValue="ALL">
+        <Select
+          className={styles.inputAdd}
+          options={[
+            { value: "ALL", label: "Quét toàn bộ" },
+            { value: "ONE", label: "Quét một trang" },
+          ]}
+        />
+      </Form.Item>
+    </Form>
+  )
+
+  const ContentModalSitemap = () => (
+    <Form form={form} layout="vertical">
+      <Form.Item
+        name="sitemap"
+        label="Sitemap URL"
+        rules={[{ required: true, message: "Vui lòng nhập đường dẫn sitemap!" }]}
+      >
+        <Input placeholder="Nhập đường dẫn sitemap" />
+      </Form.Item>
+    </Form>
+  )
+
+  const ContentModalFile = () => (
+    <Form form={form} layout="vertical">
+      <Form.Item name="files" label="Upload file">
+        <Input type="file" />
+      </Form.Item>
+    </Form>
+  )
+
   const items = [
     {
       key: "1",
       label: "Link",
-      children: "Content of Tab Pane 1",
+      children: <ContentModalAdd />,
     },
     {
       key: "2",
       label: "Sitemap",
-      children: "Content of Tab Pane 2",
+      children: <ContentModalSitemap />,
     },
     {
       key: "3",
       label: "File",
-      children: "Content of Tab Pane 3",
+      children: <ContentModalFile />,
     },
-  ];
+  ]
 
   return (
     <>
       <Modal
-        closable={false}
+        closeIcon={false}
+        maskClosable={false}
         open={open}
         centered
-        onOk={handleOk}
-        cancelText="Hủy"
-        okText="Quét"
         width={400}
-        confirmLoading={confirmLoading}
-        onCancel={() => onClose(false)}
-        footer={<ModalFooter onClose={onClose} />}
+        onCancel={onClose}
+        footer={<ModalFooter />}
+        mousePosition={null}
+        getContainer={false}
       >
-        <Tabs className={styles.tabs} size="middle" centered defaultActiveKey="1" items={items} onChange={onChange} />
+        <ContentModalAdd />
+        {/* <Tabs className={styles.tabs} size="middle" centered defaultActiveKey="1" items={items} onChange={onChange} /> */}
       </Modal>
     </>
-  );
-};
-export default ModalAdd;
+  )
+}
+export default ModalAdd

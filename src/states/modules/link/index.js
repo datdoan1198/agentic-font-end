@@ -1,26 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
+// Slice cho link management
 const linkSlice = createSlice({
   name: "link",
   initialState: {
-    linkSelected: {},
     openModalDelete: false,
+    selectedLink: null,
   },
   reducers: {
-    setLinkSelected: (state, action) => ({
-      ...state,
-      linkSelected: action.payload,
-    }),
-    handleCloseModalDelete: (state) => {
-      state.openModalDelete = false;
-    },
     handleOpenModalDelete: (state, action) => {
-      state.openModalDelete = true;
-      state.linkSelected = action.payload;
+      return {
+        ...state,
+        openModalDelete: action.payload,
+        selectedLink: action.payload,
+      }
+    },
+    handleCloseModalDelete: (state) => {
+      return {
+        ...state,
+        openModalDelete: false,
+        selectedLink: null,
+      }
     },
   },
-});
+})
 
-export const { setLinkSelected, handleCloseModalDelete, handleOpenModalDelete } = linkSlice.actions;
-
-export default linkSlice.reducer;
+export const { handleOpenModalDelete, handleCloseModalDelete } = linkSlice.actions
+export default linkSlice.reducer

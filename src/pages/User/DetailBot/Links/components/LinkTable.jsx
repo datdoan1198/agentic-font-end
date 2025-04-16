@@ -1,29 +1,52 @@
-import { Table } from "antd";
-import React from "react";
-import styles from "../styles.module.scss";
-import TagCustom from "@/components/Tag";
-import moment from "moment";
+import { Table } from "antd"
+import React, { useEffect, useState } from "react"
+import styles from "../styles.module.scss"
+import TagCustom from "@/components/Tag"
+import moment from "moment"
 
-import LinkActions from "./LinkActions";
-import { useDispatch } from "react-redux";
+import LinkActions from "./LinkActions"
+import { useDispatch } from "react-redux"
 
-const RenderStatusText = (order) => {
-  const status = order.status;
-  if (status === "trained") {
+const RenderStatusText = (link) => {
+  const status = link.status
+  if (status === "TRAINED") {
     return {
       text: "Đã huấn luyện",
       color: "green",
-    };
+    }
   } else {
     return {
       text: "Chưa xử lý",
       color: "blue",
-    };
+    }
   }
-};
+}
 
-const LinkTable = ({ data, handleOpenModalDelete, handleModalDetail }) => {
-  const dispatch = useDispatch();
+const LinkTable = ({
+  data,
+  isLoading,
+  isLoadingScan,
+  handleOpenModalDelete,
+  handleViewLink,
+  handleRescanLink,
+  pagination,
+  handlePageChange,
+  total,
+}) => {
+  const dispatch = useDispatch()
+  const [loadingRowId, setLoadingRowId] = useState(null)
+
+  useEffect(() => {
+    if (!isLoadingScan) {
+      setLoadingRowId(null)
+    }
+  }, [isLoadingScan])
+
+  const handleRescan = async (record) => {
+    setLoadingRowId(record._id)
+    await handleRescanLink(record)
+  }
+
   const columns = [
     {
       title: "Đường dẫn",
@@ -48,7 +71,7 @@ const LinkTable = ({ data, handleOpenModalDelete, handleModalDetail }) => {
       key: "description",
       width: 380,
       render: (description) => {
-        return <span className={styles.descriptionTable}>{description}</span>;
+        return <span className={styles.descriptionTable}>{description}</span>
       },
     },
     {
@@ -56,20 +79,20 @@ const LinkTable = ({ data, handleOpenModalDelete, handleModalDetail }) => {
       key: "status",
       dataIndex: "status",
       render: (status, record) => {
-        const { text, color } = RenderStatusText(record);
+        const { text, color } = RenderStatusText(record)
         return (
           <TagCustom bordered={false} color={color}>
             {text}
           </TagCustom>
-        );
+        )
       },
     },
     {
       title: "Thể loại",
-      key: "type",
-      dataIndex: "type",
-      render: (type) => {
-        return <TagCustom>{type === "full" ? "Quét toàn bộ" : "Quét một trang"}</TagCustom>;
+      key: "scan_type",
+      dataIndex: "scan_type",
+      render: (scan_type) => {
+        return <TagCustom>{scan_type === "ALL" ? "Quét toàn bộ" : "Quét một trang"}</TagCustom>
       },
     },
     {
@@ -77,7 +100,7 @@ const LinkTable = ({ data, handleOpenModalDelete, handleModalDetail }) => {
       key: "updated_at",
       dataIndex: "updated_at",
       render: (updated_at) => {
-        return moment(updated_at).format("DD/MM/YYYY h:mm");
+        return moment(updated_at).format("DD/MM/YYYY HH:mm")
       },
     },
     {
@@ -86,25 +109,44 @@ const LinkTable = ({ data, handleOpenModalDelete, handleModalDetail }) => {
       fixed: "right",
       render: (_, record) => (
         <LinkActions
-          onRefresh={() => handleModalDetail(true)}
-          onView={() => handleModalDetail(true)}
+          isLoading={loadingRowId === record._id}
+          onRefresh={() => handleRescan(record)}
+          onView={() => handleViewLink(record)}
           onDelete={() => dispatch(handleOpenModalDelete(record))}
         />
       ),
     },
-  ];
+  ]
+
+  // HANDLE CHANGE PAGE SIZE
+  const handleTableChange = (pagination) => {
+    handlePageChange(pagination.current, pagination.pageSize)
+  }
+
+  // CONFIG PAGINATION
+  const paginationConfig = {
+    current: pagination.page,
+    pageSize: pagination.perPage,
+    total: total || data?.length || 0,
+    showSizeChanger: true,
+    showTotal: (total, range) => `${range[0]}-${range[1]} của ${total} links`,
+    pageSizeOptions: ["10", "20", "50", "100"],
+  }
 
   return (
     <Table
+      loading={isLoading}
       className={styles.table}
       bordered
       columns={columns}
       dataSource={data}
       size="large"
       scroll={{ x: "max-content" }}
-      pagination={false}
+      pagination={paginationConfig}
+      onChange={handleTableChange}
+      rowKey="_id"
     />
-  );
-};
+  )
+}
 
-export default LinkTable;
+export default LinkTable

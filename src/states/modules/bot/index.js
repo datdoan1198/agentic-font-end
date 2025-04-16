@@ -17,6 +17,8 @@ const botSlice = createSlice({
     // ========== VIEW LINK CONTENT ========== //
     isLoadingViewLinkContent: false,
     linkContent: null,
+    // RE-SCAN
+    isLoadingRescanLink: false,
   },
   reducers: {
     setBotChats: (state, action) => ({

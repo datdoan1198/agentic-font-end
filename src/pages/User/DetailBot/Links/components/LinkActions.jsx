@@ -1,18 +1,23 @@
-import { Space } from "antd";
-import React from "react";
-import { CustomButton } from "../../../../../components/Button";
-import styles from "../styles.module.scss";
-import { Eye, RefreshCcw, Trash2 } from "lucide-react";
+import React from "react"
+import { Space, Tooltip } from "antd"
+import { CustomButton } from "../../../../../components/Button"
+import styles from "../styles.module.scss"
+import { Eye, RefreshCcw, Trash2 } from "lucide-react"
 
-const LinkActions = ({ onRefresh, onView, onDelete }) => {
+const LinkActions = ({ isLoading, onRefresh, onView, onDelete }) => {
+  const renderRefreshIcon = () => {
+    if (isLoading) {
+      return <RefreshCcw className={`${styles.icon} ${styles.loading}`} />
+    } else {
+      return <RefreshCcw className={styles.icon} />
+    }
+  }
+
   return (
     <Space size="small">
-      <CustomButton
-        className={styles.button}
-        variant="secondary"
-        icon={<RefreshCcw className={styles.icon} />}
-        onClick={onRefresh}
-      />
+      <Tooltip placement="left" title="Quét lại">
+        <CustomButton className={styles.button} variant="secondary" icon={renderRefreshIcon()} onClick={onRefresh} />
+      </Tooltip>
       <CustomButton
         className={styles.button}
         variant="secondary"
@@ -26,7 +31,7 @@ const LinkActions = ({ onRefresh, onView, onDelete }) => {
         onClick={onDelete}
       />
     </Space>
-  );
-};
+  )
+}
 
-export default LinkActions;
+export default LinkActions

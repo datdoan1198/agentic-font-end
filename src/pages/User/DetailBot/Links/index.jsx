@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import BotLayout from "@/layouts/User/BotLayout"
 import styles from "./styles.module.scss"
 
@@ -10,59 +10,76 @@ import { useLinks } from "./useLinks"
 import ModalAdd from "./components/modal/ModalAdd"
 import ModalDelete from "./components/modal/ModalDelete"
 import ModalDetail from "./components/modal/ModalDetail"
-import { useSelector } from "react-redux"
 
 export default function Links() {
   const {
     links,
+    isLoading,
+    linkContent,
+    isLoadingCreate,
+    isLoadingScan,
+    pagination,
     openModalAdd,
     openModalDetail,
-    handleModalDelete,
+    openModalDelete,
+    selectedLink,
+    totalLinks,
     handleModalAdd,
     handleModalDetail,
+    handleModalDelete,
     handleSearch,
     handleStatusChange,
+    handlePageChange,
+    handleAddLink,
+    handleViewLink,
+    handleDeleteLink,
+    handleRescanLink,
   } = useLinks()
 
-  const { openModalDelete, handleOpenModalDelete } = useSelector((state) => state.link)
-
-  // const dispatch = useDispatch()
-  // const params = useParams()
-  // const { botId } = params
-  // // ========== STATE FROM REDUX ========== //
-  // const { isLoadingGetLinks, links } = useSelector((state) => state.bot)
-
-  // // ========== STATE ========== //
-  // const [pagination, setPagination] = useState({
-  //   keySearch: "",
-  //   page: 1,
-  //   perPage: 10,
-  // })
-
-  // // ========== USE EFFECT ========== //
-  // useEffect(() => {
-  //   dispatch(getListLinks(botId, pagination))
-  // }, [dispatch])
-
-  // // ========== FUNCTION ========== //
-  // const handleDeleteLink = (link) => {
-  //   dispatch(deleteLink(link.bot_id, link._id))
-  // }
   return (
     <BotLayout>
       <div className={styles.headerWrap}>
         <span>Links</span>
-        <TagCustom color="blue">Tổng số 9/1000 link</TagCustom>
+        <TagCustom color="blue">Tổng số {totalLinks || links?.length || 0}/1000 link</TagCustom>
       </div>
       <div className={styles.mainWrap}>
-        <FilterGroup onSearch={handleSearch} onStatusChange={handleStatusChange} onAddNew={handleModalAdd} />
+        <FilterGroup
+          onSearch={handleSearch}
+          onStatusChange={handleStatusChange}
+          onAddNew={() => handleModalAdd(true)}
+        />
         <div className="groupTable">
-          <LinkTable data={links} handleOpenModalDelete={handleOpenModalDelete} handleModalDetail={handleModalDetail} />
+          <LinkTable
+            isLoading={isLoading}
+            isLoadingScan={isLoadingScan}
+            data={links}
+            handleOpenModalDelete={handleModalDelete}
+            handleViewLink={handleViewLink}
+            handleRescanLink={handleRescanLink}
+            pagination={pagination}
+            handlePageChange={handlePageChange}
+            total={totalLinks}
+          />
         </div>
       </div>
-      <ModalAdd open={openModalAdd} onClose={handleModalAdd} />
-      <ModalDelete open={openModalDelete} onClose={handleModalDelete} />
-      <ModalDetail open={openModalDetail} onClose={() => handleModalDetail(false)} />
+      <ModalAdd
+        open={openModalAdd}
+        onClose={() => handleModalAdd(false)}
+        onAddLink={handleAddLink}
+        isLoading={isLoadingCreate}
+      />
+      <ModalDelete
+        open={openModalDelete}
+        onClose={() => handleModalDelete(false)}
+        onDeleteLink={handleDeleteLink}
+        link={openModalDelete ? openModalDelete : null}
+      />
+      <ModalDetail
+        open={openModalDetail}
+        onClose={() => handleModalDetail(false)}
+        link={selectedLink}
+        linkContent={linkContent}
+      />
     </BotLayout>
   )
 }

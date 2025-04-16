@@ -1,50 +1,51 @@
-import React, { useState } from "react";
-import { Modal } from "antd";
-import { CustomButton } from "../../../../../../components/Button";
-import styles from "./styles.module.scss";
-import { OctagonAlert } from "lucide-react";
+import React from "react"
+import { Modal } from "antd"
+import { CustomButton } from "../../../../../../components/Button"
+import styles from "./styles.module.scss"
+import { CircleAlert } from "lucide-react"
 
-const ModalFooter = ({ onClose }) => (
-  <div className={styles.groupFooter}>
-    <CustomButton className={styles.buttonFooter} key={1} variant="secondary" onClick={() => onClose()}>
-      Hủy
-    </CustomButton>
-    <CustomButton className={styles.buttonFooter} key={2} variant="danger">
-      Xóa
-    </CustomButton>
-  </div>
-);
+const ModalDelete = ({ open, onClose, onDeleteLink, link, isLoading }) => {
+  const handleDelete = () => {
+    if (link) {
+      onDeleteLink(link)
+      onClose(false)
+    }
+  }
 
-const ModalDelete = ({ open, onClose }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setConfirmLoading(false);
-    }, 2000);
-  };
+  const ModalFooter = () => (
+    <div className={styles.groupFooter}>
+      <CustomButton className={styles.buttonFooter} key={1} variant="secondary" onClick={() => onClose(false)}>
+        Hủy
+      </CustomButton>
+      <CustomButton className={styles.buttonFooter} key={2} variant="danger" onClick={handleDelete} loading={isLoading}>
+        Xóa
+      </CustomButton>
+    </div>
+  )
 
   return (
     <>
       <Modal
-        closable={false}
+        closeIcon={false}
+        maskClosable={false}
         open={open}
         centered
-        maskClosable={false}
-        width={400}
-        onOk={handleOk}
-        cancelText="Hủy"
-        okText="Quét"
-        confirmLoading={confirmLoading}
+        width={360}
         onCancel={() => onClose(false)}
-        footer={<ModalFooter onClose={onClose} />}
+        footer={<ModalFooter />}
+        mousePosition={null}
       >
         <div className={styles.contentWrap}>
-          <OctagonAlert className={styles.icon} />
-          <span> Bạn có chắc chắn muốn xóa link này không?</span>
+          <CircleAlert className={styles.icon} />
+          <p>Bạn có chắc chắn muốn xóa link này?</p>
         </div>
+        {link && (
+          <p>
+            <strong>URL:</strong> {link.url}
+          </p>
+        )}
       </Modal>
     </>
-  );
-};
-export default ModalDelete;
+  )
+}
+export default ModalDelete

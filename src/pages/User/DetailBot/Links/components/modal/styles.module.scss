@@ -33,3 +33,11 @@
     }
   }
 }
+
+:global(.ant-modal) {
+  transform-origin: center center !important;
+}
+
+.inputAdd {
+  @apply h-10;
+}

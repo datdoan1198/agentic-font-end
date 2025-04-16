@@ -1,37 +1,39 @@
-import React, { useState } from "react";
-import { Modal } from "antd";
-import styles from "./styles.module.scss";
-import InputForm from "../../../../../../components/InputForm";
+import React from "react"
+import { Modal } from "antd"
 
-const ModalDetail = ({ open, onClose }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setConfirmLoading(false);
-    }, 2000);
-  };
+import InputForm from "../../../../../../components/InputForm"
+
+const ModalDetail = ({ open, onClose, link, linkContent }) => {
+  if (!link) return null
 
   return (
     <>
       <Modal
-        closable={false}
         open={open}
         centered
         width={800}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
         onCancel={onClose}
         footer={null}
         getContainer={false}
         mousePosition={null}
+        closeIcon={false}
       >
-        <InputForm label="Tiêu đề" required={false} value="oke" />
-        <InputForm label="Đường dẫn" required={false} value="oke" />
-        <InputForm label="Mô tả" required={false} value="oke" />
-        <InputForm label="Nội dung" required={false} value="oke" />
+        <>
+          <InputForm label="Tiêu đề" required={false} value={link?.title || ""} disabled />
+          <InputForm label="Đường dẫn" required={false} value={link?.url || ""} disabled />
+          <InputForm label="Mô tả" required={false} value={link?.description || ""} disabled />
+          <InputForm
+            isTextArea={true}
+            label="Nội dung"
+            required={false}
+            value={linkContent?.content || ""}
+            disabled
+            type="textarea"
+            rows={10}
+          />
+        </>
       </Modal>
     </>
-  );
-};
-export default ModalDetail;
+  )
+}
+export default ModalDetail
