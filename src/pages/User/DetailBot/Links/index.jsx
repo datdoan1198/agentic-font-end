@@ -1,18 +1,31 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import BotLayout from "@/layouts/User/BotLayout"
 import styles from "./styles.module.scss"
-import TagCustom from "../../../../components/Tag"
-import Search from "antd/es/input/Search"
-import { Button, Select, Space, Table } from "antd"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { deleteLink, getLinks } from "../../../../api/bot"
 
-const handleChange = (value) => {
-  console.log(`selected ${value}`)
-}
+import TagCustom from "../../../../components/Tag"
+
+import LinkTable from "./components/LinkTable"
+import FilterGroup from "./components/FilterGroup"
+import { useLinks } from "./useLinks"
+import ModalAdd from "./components/modal/ModalAdd"
+import ModalDelete from "./components/modal/ModalDelete"
+import ModalDetail from "./components/modal/ModalDetail"
+import { useSelector } from "react-redux"
 
 export default function Links() {
+  const {
+    links,
+    openModalAdd,
+    openModalDetail,
+    handleModalDelete,
+    handleModalAdd,
+    handleModalDetail,
+    handleSearch,
+    handleStatusChange,
+  } = useLinks()
+
+  const { openModalDelete, handleOpenModalDelete } = useSelector((state) => state.link)
+
   const dispatch = useDispatch()
   const params = useParams()
   const { botId } = params
@@ -35,55 +48,6 @@ export default function Links() {
   const handleDeleteLink = (link) => {
     dispatch(deleteLink(link.bot_id, link._id))
   }
-
-  const columns = [
-    {
-      title: "Đường dẫn",
-      dataIndex: "url",
-      key: "url",
-      render: (url) => (
-        <a href={url} target="_blank" rel="noreferrer">
-          {url}
-        </a>
-      ),
-    },
-    {
-      title: "Tiêu đề",
-      dataIndex: "title",
-      key: "title",
-    },
-    {
-      title: "Mô tả",
-      dataIndex: "description",
-      key: "description",
-    },
-    {
-      title: "Trạng thái",
-      key: "status",
-      dataIndex: "status",
-    },
-    {
-      title: "Thể loại",
-      key: "type",
-      dataIndex: "type",
-    },
-    {
-      title: "Ngày cập nhật",
-      key: "updated_at",
-      dataIndex: "updated_at",
-    },
-    {
-      title: "Thao tác",
-      key: "action",
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Invite</a>
-          <button onClick={() => handleDeleteLink(record)}>Delete</button>
-        </Space>
-      ),
-    },
-  ]
-
   return (
     <BotLayout>
       <div className={styles.headerWrap}>
@@ -91,24 +55,14 @@ export default function Links() {
         <TagCustom color="blue">Tổng số 9/1000 link</TagCustom>
       </div>
       <div className={styles.mainWrap}>
-        <div className={styles.groupFilter}>
-          <Search placeholder="Tìm kiếm link" size="large" allowClear />
-          <Select
-            allowClear
-            className={styles.buttonSelect}
-            onChange={handleChange}
-            placeholder="Lọc trạng thái các đường dẫn"
-            options={[
-              { value: "jack", label: "Đã huấn luyện" },
-              { value: "lucy", label: "Chưa xử lý" },
-            ]}
-          />
-          <Button className={styles.buttonAdd}>Thêm mới</Button>
-        </div>
+        <FilterGroup onSearch={handleSearch} onStatusChange={handleStatusChange} onAddNew={handleModalAdd} />
         <div className="groupTable">
-          <Table bordered columns={columns} dataSource={links} />
+          <LinkTable data={links} handleOpenModalDelete={handleOpenModalDelete} handleModalDetail={handleModalDetail} />
         </div>
       </div>
+      <ModalAdd open={openModalAdd} onClose={handleModalAdd} />
+      <ModalDelete open={openModalDelete} onClose={handleModalDelete} />
+      <ModalDetail open={openModalDetail} onClose={() => handleModalDetail(false)} />
     </BotLayout>
   )
 }
