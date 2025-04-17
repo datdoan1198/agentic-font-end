@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Modal, Form, Input, Select } from "antd"
 import { CustomButton } from "../../../../../../components/Button"
 import styles from "./styles.module.scss"
@@ -7,11 +7,16 @@ const ModalAdd = ({ open, onClose, onAddLink, isLoading }) => {
   const [form] = Form.useForm()
   const [setActiveTab] = useState("1")
 
-  const handleSubmit = () => {
-    form.validateFields().then((values) => {
-      const { url, scan_type } = values
-      onAddLink(url, scan_type)
+  useEffect(() => {
+    if (open) {
       form.resetFields()
+    }
+  }, [open])
+
+  const handleSubmit = () => {
+    form.validateFields().then(async (values) => {
+      const { url, scan_type } = values
+      await onAddLink(url, scan_type)
     })
   }
 

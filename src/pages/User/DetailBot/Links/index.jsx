@@ -7,9 +7,9 @@ import TagCustom from "../../../../components/Tag"
 import LinkTable from "./components/LinkTable"
 import FilterGroup from "./components/FilterGroup"
 import { useLinks } from "./useLinks"
-import ModalAdd from "./components/modal/ModalAdd"
-import ModalDelete from "./components/modal/ModalDelete"
-import ModalDetail from "./components/modal/ModalDetail"
+import ModalAdd from "./components/Modal/ModalAdd"
+import ModalDelete from "./components/Modal/ModalDelete"
+import ModalDetail from "./components/Modal/ModalDetail"
 
 export default function Links() {
   const {

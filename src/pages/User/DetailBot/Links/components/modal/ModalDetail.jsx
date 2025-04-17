@@ -29,7 +29,7 @@ const ModalDetail = ({ open, onClose, link, linkContent }) => {
             value={linkContent?.content || ""}
             disabled
             type="textarea"
-            rows={10}
+            rows={8}
           />
         </>
       </Modal>

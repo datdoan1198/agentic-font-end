@@ -10,6 +10,7 @@ const InputForm = (props) => {
     type,
     error,
     placeholder,
+    rows,
     required = true,
     isPassword = false,
     isTextArea = false,
@@ -37,7 +38,7 @@ const InputForm = (props) => {
         />
       ) : isTextArea ? (
         <Input.TextArea
-          rows={4}
+          rows={rows}
           maxLength={6}
           className="main-input"
           size={"large"}
