@@ -1,27 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap");
 @import "./assets/scss/variables";
 
-*{
-    font-family: 'Inter', Helvetica, sans-serif;
+* {
+  font-family: "Inter", Helvetica, sans-serif;
 }
 
 /* Input */
-.main-input{
-    &:focus, &:hover, &:focus-within{
-        @apply border-brandb-base  #{!important}
+.main-input {
+  &:focus,
+  &:hover,
+  &:focus-within {
+    @apply border-brandb-base  #{!important};
+  }
+  &.ant-input {
+    &:focus,
+    &:hover,
+    &:focus-within {
+      @apply border-brandb-base #{!important};
     }
-    &.ant-input{
-        &:focus, &:hover, &:focus-within{
-            @apply border-brandb-base #{!important}
-        }
-    }
-    .ant-input{
-      @apply text-black-20 #{!important}
-    }
-    @apply  text-black-20 py-2.5 px-5 rounded-[0.425rem] text-sm font-medium h-[40px]
+  }
+  .ant-input {
+    @apply text-black-20 #{!important};
+  }
+  @apply text-black-20 py-2.5 px-5 rounded-[0.425rem] text-sm font-medium h-[40px];
 }
 
 .input-wrap {
@@ -36,167 +40,181 @@
     @apply h-[44px] rounded-[0.425rem] pt-[12px] pl-[20px] font-medium text-[#333333] border border-[#d9d9d9] text-[13px] bg-[#0000000a];
   }
   .error {
-    @apply
-    flex items-center
+    @apply flex items-center
     text-red-65 text-left text-sm
     mt-[3px];
     .icon {
-      @apply
-      w-3.5 mt-[-1px] mr-[3px]
+      @apply w-3.5 mt-[-1px] mr-[3px];
     }
   }
 }
 
 /* Select */
-.main-select{
+.main-select {
   @apply min-h-[44px] text-[13px];
-  .ant-select-selector{
-    &:focus, &:hover, &:focus-within{
-      @apply border-brandb-base #{!important}
+  .ant-select-selector {
+    &:focus,
+    &:hover,
+    &:focus-within {
+      @apply border-brandb-base #{!important};
     }
-    .ant-select-selection-search{
+    .ant-select-selection-search {
       @apply m-0;
       inset-inline-start: 20px;
     }
-    @apply text-black-20 py-1.5 px-5 rounded-[0.425rem] text-[13px] font-medium #{!important}
+    @apply text-black-20 py-1.5 px-5 rounded-[0.425rem] text-[13px] font-medium #{!important};
   }
 }
 
-.main-select-teacher{
-  font-family: 'Montserrat', sans-serif;
-  @apply min-h-[44px] text-[14px] ;
-  .ant-select-selector{
-    &:focus, &:hover, &:focus-within{
-      @apply border-brandb-base #{!important}
+.main-select-teacher {
+  font-family: "Montserrat", sans-serif;
+  @apply min-h-[44px] text-[14px];
+  .ant-select-selector {
+    &:focus,
+    &:hover,
+    &:focus-within {
+      @apply border-brandb-base #{!important};
     }
-    .ant-select-selection-search{
+    .ant-select-selection-search {
       @apply m-0;
       inset-inline-start: 20px;
     }
-    .ant-select-selection-placeholder, .ant-select-selection-item{
-      font-family: 'Montserrat', sans-serif;
+    .ant-select-selection-placeholder,
+    .ant-select-selection-item {
+      font-family: "Montserrat", sans-serif;
       font-weight: 500 !important;
     }
-    @apply text-black-20 py-1.5 px-5 rounded-2xl text-sm font-medium bg-[#E1F5FB80] border-[#e2e8f0] #{!important}
+    @apply text-black-20 py-1.5 px-5 rounded-2xl text-sm font-medium bg-[#E1F5FB80] border-[#e2e8f0] #{!important};
   }
 }
 
-.main-select-wrap{
-  .ant-select-selection-item{
+.main-select-wrap {
+  .ant-select-selection-item {
     @apply font-semibold #{!important};
   }
 }
 .ant-select-multiple {
   .ant-select-selection-placeholder {
-    @apply pl-[10px]
+    @apply pl-[10px];
   }
   .ant-select-selection-search {
-    inset-inline-start: 0!important;
+    inset-inline-start: 0 !important;
   }
 }
 
 /* Checkbox */
-.main-checkbox{
-    .ant-checkbox{
-        &:not(.ant-checkbox-checked){
-            .ant-checkbox-inner {
-                @apply bg-gray-95 border-transparent text-black-20 outline-none #{!important}
-            }
-        }
-        .ant-checkbox-inner{
-            &:after{
-                @apply top-[47%] left-[25.5%]
-            }
-            @apply w-5 h-5
-        }
+.main-checkbox {
+  .ant-checkbox {
+    &:not(.ant-checkbox-checked) {
+      .ant-checkbox-inner {
+        @apply bg-gray-95 border-transparent text-black-20 outline-none #{!important};
+      }
     }
+    .ant-checkbox-inner {
+      &:after {
+        @apply top-[47%] left-[25.5%];
+      }
+      @apply w-5 h-5;
+    }
+  }
 }
 
 /* Switch */
-.main-switch{
-    &:not(.ant-switch-checked){
-        @apply bg-gray-80 #{!important}
-    }
+.main-switch {
+  &:not(.ant-switch-checked) {
+    @apply bg-gray-80 #{!important};
+  }
 }
 
 /* Date Picker */
-.main-datepicker{
-    &:focus, &:hover, &:focus-within{
-      @apply border-brandb-base #{!important}
-    }
-    .ant-select-selection-search{
-        @apply m-0
-    }
-    .ant-select-selection-placeholder{
-        @apply ml-2
-    }
-    .ant-picker-input >input {
-      @apply text-[13px];
-    }
-    @apply text-black-20 py-[9px] px-5 rounded-[0.425rem] text-sm font-medium #{!important}
+.main-datepicker {
+  &:focus,
+  &:hover,
+  &:focus-within {
+    @apply border-brandb-base #{!important};
+  }
+  .ant-select-selection-search {
+    @apply m-0;
+  }
+  .ant-select-selection-placeholder {
+    @apply ml-2;
+  }
+  .ant-picker-input > input {
+    @apply text-[13px];
+  }
+  @apply text-black-20 py-[9px] px-5 rounded-[0.425rem] text-sm font-medium #{!important};
 }
 
 /* Input Number */
-.main-input-number{
-  &:focus, &:hover, &:focus-within{
-    @apply border-brandb-base #{!important}
+.main-input-number {
+  &:focus,
+  &:hover,
+  &:focus-within {
+    @apply border-brandb-base #{!important};
   }
-  &.ant-input{
-    &:focus, &:hover, &:focus-within{
-        @apply border-brandb-base #{!important}
+  &.ant-input {
+    &:focus,
+    &:hover,
+    &:focus-within {
+      @apply border-brandb-base #{!important};
     }
   }
-  @apply text-black-20 py-[5px] px-2 rounded-[0.425rem] text-sm font-medium
+  @apply text-black-20 py-[5px] px-2 rounded-[0.425rem] text-sm font-medium;
 }
 
-.main-input-number-teacher{
-  &:focus, &:hover, &:focus-within{
-    @apply border-brandb-base bg-brandb-50 #{!important}
+.main-input-number-teacher {
+  &:focus,
+  &:hover,
+  &:focus-within {
+    @apply border-brandb-base bg-brandb-50 #{!important};
   }
-  &.ant-input{
-    &:focus, &:hover, &:focus-within{
-        @apply border-brandb-base #{!important}
+  &.ant-input {
+    &:focus,
+    &:hover,
+    &:focus-within {
+      @apply border-brandb-base #{!important};
     }
   }
 
-  .ant-input-number-input-wrap input{
-    font-family: 'Montserrat', sans-serif;
+  .ant-input-number-input-wrap input {
+    font-family: "Montserrat", sans-serif;
   }
-  @apply text-black-20 py-[5px] px-2 rounded-2xl text-sm font-medium h-[44px] bg-[#E1F5FB80] border-[#e2e8f0]
+  @apply text-black-20 py-[5px] px-2 rounded-2xl text-sm font-medium h-[44px] bg-[#E1F5FB80] border-[#e2e8f0];
 }
-
 
 /* Table */
-.main-table{
-    .ant-table-thead{
-        .ant-table-cell{
-            &:before{
-                @apply bg-transparent #{!important}
-            }
-            @apply bg-brandb-base text-gray-100 text-center #{!important}
-        }
+.main-table {
+  .ant-table-thead {
+    .ant-table-cell {
+      &:before {
+        @apply bg-transparent #{!important};
+      }
+      @apply bg-brandb-base text-gray-100 text-center #{!important};
     }
-    .ant-table-cell{
-        @apply border-b border-dashed #{!important}
-    }
-    .ant-table-cell-row-hover, .ant-table-column-sort{
-      @apply bg-transparent #{!important}
-    }
+  }
+  .ant-table-cell {
+    @apply border-b border-dashed #{!important};
+  }
+  .ant-table-cell-row-hover,
+  .ant-table-column-sort {
+    @apply bg-transparent #{!important};
+  }
 }
 
 .fixed-cell {
-    .ant-table-thead{
-        .ant-table-cell{
-            &:before{
-                @apply bg-white #{!important}
-            }
-            @apply bg-brandb-base text-gray-100 border border-white border-solid #{!important}
-        }
+  .ant-table-thead {
+    .ant-table-cell {
+      &:before {
+        @apply bg-white #{!important};
+      }
+      @apply bg-brandb-base text-gray-100 border border-white border-solid #{!important};
     }
+  }
 
-    .ant-table-cell-row-hover, .ant-table-column-sort{
-        @apply bg-white #{!important}
-    }
+  .ant-table-cell-row-hover,
+  .ant-table-column-sort {
+    @apply bg-white #{!important};
+  }
 }
 .custom-scroll-ant-table {
   .ant-table {
@@ -215,11 +233,11 @@
   }
 }
 /* Pagination */
-.ant-pagination-item-active{
-    a{
-        @apply text-white #{!important}
-    }
-    @apply bg-brandb-base border-brandb-base #{!important}
+.ant-pagination-item-active {
+  a {
+    @apply text-white #{!important};
+  }
+  @apply bg-brandb-base border-brandb-base #{!important};
 }
 
 /* Button */
@@ -232,146 +250,142 @@
 .ant-notification {
   z-index: 9999;
   .ant-notification-notice-wrapper {
-    @apply w-[340px] #{!important}
+    @apply w-[340px] #{!important};
   }
   .ant-notification-notice {
-
     .ant-notification-notice-icon {
-      @apply hidden
+      @apply hidden;
     }
 
     .ant-notification-notice-message {
-      @apply hidden
+      @apply hidden;
     }
 
     .ant-notification-notice-description {
-
       .notification-content {
-
         .icon-notification {
           img {
-            @apply max-w-none w-auto h-auto
+            @apply max-w-none w-auto h-auto;
           }
 
-         @apply mr-[15px] w-4 h-4
+          @apply mr-[15px] w-4 h-4;
         }
 
         .text-notification {
-          @apply text-sm text-black-20
+          @apply text-sm text-black-20;
         }
 
-        @apply flex justify-start items-center min-h-[40px] rounded-md py-2 pr-[42px] pl-4
+        @apply flex justify-start items-center min-h-[40px] rounded-md py-2 pr-[42px] pl-4;
       }
 
       .notification-success {
-        @apply border border-green-75 bg-green-95
+        @apply border border-green-75 bg-green-95;
       }
 
       .notification-error {
-        @apply border border-red-75 bg-red-95
+        @apply border border-red-75 bg-red-95;
       }
 
       .notification-warning {
-        @apply border border-orange-75 bg-orange-95
+        @apply border border-orange-75 bg-orange-95;
       }
 
-      @apply m-0 ms-0 #{!important}
+      @apply m-0 ms-0 #{!important};
     }
 
     .ant-notification-notice-close {
-
       &:hover {
-        @apply bg-black-110
+        @apply bg-black-110;
       }
 
       .ant-notification-notice-close-x {
-        @apply flex
+        @apply flex;
       }
 
-      @apply top-0 right-[10px] h-full flex items-center
+      @apply top-0 right-[10px] h-full flex items-center;
     }
 
-    @apply p-0 rounded-md w-auto overflow-hidden #{!important}
+    @apply p-0 rounded-md w-auto overflow-hidden #{!important};
   }
 }
 
 /* Skeleton */
 .ant-skeleton-input-lg {
-  height: 44px!important;
+  height: 44px !important;
 }
 
 .btn-main {
   svg {
     .fa-secondary {
-      @apply opacity-70 #{!important}
+      @apply opacity-70 #{!important};
     }
   }
 }
 
 .btn-detail {
   .fa-primary {
-    @apply fill-gray-110 #{!important}
+    @apply fill-gray-110 #{!important};
   }
 
   .fa-secondary {
-    @apply fill-gray-90 #{!important}
+    @apply fill-gray-90 #{!important};
   }
 
   &:hover {
     .fa-primary {
-      @apply fill-white #{!important}
+      @apply fill-white #{!important};
     }
 
     .fa-secondary {
-      @apply fill-white #{!important}
+      @apply fill-white #{!important};
     }
   }
 
-  @apply cursor-pointer bg-green-65 w-max p-2 rounded-md w-[35.5px] flex justify-center
+  @apply cursor-pointer bg-green-65 w-max p-2 rounded-md w-[35.5px] flex justify-center;
 }
 
 .btn-edit {
   .fa-primary {
-    @apply fill-gray-110 #{!important}
+    @apply fill-gray-110 #{!important};
   }
 
   .fa-secondary {
-    @apply fill-gray-90 #{!important}
+    @apply fill-gray-90 #{!important};
   }
 
   &:hover {
     .fa-primary {
-      @apply fill-white #{!important}
+      @apply fill-white #{!important};
     }
 
     .fa-secondary {
-      @apply fill-white #{!important}
+      @apply fill-white #{!important};
     }
   }
 
-  @apply cursor-pointer bg-brandb-base w-max p-2 rounded-md w-[35.5px] flex justify-center
+  @apply cursor-pointer bg-brandb-base w-max p-2 rounded-md w-[35.5px] flex justify-center;
 }
 
 .btn-delete {
   .fa-primary {
-    @apply fill-gray-110 #{!important}
+    @apply fill-gray-110 #{!important};
   }
 
   .fa-secondary {
-    @apply fill-gray-90 #{!important}
+    @apply fill-gray-90 #{!important};
   }
 
   &:hover {
     .fa-primary {
-      @apply fill-white #{!important}
+      @apply fill-white #{!important};
     }
 
     .fa-secondary {
-      @apply fill-white #{!important}
+      @apply fill-white #{!important};
     }
   }
 
-  @apply cursor-pointer bg-red-65 p-2 rounded-md w-[35.5px] ml-1 flex justify-center
+  @apply cursor-pointer bg-red-65 p-2 rounded-md w-[35.5px] ml-1 flex justify-center;
 }
 
 .btn-detail {
@@ -380,52 +394,50 @@
 
 .btn-edit-teacher {
   .fa-primary {
-    @apply fill-brandb-base #{!important}
+    @apply fill-brandb-base #{!important};
   }
 
   .fa-secondary {
-    @apply fill-brandb-base #{!important}
+    @apply fill-brandb-base #{!important};
   }
 
   &:hover {
     .fa-primary {
-      @apply fill-brandb-300 #{!important}
+      @apply fill-brandb-300 #{!important};
     }
 
     .fa-secondary {
-      @apply fill-brandb-300 #{!important}
+      @apply fill-brandb-300 #{!important};
     }
   }
 
-  @apply cursor-pointer p-2 rounded-md flex justify-center
+  @apply cursor-pointer p-2 rounded-md flex justify-center;
 }
-
 
 .ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
-    @apply border-brandb-base bg-brandb-base #{!important}
+  @apply border-brandb-base bg-brandb-base #{!important};
 }
-
 
 .btn-delete-teacher {
   .fa-primary {
-    @apply fill-red-65 #{!important}
+    @apply fill-red-65 #{!important};
   }
 
   .fa-secondary {
-    @apply fill-red-65 #{!important}
+    @apply fill-red-65 #{!important};
   }
 
   &:hover {
     .fa-primary {
-      @apply fill-red-75 #{!important}
+      @apply fill-red-75 #{!important};
     }
 
     .fa-secondary {
-      @apply fill-red-75 #{!important}
+      @apply fill-red-75 #{!important};
     }
   }
 
-  @apply cursor-pointer p-2 rounded-md ml-1 flex justify-center
+  @apply cursor-pointer p-2 rounded-md ml-1 flex justify-center;
 }
 
 .ck-editor__editable_inline {
@@ -435,9 +447,8 @@
 }
 
 .ck .ck-placeholder::before {
-  @apply text-gray-80 text-[13px] #{!important}
+  @apply text-gray-80 text-[13px] #{!important};
 }
-
 
 /* Scroll bar */
 html *::-webkit-scrollbar {

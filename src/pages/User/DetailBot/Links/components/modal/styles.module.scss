@@ -1,0 +1,43 @@
+.groupFooter {
+  @apply flex gap-[10px];
+  .buttonFooter {
+    @apply basis-1/2;
+  }
+}
+
+.contentWrap {
+  @apply flex gap-1 items-center;
+  .icon {
+    @apply w-5 h-5;
+  }
+}
+
+.tabs .ant-tabs-nav-list {
+  @apply flex w-full;
+}
+
+.tabs .ant-tabs-tab {
+  @apply flex-1 justify-center text-center;
+}
+
+.tabs {
+  :global {
+    .ant-tabs-nav-list {
+      display: flex;
+      width: 100%;
+    }
+    .ant-tabs-tab {
+      flex: 1 1 0%;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+:global(.ant-modal) {
+  transform-origin: center center !important;
+}
+
+.inputAdd {
+  @apply h-10;
+}

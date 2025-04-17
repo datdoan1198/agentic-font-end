@@ -1,0 +1,64 @@
+:global(.ant-override) {
+  &.ant-btn:hover,
+  &.ant-btn:focus {
+    color: inherit !important;
+  }
+}
+
+.button {
+  @apply rounded-[8px] transition-all duration-200;
+
+  // Using higher specificity by nesting selectors
+  &.primary {
+    @apply bg-main border-main;
+    color: white !important;
+
+    &:hover {
+      @apply bg-blue-600 border-blue-600;
+      // Override any conflicting styles
+      background-color: theme("colors.blue.500") !important;
+      border-color: theme("colors.blue.500") !important;
+      color: white !important;
+    }
+  }
+
+  &.secondary {
+    @apply bg-gray-200 border-gray-200;
+    color: theme("colors.gray.800") !important;
+
+    &:hover {
+      @apply bg-gray-300 border-gray-300;
+      background-color: theme("colors.gray.300") !important;
+      border-color: theme("colors.gray.300") !important;
+      color: theme("colors.gray.800") !important;
+    }
+  }
+
+  &.danger {
+    @apply bg-red-500 border-red-500;
+    color: white !important;
+
+    &:hover {
+      @apply bg-red-600 border-red-600;
+      background-color: theme("colors.red.600") !important;
+      border-color: theme("colors.red.600") !important;
+      color: white !important;
+    }
+  }
+
+  &.success {
+    @apply bg-green-500 border-green-500;
+    color: white !important;
+
+    &:hover {
+      @apply bg-green-600 border-green-600;
+      background-color: theme("colors.green.600") !important;
+      border-color: theme("colors.green.600") !important;
+      color: white !important;
+    }
+  }
+
+  &.fullWidth {
+    @apply w-full;
+  }
+}

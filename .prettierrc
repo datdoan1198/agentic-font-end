@@ -1,4 +1,11 @@
 {
   "printWidth": 120,
-  "trailingComma": "all"
+  "semi": false,
+  "singleQuote": false,
+  "files": "*.js",
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf"
 }
