@@ -56,7 +56,7 @@
           padding: 10px 15px;
           border-radius: 8px;
           cursor: pointer;
-          transition: all 0.3s ;
+          transition: all 0.3s;
           &:hover {
             background: #f3f4f6;
           }
@@ -71,7 +71,10 @@
 
   .btnWrap {
     height: 60px;
-    background: tan;
+    @apply flex items-center justify-center border-t-[1px];
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
