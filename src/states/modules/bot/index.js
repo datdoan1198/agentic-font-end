@@ -65,9 +65,9 @@ const botSlice = createSlice({
       ...state,
       isLoadingCreateLink: true,
     }),
-    createLinkSuccess: (state, action) => ({
+    createLinkSuccess: (state) => ({
       ...state,
-      links: [...state.links, action.payload.data.link],
+      // links: [...state.links, action.payload.data.link],
       isLoadingCreateLink: false,
     }),
     createLinkFailed: (state) => ({
