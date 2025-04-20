@@ -1,0 +1,29 @@
+@import "@/assets/scss/variables";
+
+.formWrap {
+  margin-bottom: 30px;
+  .titleWrap {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .form {
+    max-width: 500px;
+  }
+
+  .btnSave {
+    border: none;
+    background: $mainColor;
+    color: $colorWhite;
+    font-weight: 600;
+    height: 40px;
+    opacity: 1;
+
+    &:hover {
+      background: $mainColor !important;
+      color: $colorWhite !important;
+      opacity: 0.9;
+    }
+  }
+}

@@ -1,7 +1,34 @@
 .authLoginWrap {
   height: 100vh;
   .bannerWrap {
-    background: #fad2d2;
+    background: #ffffff;
     height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .logoWrap {
+      display: flex;
+      justify-content: flex-start;
+      width: 200px;
+    }
+    .textWrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      max-width: 500px;
+      margin: auto;
+
+      .titleWrap {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
   }
 }

@@ -3,8 +3,7 @@ import _ from "lodash";
 import {useNavigate} from "react-router-dom";
 import {validate} from "@/utils/validates/validate.js";
 import {RegisterSchema} from "./schema.js";
-import {setAuthToken} from "@/utils/localStorage.js";
-import {loginForUser, registerForUser} from "@/api/user/auth/index.js";
+import {registerForUser} from "@/api/user/auth/index.js";
 import {getNotification} from "@/utils/helper.js";
 
 export default function Handle() {

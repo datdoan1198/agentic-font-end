@@ -23,10 +23,25 @@ export const logoutForUser = () => {
   });
 };
 
-export const getMeForUser = (data = {}) => {
+export const getMeForUser = () => {
     return apiAxios({
         method: "get",
         url: "/auth/me",
+    });
+};
+
+export const getChangeProfile = (data = {}) => {
+  return apiAxios({
+    method: "put",
+    url: "/auth/me",
+    data,
+  });
+};
+
+export const changePassword = (data = {}) => {
+    return apiAxios({
+        method: "put",
+        url: "/auth/change-password",
         data,
     });
 };

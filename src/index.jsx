@@ -24,7 +24,6 @@ root.render(
       <RouterProvider router={router} />
       <ToastContainer />
     </Provider>
-    ,
   </ConfigProvider>
 )
 

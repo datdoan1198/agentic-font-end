@@ -5,7 +5,7 @@ import Robot from "@/assets/images/icons/solid/robot.svg";
 import {useNavigate} from "react-router-dom";
 
 export default function SideBar({isShowSideBar}) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     return (
         <div className={`${styles.boxSideBar} ${!isShowSideBar && styles.closeBoxSideBar}`}>
