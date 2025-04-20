@@ -14,6 +14,7 @@ const InputForm = (props) => {
     required = true,
     isPassword = false,
     isTextArea = false,
+    isDisabled = false,
     handleChangeData,
     onFocusInputLesson,
   } = props
@@ -53,6 +54,7 @@ const InputForm = (props) => {
           size={"large"}
           placeholder={placeholder}
           value={value}
+          disabled={isDisabled}
           onChange={(e) => handleChangeData(type, e.target.value)}
           onFocus={() => onFocusInputLesson(type)}
         />

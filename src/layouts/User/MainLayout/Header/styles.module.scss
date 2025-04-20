@@ -41,6 +41,9 @@
     padding: 10px 20px;
     cursor: pointer;
     transition: all .3s;
+    svg {
+      color: #6e6e6e;
+    }
     &:hover {
       background: #f9fafb;
     }
