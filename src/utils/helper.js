@@ -54,6 +54,10 @@ export const formatDateTime = (date) => {
   return dayjs(date).format("HH:mm DD [thg] MM")
 }
 
+export const formatDateSecond = (date) => {
+  return moment(date).format("DD/MM/YYYY, HH:mm")
+}
+
 export const handleGetLastRecordFlowPage = (totalRecord, currentPage, perPage) => {
   let number = (currentPage - 1) * perPage + perPage
   if (totalRecord <= number) {

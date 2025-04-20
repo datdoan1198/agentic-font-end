@@ -22,7 +22,8 @@ export default async function callAPI({
     "Content-Type": "application/json",
     Authorization: token ? `Bearer ${token}` : "",
   }
-  dispatch({ type: requestType, meta: { variables } })
+  // dispatch({ type: requestType, meta: { variables } })
+  dispatch(requestType())
   return axios({
     baseURL: baseUrlApi,
     headers: headers ? { ...headers, ...header } : header,
@@ -32,12 +33,11 @@ export default async function callAPI({
     params: method === "get" ? variables : "",
   })
     .then(function (response) {
-      dispatch({ type: successType, meta: { variables }, payload: response.data })
-      return response.data
+      dispatch(successType(response.data))
     })
     .catch(function (error) {
       let response = error.response ? error.response : error
-      dispatch({ type: failureType, meta: { variables }, payload: error.response })
+      dispatch(failureType(response))
       if (!navigator.onLine) {
         //
       }

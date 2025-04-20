@@ -1,6 +1,6 @@
 import React from "react"
 import { Space, Tooltip } from "antd"
-import { CustomButton } from "../../../../../components/Button"
+import { CustomButton } from "@/components/Button/index.jsx"
 import styles from "../styles.module.scss"
 import { Eye, RefreshCcw, Trash2 } from "lucide-react"
 

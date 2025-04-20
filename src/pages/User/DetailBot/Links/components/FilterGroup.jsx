@@ -1,10 +1,9 @@
 import { Select } from "antd"
 import Search from "antd/es/input/Search"
 import React from "react"
-import { CustomButton } from "../../../../../components/Button"
 import styles from "../styles.module.scss"
 
-const FilterGroup = ({ onSearch, onStatusChange, onAddNew }) => {
+const FilterGroup = ({ onSearch, onStatusChange }) => {
   return (
     <div className={styles.groupFilter}>
       <Search placeholder="Tìm kiếm link" size="large" allowClear onSearch={onSearch} />
@@ -19,9 +18,6 @@ const FilterGroup = ({ onSearch, onStatusChange, onAddNew }) => {
             { value: "UNTRAINED", label: "Chưa xử lý" },
           ]}
         />
-        <CustomButton className={styles.btnAdd} variant="primary" onClick={() => onAddNew(true)}>
-          Thêm mới
-        </CustomButton>
       </div>
     </div>
   )
