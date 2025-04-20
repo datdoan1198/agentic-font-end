@@ -44,18 +44,16 @@ const botSlice = createSlice({
       ...state,
       isLoadingGetLinks: true,
     }),
-    getLinksSuccess: (state, action) => {
-      return {
+    getLinksSuccess: (state, action) => ({
         ...state,
         links: action.payload.data.links,
         paginationLinks: {
-          total: action.payload.total,
-          per_page: action.payload.per_page,
-          page: action.payload.page,
+            total: action.payload.data.total,
+            per_page: action.payload.data.per_page,
+            page: action.payload.data.page,
         },
         isLoadingGetLinks: false,
-      }
-    },
+    }),
     getLinksFailed: (state) => ({
       ...state,
       isLoadingGetLinks: false,
@@ -67,7 +65,6 @@ const botSlice = createSlice({
     }),
     createLinkSuccess: (state) => ({
       ...state,
-      // links: [...state.links, action.payload.data.link],
       isLoadingCreateLink: false,
     }),
     createLinkFailed: (state) => ({
@@ -79,9 +76,8 @@ const botSlice = createSlice({
       ...state,
       isLoadingDeleteLink: true,
     }),
-    deleteLinkSuccess: (state, action) => ({
+    deleteLinkSuccess: (state) => ({
       ...state,
-      links: state.links.filter((link) => link._id !== action.payload.data.link_id),
       isLoadingDeleteLink: false,
     }),
     deleteLinkFailed: (state) => ({
@@ -107,12 +103,8 @@ const botSlice = createSlice({
       ...state,
       isLoadingRescanLink: true,
     }),
-    rescanLinkSuccess: (state, action) => ({
+    rescanLinkSuccess: (state) => ({
       ...state,
-      links: state.links.map((link) => {
-        if (link._id === action.payload.data.link._id) return action.payload.data.link
-        return link
-      }),
       isLoadingRescanLink: false,
     }),
     rescanLinkFailed: (state) => ({

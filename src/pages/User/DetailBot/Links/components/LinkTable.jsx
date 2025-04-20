@@ -5,7 +5,6 @@ import TagCustom from "@/components/Tag"
 import moment from "moment"
 
 import LinkActions from "./LinkActions"
-import { useDispatch } from "react-redux"
 
 const RenderStatusText = (link) => {
   const status = link.status
@@ -33,7 +32,6 @@ const LinkTable = ({
   handlePageChange,
   total,
 }) => {
-  const dispatch = useDispatch()
   const [loadingRowId, setLoadingRowId] = useState(null)
 
   useEffect(() => {
@@ -112,7 +110,7 @@ const LinkTable = ({
           isLoading={loadingRowId === record._id}
           onRefresh={() => handleRescan(record)}
           onView={() => handleViewLink(record)}
-          onDelete={() => dispatch(handleOpenModalDelete(record))}
+          onDelete={() => handleOpenModalDelete(record)}
         />
       ),
     },

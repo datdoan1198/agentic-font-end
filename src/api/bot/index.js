@@ -27,7 +27,6 @@ import {
   rescanLinkFailed,
 } from "../../states/modules/bot"
 
-// ========== DELETE BOT ========== //
 export const deleteBot = (botId) => async (dispatch, getState) => {
   let path = `/bots/${botId}`
   return callAPI({
@@ -40,7 +39,6 @@ export const deleteBot = (botId) => async (dispatch, getState) => {
   })
 }
 
-// ========== GET LINKS ========== //
 export const getLinks = (botId, payload) => async (dispatch, getState) => {
   let path = `/bots/${botId}/links`
 
@@ -67,7 +65,6 @@ export const getLinks = (botId, payload) => async (dispatch, getState) => {
   })
 }
 
-// ========== CREATE LINK ========== //
 export const createLink = (botId, url) => async (dispatch, getState) => {
   let path = `/bots/${botId}/links`
 
@@ -81,7 +78,6 @@ export const createLink = (botId, url) => async (dispatch, getState) => {
   })
 }
 
-// ========== DELETE LINK ========== //
 export const deleteLink = (link) => async (dispatch, getState) => {
   const { bot_id, _id } = link
   let path = `/bots/${bot_id}/links/${_id}`
@@ -96,7 +92,6 @@ export const deleteLink = (link) => async (dispatch, getState) => {
   })
 }
 
-// ========== VIEW LINK CONTENT ========== //
 export const viewLinkContent = (link) => async (dispatch, getState) => {
   const { bot_id, _id } = link
   let path = `/bots/${bot_id}/links/${_id}/content`
@@ -111,13 +106,12 @@ export const viewLinkContent = (link) => async (dispatch, getState) => {
   })
 }
 
-// ========== RE-SCAN LINK ========== //
 export const rescanLink = (link) => async (dispatch, getState) => {
   const { bot_id, _id } = link
   let path = `/bots/${bot_id}/links/${_id}/re-scan`
 
   return callAPI({
-    method: "get",
+    method: "post",
     apiPath: path,
     actionTypes: [requestRescanLink, rescanLinkSuccess, rescanLinkFailed],
     variables: {},

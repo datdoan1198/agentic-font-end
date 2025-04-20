@@ -1,5 +1,7 @@
-import Robot from "@/assets/images/icons/solid/robot.svg";
 import Link from "@/assets/images/icons/solid/link.svg";
+import Message from "@/assets/images/icons/solid/messages.svg";
+import Puzzle from "@/assets/images/icons/solid/globe.svg";
+import Chart from "@/assets/images/icons/solid/chart-simple.svg";
 
 export const routeBotMap = (botIdSelected) => [
   {
@@ -8,9 +10,15 @@ export const routeBotMap = (botIdSelected) => [
     routes: [
       {
         label: "Dashboard",
-        icon: Robot,
+        icon: Chart,
         path: `/bot-chats/${botIdSelected}`,
         routeActive: [`/bot-chats/${botIdSelected}`],
+      },
+      {
+        label: 'Hội thoại',
+        icon: Message,
+        path: `/bot-chats/${botIdSelected}/conversation`,
+        routeActive: [`/bot-chats/${botIdSelected}/conversation`],
       },
     ],
   },
@@ -32,7 +40,7 @@ export const routeBotMap = (botIdSelected) => [
     routes: [
       {
         label: "Tích hợp",
-        icon: Robot,
+        icon: Puzzle,
         path: `/bot-chats/${botIdSelected}/integration`,
         routeActive: [`/bot-chats/${botIdSelected}/integration`],
       },

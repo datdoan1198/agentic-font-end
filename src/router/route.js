@@ -8,6 +8,7 @@ import UserBotChats from "@/pages/User/Bot";
 import UserDashBoardDetailBotChats from "@/pages/User/DetailBot/DashBoard";
 import UserIntegrationDetailBotChats from "@/pages/User/DetailBot/Integration";
 import WebsiteLinksDetailBotChats from "@/pages/User/DetailBot/Links";
+import UserConversationDetailBotChats from '@/pages/User/DetailBot/Conversation';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,13 @@ const router = createBrowserRouter([
     element: <WebsiteLinksDetailBotChats />,
     loader: ({ request, params }) => rootLoader({ request, params }, true, "LOAD_DETAIL_BOT_PAGE"),
   },
+  {
+    path: '/bot-chats/:botId/conversation',
+    element: <UserConversationDetailBotChats/>,
+    loader: ({request, params}) => rootLoader(
+        {request, params}, true, 'LOAD_DETAIL_BOT_PAGE'
+    )
+  }
 ]);
 
 export default router;
