@@ -4,21 +4,29 @@ import styles from './styles.module.scss'
 import {Button, Col, Empty, Popover, Row} from "antd";
 import Handle from './handle.js'
 import _ from 'lodash'
+import LogoFB from '@/assets/images/logos/messenger.png'
 
 export default function Integration() {
     const {
-        bot, listPageFB, loadingBtnSelectPage,
-        facebookLogin, handleSelectPage
+        bot, listPageFB, loadingBtnSelectPage, loadingBtnUnlink,
+        facebookLogin, handleSelectPage, handleConfirmUnlink
     } = Handle();
 
     return (
         <BotLayout>
-            <div className={styles.headerWrap}>Tích hợp</div>
+            <div className={styles.headerWrap}>
+              <div className={styles.title}>
+                Tích hợp
+              </div>
+            </div>
             <div className={styles.mainWrap}>
                 <Row className={styles.groupService}>
-                    <Col span={8} className={styles.serviceItem}>
-                        <div>Facebook Messenger</div>
-                        <div>Tự động gửi tin nhắn qua nền tảng Messenger</div>
+                    <Col xl={6} lg={8} md={12} xs={24} className={styles.serviceItem}>
+                        <div className={styles.logoWrap}>
+                          <img src={LogoFB} alt=""/>
+                        </div>
+                        <div className={styles.title}>Facebook Messenger</div>
+                        <div className={styles.description}>Tự động gửi tin nhắn qua nền tảng Messenger</div>
                         {
                             _.isEmpty(bot.page) ?
                             <Row gutter={10} className={styles.btnAction}>
@@ -51,7 +59,7 @@ export default function Integration() {
                                                     </div> :
                                                     <Empty />
                                             }
-                                            trigger="hover"
+                                            trigger="click"
                                         >
                                             <Button
                                                 loading={loadingBtnSelectPage}
@@ -63,7 +71,12 @@ export default function Integration() {
                                 </Col>
                             </Row> :
                             <div>
-                                Đã tạo liên kết
+                                <Button
+                                    onClick={() => handleConfirmUnlink()}
+                                    loading={loadingBtnUnlink}
+                                    className={styles.btnUnlink}
+                                >Hủy liên kết
+                                </Button>
                             </div>
                         }
                     </Col>

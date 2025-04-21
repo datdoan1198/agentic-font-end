@@ -31,3 +31,8 @@ export const PERMISSION = {
     UPDATE_PERMISSION_FOR_ROLE: 'update-permission-for-role',
 }
 
+export const STATUS_BOT = {
+  ACTIVE: 'ACTIVE',
+  DE_ACTIVE: 'DE_ACTIVE',
+}
+

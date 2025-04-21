@@ -9,6 +9,7 @@ import { handleCheckRoute } from "@/utils/helper.js"
 import { useDispatch, useSelector } from "react-redux"
 import { setIsShowSideBar } from "@/states/modules/detailBot/index.js"
 import { ChevronLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react"
+import Logo from "@/assets/images/logos/zent_logo_dark.png";
 
 export default function Sidebar() {
   const isShowSideBar = useSelector((state) => state.detailBot.isShowSideBar)
@@ -30,7 +31,7 @@ export default function Sidebar() {
     <div className={`${styles.boxSideBar} ${!isShowSideBar && styles.closeBoxSideBar}`}>
       <div className={styles.headerSideBar}>
         <div className={styles.logoWrap}>
-          <img src="https://console.easyaichat.app/easy-ai-chat-logo-square.png" alt="" />
+          <img onClick={() => navigate('/')} src={Logo} alt="" />
         </div>
         {!_.isEmpty(handleGetBotSelect()) && (
           <div className={styles.boxListBotChats}>
@@ -94,11 +95,15 @@ export default function Sidebar() {
                             content={<div>{router.label}</div>}
                             trigger="hover"
                           >
-                            <InlineSVG src={router.icon} width={27} />
+                            <div className={styles.iconWrap}>
+                              <InlineSVG src={router.icon} width={27} />
+                            </div>
                           </Popover>
                         </div>
                       ) : (
-                        <InlineSVG src={router.icon} width={27} />
+                        <div className={styles.iconWrap}>
+                          <InlineSVG src={router.icon} width={27} />
+                        </div>
                       )}
                       <div className={styles.text}>{router.label}</div>
                     </div>
