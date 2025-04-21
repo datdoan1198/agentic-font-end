@@ -15,21 +15,27 @@ const LinkActions = ({ isLoading, onRefresh, onView, onDelete }) => {
 
   return (
     <Space size="small">
-      <Tooltip placement="left" title="Quét lại">
+      <Tooltip placement="bottom" title="Quét">
         <CustomButton className={styles.button} variant="secondary" icon={renderRefreshIcon()} onClick={onRefresh} />
       </Tooltip>
-      <CustomButton
-        className={styles.button}
-        variant="secondary"
-        icon={<Eye className={styles.icon} />}
-        onClick={onView}
-      />
-      <CustomButton
-        className={styles.button}
-        variant="secondary"
-        icon={<Trash2 className={styles.icon} />}
-        onClick={onDelete}
-      />
+
+      <Tooltip placement="bottom" title="Xem chi tiết">
+        <CustomButton
+          className={styles.button}
+          variant="secondary"
+          icon={<Eye className={styles.icon} />}
+          onClick={onView}
+        />
+      </Tooltip>
+
+      <Tooltip placement="bottom" title="Xóa">
+        <CustomButton
+          className={styles.button}
+          variant="secondary"
+          icon={<Trash2 className={styles.icon} />}
+          onClick={onDelete}
+        />
+      </Tooltip>
     </Space>
   )
 }

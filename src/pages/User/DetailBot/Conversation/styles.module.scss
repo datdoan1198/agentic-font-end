@@ -7,8 +7,12 @@
     display: flex;
     align-items: center;
     height: 64px;
-    box-shadow: 15px -12px 10px 13px rgba(0, 0, 0, 0.09);
+    border-bottom: 1px solid rgb(229, 231, 235);
     padding: 10px;
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+    }
   }
 
   .boxTabConversation {

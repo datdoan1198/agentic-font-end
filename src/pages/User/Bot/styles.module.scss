@@ -16,27 +16,51 @@
   }
 
   .itemBotWrap {
-    box-shadow: 0 4px 8px 0 #9e9e9e87;
-    border-radius: 8px;
-    height: 100%;
-    transition: all 0.3s;
-    &:hover {
-      background: rgba(194, 194, 194, 0.06);
-    }
+    margin-bottom: 10px;
+    .itemBot {
+      box-shadow: 0 4px 8px 0 #9e9e9e87;
+      border-radius: 8px;
+      transition: all 0.3s;
+      height: 100%;
+      &:hover {
+        background: rgba(194, 194, 194, 0.06);
+      }
+      .mainWrap {
+        padding: 10px;
+        .imgWrap {
+          width: 100%;
+          cursor: pointer;
+        }
 
-    .mainWrap {
-      padding: 10px;
-      cursor: pointer;
-    }
+        .boxStatus {
+          margin-top: 5px;
+        }
 
-    .btnActionWrap {
-      border-top: 1px solid #d5d5d5;
-      padding: 5px;
+        .boxBtnAction {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          .iconAction {
+            cursor: pointer;
+            color: #6e6e6e;
+          }
+        }
+      }
 
-      .btnItem {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .btnActionWrap {
+        border-top: 1px solid #d5d5d5;
+        padding: 10px;
+
+        .btnItem {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+
+        .btnDelete {
+          justify-content: center;
+          color: #d36a6a;
+        }
       }
     }
   }
@@ -58,5 +82,23 @@
         background: $mainColor !important;
       }
     }
+  }
+}
+
+.menuAction {
+  margin: -12px;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border-radius: 8px;
+  min-width: 100px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  .itemBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all .3s;
   }
 }

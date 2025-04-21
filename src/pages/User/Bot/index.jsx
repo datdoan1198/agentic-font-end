@@ -1,37 +1,25 @@
 import React from "react"
 import MainLayout from "@/layouts/User/MainLayout/index.jsx"
 import styles from "./styles.module.scss"
-import { Avatar, Button, Col, Empty, Popover, Row, Steps } from "antd"
+import './styles.scss';
+import {Button, Col, Empty, Popover, Row, Steps, Switch} from "antd"
 import InlineSVG from "react-inlinesvg"
 import Robot from "@/assets/images/icons/solid/robot.svg"
+import Ellipsis from "@/assets/images/icons/solid/ellipsis-vertical.svg"
+import Trash from "@/assets/images/icons/solid/trash.svg"
 import InputForm from "@/components/InputForm/index.jsx"
 import Handle from "@/pages/User/Bot/handle.js"
 import Loading from "@/components/Loading/index.jsx"
-import { useDispatch } from "react-redux"
-import { deleteBot } from "../../../api/bot"
+import ModalDeleteDefault from "@/components/ModalDelete";
+import {STATUS_BOT} from "@/utils/constants.js";
 
 export default function Bot() {
-  const dispatch = useDispatch()
   const {
-    dataForm,
-    loadingStep,
-    errorDataForm,
-    itemStep,
-    botChats,
-    loadingListBot,
-    loadingBtnSubmitUrl,
-    handleChangeData,
-    onFocusInputLesson,
-    handleConfirmSubmitLink,
-    handleRedirectDetailBot,
+      dataForm, loadingStep, errorDataForm, itemStep, botChats, loadingListBot, loadingBtnSubmitUrl,
+      visibleDeleteBot, setVisibleDeleteBot, loadingBtnDelete,
+      handleChangeData, onFocusInputLesson, handleConfirmSubmitLink, handleRedirectDetailBot,
+      handleOpenModelDelete, handleConfirmDelete, handleChangeStatus
   } = Handle()
-
-  const handleDeleteBot = (botId) => {
-    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa bot này không?")
-    if (confirmDelete) {
-      dispatch(deleteBot(botId))
-    }
-  }
 
   return (
     <MainLayout>
@@ -73,28 +61,65 @@ export default function Bot() {
           {!loadingListBot ? (
             <>
               {botChats && botChats.length > 0 ? (
-                <Row gutter={10}>
+                <Row gutter={15}>
                   {botChats.map((bot) => {
                     return (
-                      <Col key={bot._id} span={8}>
-                        <div className={styles.itemBotWrap}>
-                          <Row className={styles.mainWrap} onClick={() => handleRedirectDetailBot(bot._id)}>
-                            <Col span={4}>
-                              <Avatar size={50} src={bot.favicon} />
+                      <Col
+                        key={bot._id} xl={6} lg={8} md={12} xs={24}
+                        className={styles.itemBotWrap}
+                      >
+                        <div className={styles.itemBot}>
+                          <Row
+                            gutter={10}
+                            className={styles.mainWrap}
+                          >
+                            <Col
+                              span={4}
+                              onClick={() => handleRedirectDetailBot(bot._id)}
+                            >
+                              <img className={styles.imgWrap} src={bot.favicon} alt=""/>
                             </Col>
 
-                            <Col span={20}>
-                              <div className="font-bold mb-[1px]">{bot.name}</div>
+                            <Col span={18}>
+                              <div
+                                className="font-medium mb-[1px] cursor-pointer"
+                                onClick={() => handleRedirectDetailBot(bot._id)}
+                              >
+                                {bot.name}
+                              </div>
+                              <div className={styles.boxStatus}>
+                                <div className={'switch-bot'}>
+                                  <Switch
+                                    onChange={(value) => handleChangeStatus(value, bot._id)}
+                                    value={bot?.status === STATUS_BOT.ACTIVE}
+                                  />
+                                </div>
+                              </div>
                             </Col>
-                          </Row>
 
-                          <Row className={styles.btnActionWrap}>
-                            <Col span={12} className={styles.btnItem}>
-                              Change Status
-                            </Col>
-
-                            <Col span={12} className={styles.btnItem}>
-                              <Button onClick={() => handleDeleteBot(bot._id)}>Delete</Button>
+                            <Col span={2} className={styles.boxBtnAction}>
+                              <div className={styles.iconAction}>
+                                <Popover
+                                  className={`popover-info-wrap`}
+                                  placement="bottom"
+                                  content={
+                                    <div className={styles.menuAction}>
+                                      <div
+                                          className={`${styles.itemBtn}`}
+                                          onClick={() => handleOpenModelDelete(bot)}
+                                      >
+                                        <div className={'w-[25px] flex justify-center'}>
+                                          <InlineSVG src={Trash} width={12}/>
+                                        </div>
+                                        Xóa bot
+                                      </div>
+                                    </div>
+                                  }
+                                  trigger="click"
+                                >
+                                  <InlineSVG src={Ellipsis} width={6} />
+                                </Popover>
+                              </div>
                             </Col>
                           </Row>
                         </div>
@@ -111,6 +136,16 @@ export default function Bot() {
           )}
         </div>
       </div>
+
+      <ModalDeleteDefault
+        content={<span>Bạn có chắc chắn muốn xóa bot không?</span>}
+        contentBtn={'Xóa Bot'}
+        isModalOpen={visibleDeleteBot}
+        handleOk={() => setVisibleDeleteBot(!visibleDeleteBot)}
+        handleCancel={() => setVisibleDeleteBot(!visibleDeleteBot)}
+        handleConfirm={() => handleConfirmDelete()}
+        loading={loadingBtnDelete}
+      />
     </MainLayout>
   )
 }

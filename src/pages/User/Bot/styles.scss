@@ -1,0 +1,14 @@
+.switch-bot {
+  .ant-switch {
+    background: #e4e4e7;
+    &:hover {
+      background: #e4e4e7;
+    }
+  }
+  .ant-switch-checked {
+    background: #05a816;
+    &:hover {
+      background: #05a816 !important;
+    }
+  }
+}

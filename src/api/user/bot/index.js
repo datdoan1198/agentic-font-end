@@ -15,6 +15,21 @@ export const createBotChat = (data) => {
   })
 }
 
+export const changeStatusBot = (data, botId) => {
+  return apiAxios({
+    method: "put",
+    url: `/bots/${botId}/change-status`,
+    data
+  })
+}
+
+export const deleteBot = (botId) => {
+  return apiAxios({
+    method: "delete",
+    url: `/bots/${botId}`,
+  })
+}
+
 export const getInfoBot = (botId) => {
   const url = `/bots/${botId}`
   return apiAxios({
@@ -36,4 +51,11 @@ export const selectPageFB = (data, botId) => {
     url: `/bots/${botId}/select-page-fb`,
     data,
   })
+}
+
+export const unlinkPageFB = (botId) => {
+    return apiAxios({
+        method: "post",
+        url: `/bots/${botId}/unlink-page`,
+    })
 }

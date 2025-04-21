@@ -21,7 +21,11 @@ export default function Conversation() {
   return (
     <BotLayout>
       <div className={styles.box}>
-        <div className={styles.headerWrap}>Hội thoại</div>
+        <div className={styles.headerWrap}>
+          <div className={styles.title}>
+            Hội thoại
+          </div>
+        </div>
 
         <div className={styles.boxTabConversation}>
           <Segmented

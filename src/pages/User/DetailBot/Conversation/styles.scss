@@ -1,5 +1,10 @@
 .tab-conversation {
   .ant-segmented-group {
     gap: 10px;
+    .ant-segmented-item {
+      .ant-segmented-item-label {
+        font-size: 14px;
+      }
+    }
   }
 }

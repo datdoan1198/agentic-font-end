@@ -1,9 +1,7 @@
 import React from "react"
 import BotLayout from "@/layouts/User/BotLayout"
 import styles from "./styles.module.scss"
-
 import TagCustom from "../../../../components/Tag"
-
 import LinkTable from "./components/LinkTable"
 import FilterGroup from "./components/FilterGroup"
 import { useLinks } from "./useLinks"
@@ -39,7 +37,7 @@ export default function Links() {
   return (
     <BotLayout>
       <div className={styles.headerWrap}>
-        <span>Links</span>
+        <span className={styles.title}>Links</span>
         <TagCustom color="blue">Tổng số {totalLinks || links?.length || 0}/1000 link</TagCustom>
       </div>
       <div className={styles.mainWrap}>

@@ -2,8 +2,12 @@
   display: flex;
   align-items: center;
   height: 64px;
-  box-shadow: 15px -12px 10px 13px rgba(0, 0, 0, 0.09);
   padding: 10px;
+  border-bottom: 1px solid rgb(229, 231, 235);
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
 }
 
 .mainWrap {
@@ -12,8 +16,28 @@
   .groupService {
     .serviceItem {
       box-shadow: 0 4px 8px 0 rgba(158, 158, 158, 0.5294117647);
-      padding: 10px;
+      padding: 20px;
       border-radius: 8px;
+
+      .logoWrap {
+        width: 80px;
+        margin-bottom: 10px;
+        img {
+          width: 100%;
+        }
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .description {
+        font-size: 13px;
+        font-weight: 400;
+        color: #787878;
+        margin-bottom: 10px;
+      }
 
       .btnAction {
         margin-top: 10px;
@@ -29,6 +53,12 @@
           color: #ffffff;
           background: cornflowerblue;
         }
+      }
+
+      .btnUnlink {
+        width: 100%;
+        color: #ffffff;
+        background: #ff6d6d;
       }
     }
   }

@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useEffect, useState } from "react";
 import _ from "lodash";
-import { getInfoBot, getListPageFB, selectPageFB } from "@/api/user/bot/index.js";
+import {getInfoBot, getListPageFB, selectPageFB, unlinkPageFB} from "@/api/user/bot/index.js";
 import { getNotification } from "@/utils/helper.js";
-import store from "@/states/configureStore.js";
 import { setBot } from "@/states/modules/detailBot/index.js";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +10,9 @@ export default function Handle() {
   const bot = useSelector((state) => state.detailBot.bot);
   const [listPageFB, setListPageFB] = useState([]);
   const [loadingBtnSelectPage, setLoadingBtnSelectPage] = useState(false);
+  const [loadingBtnUnlink, setLoadingBtnUnlink] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!_.isEmpty(bot) && _.isEmpty(bot.page)) {
@@ -53,19 +54,26 @@ export default function Handle() {
   const handleGetDetailBot = () => {
     getInfoBot(bot._id)
       .then((res) => {
-        store.dispatch(setBot(res.data.data));
+        dispatch(setBot(res.data.data));
       })
       .catch(() => {
-        store.dispatch(setBot({}));
+        dispatch(setBot({}));
         navigate("bot-chats");
       });
   };
 
+  const handleConfirmUnlink = () => {
+      setLoadingBtnUnlink(true)
+      unlinkPageFB(bot._id).then(() => {
+          getNotification('success', 'Ngắt kết nối thành công.');
+          handleGetDetailBot();
+      }).catch(() => {
+          getNotification('error', 'Ngắt kết nối thất bại.');
+      }).finally(() => setLoadingBtnUnlink(false));
+  }
+
   return {
-    bot,
-    listPageFB,
-    loadingBtnSelectPage,
-    facebookLogin,
-    handleSelectPage,
+    bot, listPageFB, loadingBtnSelectPage, loadingBtnUnlink,
+    facebookLogin, handleSelectPage, handleConfirmUnlink
   };
 }
