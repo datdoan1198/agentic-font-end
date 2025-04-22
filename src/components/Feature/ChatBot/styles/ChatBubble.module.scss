@@ -1,0 +1,23 @@
+.chatBubbleContainer {
+  @apply relative w-[200px] max-w-full bg-white rounded-2xl shadow-md p-3;
+}
+
+.closeButton {
+  @apply absolute top-2 right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center z-10;
+}
+
+.topWrap {
+  @apply flex items-center gap-2 mb-2;
+}
+.logoBot {
+  @apply w-6 h-6 object-cover rounded-[50%];
+}
+.nameBot {
+  @apply text-sm ml-1 font-bold;
+}
+.contentWrap {
+  @apply min-h-[28px] flex items-center;
+}
+.textMessage {
+  @apply text-xs text-neutral-600;
+}

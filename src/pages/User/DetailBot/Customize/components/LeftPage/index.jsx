@@ -31,8 +31,8 @@ export default function LeftPage() {
   return (
     <>
       <div className={`${styleCustomize.container}`}>
-        <div className={styleCustomize.headerWrap}>
-          <span>Tùy chỉnh</span>
+        <div className={styles.headerWrap}>
+          <span className={styles.title}>Tùy chỉnh</span>
           <CustomButton onClick={handleSaveCustomize} loading={loadingUpdate}>
             Lưu
           </CustomButton>
@@ -127,7 +127,7 @@ export default function LeftPage() {
         /> */}
           <InputSelect
             label={"Tự động hiển thị khung chat"}
-            defaultValue={formData.auto_display_chatbox || "off"}
+            defaultValue={"off"}
             options={dispayAutoBotOptions}
             type="auto_display_chatbox"
             handleChangeData={handleChangeData}
