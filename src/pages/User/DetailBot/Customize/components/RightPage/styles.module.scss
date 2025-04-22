@@ -1,0 +1,12 @@
+.headerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  box-shadow: 15px -12px 10px 13px rgba(0, 0, 0, 0.09);
+  padding: 10px;
+}
+
+.itemSegmentWrap {
+  @apply flex items-center justify-center gap-2;
+}

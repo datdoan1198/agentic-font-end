@@ -1,0 +1,11 @@
+.container {
+  @apply flex flex-col h-full overflow-hidden relative;
+}
+
+.headerWrap {
+  @apply sticky top-0 flex items-center justify-between max-h-[70px] w-full p-[10px] bg-white z-50 shadow-sm;
+}
+
+.mainWrap {
+  @apply p-[10px] overflow-y-auto flex-1;
+}

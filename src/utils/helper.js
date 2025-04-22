@@ -30,7 +30,7 @@ export const getNotification = (type, content, duration = 2000, align = "top-rig
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "colored",
+    theme: "light",
   })
 }
 

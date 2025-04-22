@@ -16,6 +16,7 @@
     font-size: 20px;
     font-weight: 600;
   }
+  @apply sticky top-0 flex items-center justify-between h-[64px] w-full p-[10px] bg-white z-50 shadow-sm;
 }
 
 .mainWrap {
