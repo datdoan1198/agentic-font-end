@@ -36,3 +36,4 @@ export const STATUS_BOT = {
   DE_ACTIVE: 'DE_ACTIVE',
 }
 
+export const ColorMain = "#4ca1f5"

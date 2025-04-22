@@ -1,0 +1,10 @@
+.image {
+  @apply hover:after:content-[''] hover:bg-neutral-600;
+}
+
+:global {
+  .ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload.ant-upload-select,
+  .ant-image-mask {
+    @apply w-[80px] h-[80px];
+  }
+}
