@@ -28,7 +28,7 @@ export default function RightPage() {
   return (
     <>
       <div className={styleCustomize.container}>
-        <div className={styleCustomize.headerWrap}>
+        <div className={styles.headerWrap}>
           <Segmented defaultValue="desktop" size="large" options={options} onChange={(value) => {}} />
         </div>
         <ChatBot />

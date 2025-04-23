@@ -1,0 +1,16 @@
+.headerWrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(229, 231, 235);
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

@@ -19,6 +19,23 @@
   @apply sticky top-0 flex items-center justify-between h-[64px] w-full p-[10px] bg-white z-50 shadow-sm;
 }
 
+.headerWrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(229, 231, 235);
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
 .mainWrap {
   @apply p-[10px];
   .groupFilter {

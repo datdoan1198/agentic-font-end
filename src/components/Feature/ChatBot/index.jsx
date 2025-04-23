@@ -1,6 +1,6 @@
 import React from "react"
 import ChatbotButton from "./components/ChatbotButton"
-import styles from "./components/ChatBot.module.scss"
+import styles from "./styles/ChatBot.module.scss"
 
 export default function ChatBot() {
   return (

@@ -1,6 +1,5 @@
-import { Bot, User } from "lucide-react"
 import { motion } from "framer-motion"
-import styles from "./styles.module.scss"
+import styles from "../styles/styles.module.scss"
 import { useSelector } from "react-redux"
 
 export const ChatMessage = ({ message, isBot, index }) => {

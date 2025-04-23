@@ -16,7 +16,7 @@
     &:hover {
       @apply bg-blue-600 border-blue-600;
       // Override any conflicting styles
-      background-color: theme("colors.blue.500") !important;
+      background-color: theme("colors.main") !important;
       border-color: theme("colors.blue.500") !important;
       color: white !important;
     }

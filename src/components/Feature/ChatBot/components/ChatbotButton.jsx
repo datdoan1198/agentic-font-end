@@ -4,8 +4,31 @@ import { motion, AnimatePresence } from "framer-motion"
 import { TypingIndicator } from "./TypingIndicator"
 import { ChatMessage } from "./ChatMessage"
 import openAI from "@/api/callOpenAI"
-import styles from "./styles.module.scss"
+import styles from "../styles/styles.module.scss"
 import { useSelector } from "react-redux"
+import ChatBubble from "./ChatBubble"
+import QuickChat from "./QuickChat"
+
+export const buttonVariants = (time) => {
+  return {
+    initial: { y: 100, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: time,
+        damping: 28,
+        duration: 0.8,
+      },
+    },
+    exit: {
+      y: 20,
+      opacity: 0,
+      transition: { duration: 0.4 },
+    },
+  }
+}
 
 const ChatbotButton = ({ defaultOpen = false }) => {
   const { bot } = useSelector((state) => state.detailBot)
@@ -87,25 +110,6 @@ const ChatbotButton = ({ defaultOpen = false }) => {
     }
   }
 
-  const buttonVariants = {
-    initial: { y: 100, opacity: 0 },
-    animate: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 28,
-        duration: 0.8,
-      },
-    },
-    exit: {
-      y: 20,
-      opacity: 0,
-      transition: { duration: 0.4 },
-    },
-  }
-
   const chatboxVariants = {
     hidden: { y: "100%", opacity: 0 },
     visible: {
@@ -130,18 +134,22 @@ const ChatbotButton = ({ defaultOpen = false }) => {
     <div className={styles.chatbotWrapper} ref={containerRef}>
       <AnimatePresence mode="wait">
         {!isOpen && (
-          <motion.button
-            onClick={() => setIsOpen(true)}
-            className={styles.chatbotBtn}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={buttonVariants}
-            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-            whileTap={{ scale: 0.95, transition: { duration: 0.3 } }}
-          >
-            <Bot className={styles.icon} />
-          </motion.button>
+          <div className={styles.botDisplayWrap}>
+            <ChatBubble className={styles.bubblechat} />
+            <QuickChat />
+            <motion.button
+              onClick={() => setIsOpen(true)}
+              className={styles.chatbotBtn}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={buttonVariants(100)}
+              whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+              whileTap={{ scale: 0.95, transition: { duration: 0.3 } }}
+            >
+              <Bot className={styles.icon} />
+            </motion.button>
+          </div>
         )}
 
         {isOpen && (
