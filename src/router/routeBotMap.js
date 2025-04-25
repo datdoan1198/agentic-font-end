@@ -3,7 +3,6 @@ import Message from "@/assets/images/icons/solid/messages.svg";
 import Puzzle from "@/assets/images/icons/solid/globe.svg";
 import Chart from "@/assets/images/icons/solid/chart-simple.svg";
 import Customize from "@/assets/images/icons/solid/customize.svg"
-import Integration from "@/assets/images/icons/solid/integration.svg"
 
 export const routeBotMap = (botIdSelected) => [
     {
@@ -43,12 +42,6 @@ export const routeBotMap = (botIdSelected) => [
             {
                 label: "Tích hợp",
                 icon: Puzzle,
-                path: `/bot-chats/${botIdSelected}/integration`,
-                routeActive: [`/bot-chats/${botIdSelected}/integration`],
-            },
-            {
-                label: "Tích hợp",
-                icon: Integration,
                 path: `/bot-chats/${botIdSelected}/integration`,
                 routeActive: [`/bot-chats/${botIdSelected}/integration`],
             },
