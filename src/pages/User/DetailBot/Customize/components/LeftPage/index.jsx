@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React  from "react"
 import styles from "./styles.module.scss"
 import { CustomButton } from "@/components/Button"
 import InputForm from "@/components/InputForm"
@@ -50,18 +50,18 @@ export default function LeftPage() {
           />
           <InputUpload
             label="Logo"
-            type="logo"
+            type="favicon"
             formData={formData}
-            error={errorFormData.logo}
+            error={errorFormData.favicon}
             handleChangeData={handleChangeData}
             onFocusInputLesson={onFocusInputLesson}
           />
           <Divider />
           <InputUpload
             label="Nút trò chuyện"
-            type="favicon"
+            type="logo_message"
             formData={formData}
-            error={errorFormData.favicon}
+            error={errorFormData.logo_message}
             handleChangeData={handleChangeData}
             onFocusInputLesson={onFocusInputLesson}
           />

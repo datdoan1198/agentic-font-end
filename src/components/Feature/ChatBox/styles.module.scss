@@ -1,0 +1,245 @@
+.boxChat {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .boxIconChat {
+    position: fixed;
+    right: 20px;
+    bottom:20px;
+    cursor: pointer;
+    z-index: 10;
+    transition-delay: .3s;
+    transition-duration: .3s;
+    opacity: 1;
+    transform: translateY(0%);
+    .imgWrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow:hidden;
+      background: #4ca1f5;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .boxIconChatClose {
+    opacity: 0;
+    transform: translateY(150%);
+  }
+
+  .boxLayoutChat {
+    position: fixed;
+    right: 16px;
+    bottom:16px;
+    z-index: 11;
+    height: 700px;
+    width: 452px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px #0000001a;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(150%);
+    transition-delay: .3s;
+    transition-duration: .5s;
+    opacity: 0;
+
+    .headerLayout {
+      position: relative;
+      background: #4ca1f5;
+      padding: 12px;
+      .logoWrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .boxImg {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: 500;
+          gap: 10px;
+          .imgWrap {
+            border-radius: 50%;
+            background: #ffffff;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            object-fit: cover;
+            overflow: hidden;
+          }
+
+          .name {
+            flex: 1 1;
+          }
+        }
+      }
+
+      .btnAction {
+        display: flex;
+        gap: 10px;
+        color: #ffffff;
+        .btnItem {
+          cursor: pointer;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #ffffff1a;
+          border-radius: .375rem;
+          transition: all .3s;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.25);
+          }
+        }
+      }
+    }
+
+    .messageWrap {
+      display: flex;
+      flex: 1 1 0%;
+      flex-direction: column-reverse;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      padding: 16px;
+
+      .itemMessage {
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 600px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        gap: 5px;
+        .iconMessage {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: #ffffff;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .contextWrap {
+          width: calc(100% - 32px - 40px);
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          .contextItem {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            position: relative;
+            width: fit-content;
+            .loadingSendMessage {
+              display: flex;
+              gap: 5px;
+              .dot {
+                width: 10px;
+                height: 10px;
+                background: #cbc6c6;
+                border-radius: 50%;
+                animation: blink 1.4s infinite ease-in-out both;
+              }
+              .dot:nth-child(1) {
+                animation-delay: 0s;
+              }
+              .dot:nth-child(2) {
+                animation-delay: 0.2s;
+              }
+              .dot:nth-child(3) {
+                animation-delay: 0.4s;
+              }
+
+              @keyframes blink {
+                0%, 80%, 100% {
+                  opacity: 0.2;
+                  transform: scale(1);
+                }
+                40% {
+                  opacity: 1;
+                  transform: scale(1.1);
+                }
+              }
+
+
+            }
+          }
+
+          .contextItemUser {
+            background: #33bd40;
+            color: #ffffff;
+          }
+        }
+
+        .contextUserWrap {
+          justify-content: flex-end;
+          flex-direction: row;
+        }
+      }
+
+      .itemRight {
+        flex-direction: row-reverse;
+      }
+    }
+
+    .actionWrap {
+      position: relative;
+      .inputSendWrap {
+        padding: 4px 12px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        .inputSend {
+          margin-bottom: 15px;
+        }
+
+        .btnSend {
+          background: #4ca1f5;
+          color: #ffffff;
+          padding: 10px;
+        }
+
+        .btnSendDisabled {
+          background: #e5e7eb !important;
+          color: #9ca3af;
+        }
+      }
+
+      .introduceWrap {
+        padding: 8px 16px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: -10px;
+        color: #6b7280;
+        .description {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  .boxLayoutChatShow {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Send, Bot, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { TypingIndicator } from "./TypingIndicator"
@@ -171,8 +171,6 @@ const ChatbotButton = ({ defaultOpen = false }) => {
                   <motion.button
                     onClick={() => setIsOpen(false)}
                     className={styles.closeButton}
-                    whileHover={{ rotate: 90, scale: 1.1, transition: { duration: 0.4 } }} // Slower animation
-                    whileTap={{ scale: 0.9, transition: { duration: 0.3 } }}
                   >
                     <X className={styles.icon} />
                   </motion.button>

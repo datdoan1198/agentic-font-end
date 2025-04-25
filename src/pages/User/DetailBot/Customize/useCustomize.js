@@ -4,21 +4,19 @@ import { useNavigate } from "react-router-dom"
 import { validate } from "@/utils/validates/validate.js"
 import { getNotification } from "@/utils/helper"
 import { CustomizeSchema } from "../Customize/components/LeftPage/schema"
-import { useSelector } from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { ColorMain } from "@/utils/constants.js"
 import { updateConfigBot } from "../../../../api/user/customize"
 import { dataURLtoFile } from "@/utils/dataURLtoFile.js"
 import { getInfoBot } from "@/api/user/bot/index.js"
-import store from "../../../../states/configureStore"
 import { setBot } from "../../../../states/modules/detailBot"
 
 const initialFormData = {
-  url: "",
   name: "",
-  logo: "",
   favicon: "",
-  color: ColorMain,
   description: "",
+  logo_message: "",
+  color: ColorMain,
   welcome_messages: "",
   quick_prompts: "",
   auto_display_chatbox: "off",
@@ -26,20 +24,19 @@ const initialFormData = {
 
 export default function useCustomize() {
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   const { bot } = useSelector((state) => state.detailBot)
-  const { url, name, logo, favicon, color, description, welcome_messages, quick_prompts, auto_display_chatbox } = bot
 
   const [formData, setFormData] = useState({
-    url: url || "",
-    name: name || "",
-    logo: logo || "",
-    favicon: favicon || "",
-    color: color || ColorMain,
-    description: description || "",
-    welcome_messages: welcome_messages ? welcome_messages.join("\n") : "",
-    quick_prompts: quick_prompts ? quick_prompts.join("\n") : "",
-    auto_display_chatbox: auto_display_chatbox || "off",
+    name: bot.name || "",
+    favicon: bot.favicon || "",
+    description: bot.description || "",
+    logo_message: bot?.config_bot?.logo_message || "",
+    color: bot?.config_bot?.color || ColorMain,
+    welcome_messages: bot?.config_bot?.welcome_messages ? bot?.config_bot?.welcome_messages.join("\n") : "",
+    quick_prompts: bot?.config_bot?.quick_prompts ? bot?.config_bot?.quick_prompts.join("\n") : "",
+    auto_display_chatbox: bot?.config_bot?.auto_display_chatbox || "off",
   })
   const [errorFormData, setErrorFormData] = useState(initialFormData)
   const [loadingUpdate, setLoadingUpdate] = useState(false)
@@ -48,20 +45,17 @@ export default function useCustomize() {
   const getConfigBot = async () => {
     await getInfoBot(bot._id)
       .then((res) => {
-        store.dispatch(setBot(res.data.data))
+        dispatch(setBot(res.data.data))
       })
       .catch(() => {
-        store.dispatch(setBot({}))
+        dispatch(setBot({}))
       })
   }
 
   const handleChangeData = (type, value) => {
     let data = _.cloneDeep(formData)
-
     data[type] = value
-
     setFormData(data)
-
     let errorData = _.cloneDeep(errorFormData)
     errorData[type] = ""
     setErrorFormData(errorData)
@@ -97,32 +91,9 @@ export default function useCustomize() {
       onSuccess: async (validData) => {
         try {
           setLoadingUpdate(true)
-
           const formDataToSubmit = new FormData()
 
-          formDataToSubmit.append("url", validData.url)
           formDataToSubmit.append("name", validData.name)
-          formDataToSubmit.append("description", validData.description)
-          formDataToSubmit.append("color", validData.color)
-          formDataToSubmit.append("auto_display_chatbox", validData.auto_display_chatbox)
-
-          if (Array.isArray(validData.welcome_messages)) {
-            formDataToSubmit.append("welcome_messages", JSON.stringify(validData.welcome_messages))
-          }
-
-          if (Array.isArray(validData.quick_prompts)) {
-            formDataToSubmit.append("quick_prompts", JSON.stringify(validData.quick_prompts))
-          }
-
-          if (formData.logo instanceof File) {
-            formDataToSubmit.append("logo", formData.logo)
-          } else if (typeof formData.logo === "string" && formData.logo.startsWith("data:")) {
-            const logoFile = await dataURLtoFile(formData.logo, "logo.png")
-            formDataToSubmit.append("logo", logoFile)
-          } else if (formData.logo) {
-            formDataToSubmit.append("logo", formData.logo)
-          }
-
           if (formData.favicon instanceof File) {
             formDataToSubmit.append("favicon", formData.favicon)
           } else if (typeof formData.favicon === "string" && formData.favicon.startsWith("data:")) {
@@ -131,7 +102,23 @@ export default function useCustomize() {
           } else if (formData.favicon) {
             formDataToSubmit.append("favicon", formData.favicon)
           }
-
+          formDataToSubmit.append("description", validData.description)
+          formDataToSubmit.append("color", validData.color)
+          formDataToSubmit.append("auto_display_chatbox", validData.auto_display_chatbox)
+          if (Array.isArray(validData.welcome_messages)) {
+            formDataToSubmit.append("welcome_messages", JSON.stringify(validData.welcome_messages))
+          }
+          if (Array.isArray(validData.quick_prompts)) {
+            formDataToSubmit.append("quick_prompts", JSON.stringify(validData.quick_prompts))
+          }
+          if (formData.logo_message instanceof File) {
+            formDataToSubmit.append("logo_message", formData.logo_message)
+          } else if (typeof formData.logo_message === "string" && formData.logo_message.startsWith("data:")) {
+            const logoFile = await dataURLtoFile(formData.logo_message, "logo_message.png")
+            formDataToSubmit.append("logo_message", logoFile)
+          } else if (formData.logo_message) {
+            formDataToSubmit.append("logo_message", formData.logo_message)
+          }
           await updateConfigBot(formDataToSubmit, bot._id)
             .then(async (res) => {
               if (res.data) {
