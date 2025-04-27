@@ -94,26 +94,26 @@ export default function LeftPage() {
           handleChangeData={handleChangeData}
           onFocusInputLesson={onFocusInputLesson}
         /> */}
-          <InputForm
-            label="Tin nhắn chào mừng"
-            required={false}
-            isTextArea={true}
-            type="welcome_messages"
-            value={formData.welcome_messages}
-            error={errorFormData.welcome_messages}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-          />
-          <InputForm
-            label="Lời nhắc nhanh"
-            required={false}
-            isTextArea={true}
-            type="quick_prompts"
-            value={formData.quick_prompts}
-            error={errorFormData.quick_prompts}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-          />
+          {/*<InputForm*/}
+          {/*  label="Tin nhắn chào mừng"*/}
+          {/*  required={false}*/}
+          {/*  isTextArea={true}*/}
+          {/*  type="welcome_messages"*/}
+          {/*  value={formData.welcome_messages}*/}
+          {/*  error={errorFormData.welcome_messages}*/}
+          {/*  handleChangeData={handleChangeData}*/}
+          {/*  onFocusInputLesson={onFocusInputLesson}*/}
+          {/*/>*/}
+          {/*<InputForm*/}
+          {/*  label="Lời nhắc nhanh"*/}
+          {/*  required={false}*/}
+          {/*  isTextArea={true}*/}
+          {/*  type="quick_prompts"*/}
+          {/*  value={formData.quick_prompts}*/}
+          {/*  error={errorFormData.quick_prompts}*/}
+          {/*  handleChangeData={handleChangeData}*/}
+          {/*  onFocusInputLesson={onFocusInputLesson}*/}
+          {/*/>*/}
           {/* <InputForm
           label="Chữ ký"
           desc='Nhập nội dung, ví dụ "Thông tin tham vấn bởi AI"'
@@ -125,15 +125,15 @@ export default function LeftPage() {
           handleChangeData={handleChangeData}
           onFocusInputLesson={onFocusInputLesson}
         /> */}
-          <InputSelect
-            label={"Tự động hiển thị khung chat"}
-            defaultValue={"off"}
-            options={dispayAutoBotOptions}
-            type="auto_display_chatbox"
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-            error={errorFormData.auto_display_chatbox}
-          />
+          {/*<InputSelect*/}
+          {/*  label={"Tự động hiển thị khung chat"}*/}
+          {/*  defaultValue={"off"}*/}
+          {/*  options={dispayAutoBotOptions}*/}
+          {/*  type="auto_display_chatbox"*/}
+          {/*  handleChangeData={handleChangeData}*/}
+          {/*  onFocusInputLesson={onFocusInputLesson}*/}
+          {/*  error={errorFormData.auto_display_chatbox}*/}
+          {/*/>*/}
         </div>
       </div>
     </>

@@ -8,8 +8,9 @@ import {useDispatch, useSelector} from "react-redux"
 import { ColorMain } from "@/utils/constants.js"
 import { updateConfigBot } from "../../../../api/user/customize"
 import { dataURLtoFile } from "@/utils/dataURLtoFile.js"
-import { getInfoBot } from "@/api/user/bot/index.js"
+import {getInfoBot, getListBotChats} from "@/api/user/bot/index.js"
 import { setBot } from "../../../../states/modules/detailBot"
+import {setBotChats} from "@/states/modules/bot/index.js";
 
 const initialFormData = {
   name: "",
@@ -126,6 +127,7 @@ export default function useCustomize() {
                 if (success && status === 201) {
                   getNotification("success", "Lưu tùy chỉnh thành công")
                   await getConfigBot()
+                  handleGetListBotChats()
                 }
               }
             })
@@ -158,6 +160,14 @@ export default function useCustomize() {
           getNotification("error", firstError)
         }
       },
+    })
+  }
+
+  const handleGetListBotChats = () => {
+    getListBotChats().then((res) => {
+      dispatch(setBotChats(res.data.data.botChats))
+    }).catch(() => {
+      dispatch(setBotChats([]))
     })
   }
 

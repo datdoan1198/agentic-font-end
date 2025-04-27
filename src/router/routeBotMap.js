@@ -3,6 +3,8 @@ import Message from "@/assets/images/icons/solid/messages.svg";
 import Puzzle from "@/assets/images/icons/solid/globe.svg";
 import Chart from "@/assets/images/icons/solid/chart-simple.svg";
 import Customize from "@/assets/images/icons/solid/customize.svg"
+import File from "@/assets/images/icons/solid/file.svg"
+import Code from "@/assets/images/icons/solid/code.svg"
 
 export const routeBotMap = (botIdSelected) => [
     {
@@ -33,6 +35,12 @@ export const routeBotMap = (botIdSelected) => [
                 path: `/bots/${botIdSelected}/links`,
                 routeActive: [`/bots/${botIdSelected}/links`],
             },
+            {
+                label: "Tài liệu",
+                icon: File,
+                path: `/bots/${botIdSelected}/files`,
+                routeActive: [`/bots/${botIdSelected}/files`],
+            },
         ],
     },
     {
@@ -50,6 +58,12 @@ export const routeBotMap = (botIdSelected) => [
                 icon: Customize,
                 path: `/bots/${botIdSelected}/customize`,
                 routeActive: [`/bots/${botIdSelected}/customize`],
+            },
+            {
+                label: "Nhúng",
+                icon: Code,
+                path: `/bots/${botIdSelected}/embed`,
+                routeActive: [`/bots/${botIdSelected}/embed`],
             },
         ],
     },

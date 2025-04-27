@@ -1,16 +1,24 @@
 import { apiAxios } from "@/api/rootApi.js";
 
-export const getListLinks = () => {
-  return apiAxios({
-    method: "get",
-    url: "http://localhost:3001/links",
-  });
+export const getListLinks = (bot_id, dataFilter) => {
+    let path = `/bots/${bot_id}/links`;
+    if (dataFilter && dataFilter.perPage && dataFilter.page) {
+        path += `?per_page=${dataFilter.perPage}&page=${dataFilter.page}`;
+        if (dataFilter.keySearch) {
+            path += `&q=${dataFilter.keySearch}`;
+        }
+    }
+
+    return apiAxios({
+        method: "get",
+        url: path,
+    })
 };
 
-export const createLink = (data) => {
+export const createLink = (bot_id, data) => {
   return apiAxios({
     method: "post",
-    url: "http://localhost:3001/links",
+    url: `/bots/${bot_id}/links`,
     data,
   });
 };

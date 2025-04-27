@@ -9,8 +9,10 @@ import UserProfile from "@/pages/User/Profile";
 import UserDashBoardDetailBotChats from "@/pages/User/DetailBot/DashBoard";
 import UserIntegrationDetailBotChats from "@/pages/User/DetailBot/Integration";
 import WebsiteLinksDetailBotChats from "@/pages/User/DetailBot/Links";
+import FileDetailBotChats from "@/pages/User/DetailBot/File";
 import UserConversationDetailBotChats from '@/pages/User/DetailBot/Conversation';
 import CustomizeBotPage from "@/pages/User/DetailBot/Customize/index.jsx"
+import Embed from "@/pages/User/DetailBot/Embed"
 
 const router = createBrowserRouter([
     {
@@ -57,6 +59,13 @@ const router = createBrowserRouter([
         loader: ({request, params}) => rootLoader({request, params}, true, "LOAD_DETAIL_BOT_PAGE"),
     },
     {
+        path: "/bots/:botId/files",
+        element: <FileDetailBotChats/>,
+        loader: ({request, params}) => rootLoader(
+            {request, params}, true, "LOAD_DETAIL_BOT_PAGE"
+        ),
+    },
+    {
         path: '/bot-chats/:botId/conversation',
         element: <UserConversationDetailBotChats/>,
         loader: ({request, params}) => rootLoader(
@@ -67,6 +76,13 @@ const router = createBrowserRouter([
         path: "/bots/:botId/customize",
         element: <CustomizeBotPage/>,
         loader: ({request, params}) => rootLoader({request, params}, true, "LOAD_DETAIL_BOT_PAGE"),
+    },
+    {
+        path: "/bots/:botId/embed",
+        element: <Embed/>,
+        loader: ({request, params}) => rootLoader(
+            {request, params}, true, "LOAD_DETAIL_BOT_PAGE"
+        ),
     },
 
 ]);
