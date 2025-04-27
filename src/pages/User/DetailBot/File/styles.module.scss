@@ -1,0 +1,85 @@
+@import "@/assets/scss/variables";
+
+.headerWrap {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(229, 231, 235);
+  background: #ffffff;
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.mainWrap {
+  padding: 10px;
+
+  .btnAddFile {
+    margin-bottom: 20px;
+  }
+
+  .filterWrap {
+    margin-bottom: 20px;
+  }
+}
+
+.actionWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  .actionItemWrap {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    transition: all .3s;
+    &:hover {
+      background: #e7e7e7;
+    }
+  }
+}
+
+.formViewDetailFile {
+  width: 100%;
+  padding: 20px;
+  .headerForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .title {
+      font-size: 16px;
+    }
+    .iconWrap {
+      color: #6e6e6e;
+      cursor: pointer;
+    }
+  }
+  .formSubmitLink {
+
+    .btnWrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+      .btnConfirm {
+        color: $colorWhite !important;
+        background: $mainColor ;
+        &:hover {
+          color: $colorWhite;
+          background: $mainColor !important;
+        }
+      }
+    }
+  }
+}

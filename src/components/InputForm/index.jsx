@@ -44,6 +44,7 @@ const InputForm = (props) => {
         />
       ) : isTextArea ? (
         <Input.TextArea
+          disabled={isDisabled}
           rows={rows}
           className="main-input"
           size={"large"}

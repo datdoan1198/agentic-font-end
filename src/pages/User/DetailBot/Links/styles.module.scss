@@ -38,11 +38,28 @@
 
 .mainWrap {
   @apply p-[10px];
-  .groupFilter {
-    @apply flex flex-col sm:flex-row items-center gap-3 h-[60px] mb-11 sm:mb-3;
+  .filterWrap {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+
     .buttonSelect {
       @apply w-40 h-[40px];
     }
+
+    .btnAdd {
+      color: #fff;
+      background: #4ca1f5;
+      &:hover {
+        color: #fff;
+        background: #4ca1f5;
+      }
+    }
+  }
+  .groupFilter {
+    @apply flex flex-col sm:flex-row items-center gap-3 h-[60px] mb-11 sm:mb-3;
+
     .buttonAdd {
       @apply h-[40px];
     }

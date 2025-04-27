@@ -13,3 +13,10 @@ export const getListMessageOfConversation = (bot_id, conversation_id) => {
     url: `/bots/${bot_id}/conversations/${conversation_id}/messages?page=1&per_page=20`,
   })
 }
+
+export const getAllMessageFlowConversation = (botId, conversationId) => {
+    return apiAxios({
+        method: "get",
+        url: `/bots/${botId}/conversations/${conversationId}/messages`,
+    })
+}

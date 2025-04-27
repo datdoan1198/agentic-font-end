@@ -15,6 +15,14 @@ export const createBotChat = (data) => {
   })
 }
 
+export const createBotChatWithFile = (data) => {
+    return apiAxios({
+        method: "post",
+        url: "/bots/create-with-file",
+        data,
+    })
+}
+
 export const changeStatusBot = (data, botId) => {
   return apiAxios({
     method: "put",

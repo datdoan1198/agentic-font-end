@@ -1,7 +1,14 @@
 import {
     all, fork, takeLatest, select, put, call
 } from "redux-saga/effects";
-import {deleteLinkFailed, deleteLinkSuccess, rescanLinkFailed, rescanLinkSuccess} from "@/states/modules/bot/index.js";
+import {
+    createLinkFailed,
+    createLinkSuccess,
+    deleteLinkFailed,
+    deleteLinkSuccess,
+    rescanLinkFailed,
+    rescanLinkSuccess
+} from "@/states/modules/bot/index.js";
 import {getLinks} from "@/api/bot/index.js";
 import {getNotification} from "@/utils/helper.js";
 
@@ -22,6 +29,21 @@ function* reloadLinks() {
 }
 
 function* handleActions () {
+    yield takeLatest(createLinkSuccess, function* () {
+        yield call(getNotification, "success", "Tạo và quét link thành công.");
+        yield* reloadLinks();
+    });
+
+    yield takeLatest(createLinkFailed, function* (error) {
+        const {url} = error.payload.data.detail
+        if (url) {
+            getNotification("error", url)
+        } else {
+            getNotification("error", error.message || "Có lỗi xảy ra khi tạo và quét link.")
+        }
+        yield* reloadLinks();
+    });
+
     yield takeLatest(rescanLinkSuccess, function* () {
         yield call(getNotification, "success", "Quét link thành công.");
         yield* reloadLinks();

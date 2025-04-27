@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setIsShowSideBar } from "@/states/modules/detailBot/index.js"
 import { ChevronLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react"
 import Logo from "@/assets/images/logos/zent_logo_dark.png";
+import LogoDefault from "@/assets/images/logos/logo_default.png";
 
 export default function Sidebar() {
   const isShowSideBar = useSelector((state) => state.detailBot.isShowSideBar)
@@ -48,7 +49,7 @@ export default function Sidebar() {
                         key={botChat._id}
                         className={`${styles.botItemWrap} ${botChat._id === bot._id && styles.botItemActive}`}
                       >
-                        {botChat.url}
+                        {botChat._id === bot._id ? bot.name : botChat.name}
                       </div>
                     )
                   })}
@@ -60,11 +61,10 @@ export default function Sidebar() {
               trigger="hover"
             >
               <div className={styles.botSelected}>
-                {!isShowSideBar ? (
-                  <Avatar size={20} src={handleGetBotSelect().favicon} />
-                ) : (
-                  <>{handleGetBotSelect().url}</>
-                )}
+                {!isShowSideBar ?
+                    <Avatar size={20} src={bot.favicon || LogoDefault} /> :
+                    <>{bot.name}</>
+                }
               </div>
             </Popover>
           </div>

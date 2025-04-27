@@ -35,12 +35,16 @@ export default defineConfig({
         lib: {
             entry: './src/init.js',
             name: 'AgenticAIChat',
-            fileName: 'agentic-ai-chat',
+            fileName: 'widget/main',
             formats: ['iife'],
         },
-        cssCodeSplit: false,
+        cssCodeSplit: true,
         rollupOptions: {
             external: [],
+            output: {
+                assetFileNames: 'widget/[name].[hash][extname]',
+                entryFileNames: 'widget/main.js',
+            },
         },
     },
 

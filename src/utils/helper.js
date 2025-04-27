@@ -128,3 +128,27 @@ export const isTokenExpired = (token) => {
   const expirationTime = moment.unix(decoded.exp)
   return moment().isAfter(expirationTime)
 }
+
+export const statusTrain = (status) => {
+    if (status === "TRAINED") {
+        return {
+            text: "Đã huấn luyện",
+            color: "green",
+        }
+    } else {
+        return {
+            text: "Chưa xử lý",
+            color: "blue",
+        }
+    }
+}
+
+export const handleSetTimeOut = (func, delay = 1000, timeoutId = null) => {
+    let handleSetTimeOut;
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+    handleSetTimeOut = setTimeout(func, delay);
+
+    return handleSetTimeOut;
+}

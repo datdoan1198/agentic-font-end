@@ -53,7 +53,7 @@ function Login() {
           </div>
 
           <div className={styles.tooltipWrap}>
-            <div className={styles.btnForgotPassword}>Quên mật khẩu?</div>
+            {/*<div className={styles.btnForgotPassword}>Quên mật khẩu?</div>*/}
             <div className={styles.policyWrap}>Bằng cách <span onClick={() => handleRedirectRoute('/register')}
                                                                className={styles.textActive}>Tạo tài khoản</span> hoặc
               Đăng nhập, tôi đồng ý với <span className={styles.textActive}>Thỏa thuận sử dụng Dịch vụ</span> và Chính

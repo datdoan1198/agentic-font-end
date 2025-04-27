@@ -114,7 +114,7 @@ export default function Conversation() {
 
 
                                         <div className={`${styles.context} ${message.type === "USER" && styles.contextUser}`}>
-                                          {message.content}
+                                            <div dangerouslySetInnerHTML={{ __html: message.content }} />
                                           <div className={styles.time}>{formatDateSecond(message.created_at)}</div>
                                         </div>
 

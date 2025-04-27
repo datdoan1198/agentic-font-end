@@ -26,6 +26,7 @@ const InputUpload = ({
   onFocusInputLesson,
   formData,
   maxFileSize = 2,
+  required = true
 }) => {
   const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState("")
@@ -104,7 +105,12 @@ const InputUpload = ({
 
   return (
     <div className="input-upload-container">
-      <div className="input-wrap">{!_.isEmpty(label) && <div className="label-wrap">{label}</div>}</div>
+      <div className="input-wrap">
+          {!_.isEmpty(label) && <div className="label-wrap">
+              {label}
+              {required && <span className={"required"}>*</span>}
+          </div>}
+      </div>
 
       <Upload
         name="avatar"

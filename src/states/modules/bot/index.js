@@ -9,7 +9,11 @@ const botSlice = createSlice({
     // ========== LINKS ========== //
     links: [],
     isLoadingGetLinks: false,
-    paginationLinks: null,
+    paginationLinks: {
+        total: 0,
+        per_page: 10,
+        page: 1,
+    },
     // ========== CREATE LINK ========== //
     isLoadingCreateLink: false,
     // ========== DELETE LINK ========== //

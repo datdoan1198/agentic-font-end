@@ -14,10 +14,3 @@ export const activeSendMessage = (botId, data) => {
         data
     })
 }
-
-export const getAllMessageFlowConversation = (botId, conversationId) => {
-    return apiAxios({
-        method: "get",
-        url: `/bots/${botId}/conversation/${conversationId}/messages`,
-    })
-}

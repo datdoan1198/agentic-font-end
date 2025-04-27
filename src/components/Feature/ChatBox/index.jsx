@@ -5,8 +5,9 @@ import Minus from "@/assets/images/icons/solid/minus.svg";
 import {Button, Input} from "antd";
 import Send from "@/assets/images/icons/solid/paper-plane-top.svg";
 import React, {useEffect, useRef, useState} from "react";
-import {activeSendMessage, getAllMessageFlowConversation, getInfoBotOfChat} from "@/api/user/chat/index.js";
+import {activeSendMessage, getInfoBotOfChat} from "@/api/user/chat/index.js";
 import _ from "lodash";
+import {getAllMessageFlowConversation} from "@/api/user/conversation/index.js";
 
 export default function ChatBox({botId}) {
     const [isShowFormChat, setIsShowFormChat] = useState(false)
@@ -16,14 +17,7 @@ export default function ChatBox({botId}) {
     const [messages, setMessages] = useState([])
     const [bot, setBot] = useState({})
     const bottomRef = useRef(null);
-    const conversation_id = localStorage.getItem('conversation_id')
-
-    useEffect(() => {
-        if (isShowFormChat && conversation_id) {
-            handleGetAllMessageFlowConversation()
-        }
-        isShowFormChat && bottomRef.current?.scrollIntoView({behavior: "smooth"});
-    }, [isShowFormChat]);
+    const conversation_id = localStorage.getItem(`bot_${botId}`)
 
     useEffect(() => {
         getInfoBotOfChat(botId).then((res) => {
@@ -34,12 +28,19 @@ export default function ChatBox({botId}) {
         })
     }, [botId])
 
+    useEffect(() => {
+        if (isShowFormChat && conversation_id) {
+            handleGetAllMessageFlowConversation()
+        }
+        isShowFormChat && bottomRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [isShowFormChat]);
+
 
     const handleGetAllMessageFlowConversation = () => {
         getAllMessageFlowConversation(botId, conversation_id).then((res) => {
-            setMessages(res.data.data)
+            setMessages(res.data.data.messages)
         }).catch(() => {
-            setMessages([])
+            handleReloadConversation()
         })
     }
 
@@ -53,7 +54,7 @@ export default function ChatBox({botId}) {
             setSendMessage('')
             setTextSending(sendMessage)
             activeSendMessage(botId, data).then((res) => {
-                localStorage.setItem('conversation_id', res.data.data.conversation_id)
+                localStorage.setItem(`bot_${botId}`, res.data.data.conversation_id)
                 setMessages(res.data.data.messages)
             }).catch(() => {
                 setMessages([])
@@ -65,7 +66,7 @@ export default function ChatBox({botId}) {
     }
 
     const handleReloadConversation = () => {
-        localStorage.removeItem('conversation_id')
+        localStorage.removeItem(`bot_${botId}`)
         setMessages([])
     }
 
@@ -160,7 +161,7 @@ export default function ChatBox({botId}) {
                                                             </div>
                                                             <div className={`${styles.contextWrap}`}>
                                                                 <div className={styles.contextItem}>
-                                                                    {message.content}
+                                                                    <div dangerouslySetInnerHTML={{ __html: message.content }} />
                                                                 </div>
                                                             </div>
                                                         </>

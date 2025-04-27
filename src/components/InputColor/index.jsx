@@ -52,11 +52,15 @@ export default function InputColor({
   handleChangeData,
   onFocusInputLesson,
   value,
+  required = true
 }) {
   return (
     <>
       <div className="input-wrap">
-        {!_.isEmpty(label) && <div className="label-wrap">{label}</div>}
+        {!_.isEmpty(label) && <div className="label-wrap">
+            {label}
+            {required && <span className={"required"}>*</span>}
+        </div>}
         {!_.isEmpty(desc) && <div className="desc-wrap">{desc}</div>}
         <HorizontalLayoutDemo
           value={value}
