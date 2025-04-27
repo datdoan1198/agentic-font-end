@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint src/**/*.js, src/**/*.jsx, src/**/*.css, src/**/*.scss",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:web": "vite build",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build": "npm run build:web && npm run build:lib"
   },
   "dependencies": {
     "@amcharts/amcharts5": "^5.5.6",

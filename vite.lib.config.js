@@ -26,6 +26,28 @@ export default defineConfig({
         },
         react(),
     ],
+    css: {
+        modules: {
+            generateScopedName: '[name]__[local]___[hash:base64:5]',
+        }
+    },
+    build: {
+        outDir: 'dist_lib',
+        lib: {
+            entry: './src/init.js',
+            name: 'AgenticAIChat',
+            fileName: '/main',
+            formats: ['iife'],
+        },
+        cssCodeSplit: true,
+        rollupOptions: {
+            external: [],
+            output: {
+                assetFileNames: 'widget/[name].[hash][extname]',
+                entryFileNames: 'widget/main.js',
+            },
+        },
+    },
 
     optimizeDeps: {
         force: true,
