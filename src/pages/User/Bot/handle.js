@@ -90,40 +90,6 @@ export default function Handle() {
             },
             onError: (error) => setErrorDataForm(error)
         });
-        setLoadingBtnSubmitUrl(true);
-        const formData = new FormData()
-
-        formData.append("name", dataForm.name)
-        if (dataForm.url) {
-            formData.append("url", dataForm.url)
-        }
-
-        if (dataForm.file) {
-            formData.append("file", dataForm.file)
-        }
-
-        createBotChat(formData)
-            .then(() => {
-                getNotification('success', 'Tạo bot thành công.');
-                setTimeout(() => {
-                    handleGetListBotChats();
-                }, 1000)
-                setVisibleCreateBot(false)
-            })
-            .catch((error) => {
-                if (error.response?.data) {
-                    const {message, detail} = error.response.data;
-                    if (detail) {
-                        setErrorDataForm(detail);
-                    } else {
-                        getNotification('warning', message);
-                    }
-                }
-            })
-            .finally(() => {
-                setDataForm({url: '', file: ''})
-                setLoadingBtnSubmitUrl(false)
-            });
     }
 
     const handleCreateBotWithFile = () => {
