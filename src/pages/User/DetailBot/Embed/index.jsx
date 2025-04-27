@@ -7,7 +7,7 @@ export default function Embed() {
     const [copied, setCopied] = useState(false);
     const bot = useSelector((state) => state.detailBot.bot);
 
-    const codeString = `<script src="${window.location.origin}/dist/widget/main.js"></script>
+    const codeString = `<script src="${window.location.origin}/dist_lib/widget/main.js"></script>
 <script>
   window.AiAgentic.init({ code: "${bot._id}" });
 </script>
