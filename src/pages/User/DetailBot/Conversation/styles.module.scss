@@ -35,6 +35,9 @@
 
       .headerSideBar {
         padding: 10px 10px 0 10px;
+        .inputSearch {
+          margin-bottom: 15px;
+        }
       }
 
       .boxConversation {
@@ -49,7 +52,7 @@
           justify-content: flex-start;
           align-items: center;
           &:hover {
-            background: #f9fafb;
+            background: #ececec;
           }
 
           .iconConversation {
@@ -89,6 +92,10 @@
               color: #9ca3af;
             }
           }
+        }
+
+        .itemConversationActive {
+          background: #ececec;
         }
       }
     }
