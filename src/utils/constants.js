@@ -36,4 +36,9 @@ export const STATUS_BOT = {
   DE_ACTIVE: 'DE_ACTIVE',
 }
 
+export const TYPE_CONVERSATION = {
+    WEB: 'WEB',
+    FB: 'FB'
+}
+
 export const ColorMain = "#4ca1f5"
