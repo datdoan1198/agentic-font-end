@@ -196,6 +196,7 @@ export default function ChatBox({botId}) {
                                     size={"large"}
                                     value={sendMessage}
                                     onChange={(e) => setSendMessage(e.target.value)}
+                                    onPressEnter={() => handleSendMessage()}
                                 />
                                 <Button
                                     onClick={() => handleSendMessage()}
