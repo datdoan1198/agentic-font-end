@@ -1,15 +1,16 @@
 import {defineConfig, transformWithEsbuild} from "vite";
 import react from "@vitejs/plugin-react";
-import {createRequire} from "module";
 import path from "path";
 
-const require = createRequire(import.meta.url);
-
 export default defineConfig({
+    define: {
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        'process.env': {},
+        'process': { env: { NODE_ENV: 'production' } }
+    },
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
-            "@ckeditor": path.resolve(__dirname, "node_modules", "@ckeditor"),
         },
     },
     plugins: [
