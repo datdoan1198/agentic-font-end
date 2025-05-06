@@ -32,7 +32,7 @@ export default function Sidebar() {
     <div className={`${styles.boxSideBar} ${!isShowSideBar && styles.closeBoxSideBar}`}>
       <div className={styles.headerSideBar}>
         <div className={styles.logoWrap}>
-          <img onClick={() => navigate('/')} src={Logo} alt="" />
+          <img onClick={() => navigate('/bot-chats')} src={Logo} alt="" />
         </div>
         {!_.isEmpty(handleGetBotSelect()) && (
           <div className={styles.boxListBotChats}>

@@ -40,7 +40,7 @@ export default function Handle() {
           .then((res) => {
             const accessToken = res.data.data.access_token;
             setAuthToken(accessToken);
-            window.location.href = "/";
+            window.location.href = "/bot-chats";
           })
           .catch((error) => {
             if (error.response?.data) {

@@ -6,6 +6,7 @@ import UserLogin from "@/pages/User/Auth/Login";
 import UserRegister from "@/pages/User/Auth/Register";
 import UserBotChats from "@/pages/User/Bot";
 import UserProfile from "@/pages/User/Profile";
+import UserService from "@/pages/User/Service";
 import UserDashBoardDetailBotChats from "@/pages/User/DetailBot/DashBoard";
 import UserIntegrationDetailBotChats from "@/pages/User/DetailBot/Integration";
 import WebsiteLinksDetailBotChats from "@/pages/User/DetailBot/Links";
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <UserProfile/>,
+        loader: ({request, params}) => rootLoader({
+                request, params
+            }, true, "LOAD_HOME_PAGE"
+        ),
+    },
+    {
+        path: "/service",
+        element: <UserService/>,
         loader: ({request, params}) => rootLoader({
                 request, params
             }, true, "LOAD_HOME_PAGE"
