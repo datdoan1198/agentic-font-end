@@ -55,7 +55,10 @@ export default function Header({isShowSideBar, handleToggleShowMenu}) {
                   <div className={'w-[25px] flex justify-center'}><InlineSVG src={User} width={18}/></div>
                   Tài khoản
                 </div>
-                <div className={`${styles.itemMenu}`}>
+                <div
+                    className={`${styles.itemMenu} ${location.pathname === '/service' && styles.itemMenuActive}`}
+                    onClick={() => navigate('/service')}
+                >
                   <div className={'w-[25px] flex justify-center'}><InlineSVG src={Crow} width={18}/></div>
                   Gói dịch vụ
                 </div>
