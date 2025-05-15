@@ -59,7 +59,6 @@ export default function Handle() {
     }
 
     const handleConfirmCreateBot = async () => {
-        await handleGetPageOfLink(dataForm.url)
         validate(createBotSchema, dataForm, {
             onSuccess: () => {
                 setLoadingBtnCreateBot(true);
