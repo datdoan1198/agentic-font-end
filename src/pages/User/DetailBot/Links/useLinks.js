@@ -68,7 +68,7 @@ export function useLinks() {
         dispatch(getLinks(botId, newDataFilter))
     }
 
-    const handleAddLink = (url, scan_type = "ALL") => {
+    const handleAddLink = (url, scan_type = "ONE") => {
         dispatch(createLink(botId, {url, scan_type}))
     }
 

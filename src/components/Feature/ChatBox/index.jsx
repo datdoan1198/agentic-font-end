@@ -79,19 +79,19 @@ export default function ChatBox({botId}) {
                         className={`${styles.boxIconChat} ${isShowFormChat && styles.boxIconChatClose}`}
                         onClick={() => setIsShowFormChat(!isShowFormChat)}
                     >
-                        <div className={styles.imgWrap} style={{background: bot?.config_bot?.color}}>
-                            <img src={bot?.config_bot?.logo_message} alt=""/>
+                        <div className={styles.imgWrap} style={{background: bot?.color}}>
+                            <img src={bot?.logo_message} alt=""/>
                         </div>
                     </div>
 
                     <div className={`${styles.boxLayoutChat} ${isShowFormChat && styles.boxLayoutChatShow}`}>
-                        <div className={styles.headerLayout} style={{background: bot?.config_bot?.color}}>
+                        <div className={styles.headerLayout} style={{background: bot?.color}}>
                             <div className={styles.logoWrap}>
                                 <div className={styles.boxImg}>
                                     <div className={styles.imgWrap}>
-                                        <img src={bot.favicon} alt=""/>
+                                        <img src={bot?.business?.logo} alt=""/>
                                     </div>
-                                    <div className={styles.name}>{bot.name}</div>
+                                    <div className={styles.name}>{bot?.business?.name}</div>
                                 </div>
                                 <div className={styles.btnAction}>
                                     <div
@@ -118,7 +118,7 @@ export default function ChatBox({botId}) {
                                     <div className={`${styles.itemMessage}`}>
                                         <div className={styles.itemMessage}>
                                             <div className={`${styles.iconMessage}`}>
-                                                <img src={bot.favicon} alt=""/>
+                                                <img src={bot?.business?.logo} alt=""/>
                                             </div>
                                             <div className={`${styles.contextWrap}`}>
                                                 <div className={styles.contextItem}>
@@ -157,7 +157,7 @@ export default function ChatBox({botId}) {
                                                         </div>:
                                                         <>
                                                             <div className={`${styles.iconMessage}`}>
-                                                                <img src={bot.favicon} alt=""/>
+                                                                <img src={bot?.business?.logo} alt=""/>
                                                             </div>
                                                             <div className={`${styles.contextWrap}`}>
                                                                 <div className={styles.contextItem}>
@@ -173,11 +173,11 @@ export default function ChatBox({botId}) {
                                 </> :
                                 <div className={styles.itemMessage}>
                                     <div className={`${styles.iconMessage}`}>
-                                        <img src={bot.favicon} alt=""/>
+                                        <img src={bot?.business?.logo} alt=""/>
                                     </div>
                                     <div className={`${styles.contextWrap}`}>
                                         <div className={styles.contextItem}>
-                                            Xin chào, mình là trợ lý ảo của {bot.name}👋
+                                            Xin chào, mình là trợ lý ảo của {bot?.business?.name}👋
                                         </div>
                                         <div className={styles.contextItem}>
                                             Bạn cần mình hỗ trợ gì? 😊

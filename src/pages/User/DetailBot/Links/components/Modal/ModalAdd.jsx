@@ -15,8 +15,8 @@ const ModalAdd = ({ open, onClose, onAddLink, isLoading }) => {
 
   const handleSubmit = () => {
     form.validateFields().then(async (values) => {
-      const { url, scan_type } = values
-      await onAddLink(url, scan_type)
+      const { url } = values
+      await onAddLink(url)
     })
   }
 
@@ -47,15 +47,15 @@ const ModalAdd = ({ open, onClose, onAddLink, isLoading }) => {
       <Form.Item name="url" label="Link" rules={[{ required: true, message: "Vui lòng nhập đường dẫn!" }]}>
         <Input className={styles.inputAdd} placeholder="Nhập đường dẫn" />
       </Form.Item>
-      <Form.Item name="scan_type" label="Thể loại" initialValue="ALL">
-        <Select
-          className={styles.inputAdd}
-          options={[
-            { value: "ALL", label: "Quét toàn bộ" },
-            { value: "ONE", label: "Quét một trang" },
-          ]}
-        />
-      </Form.Item>
+      {/*<Form.Item name="scan_type" label="Thể loại" initialValue="ALL">*/}
+      {/*  <Select*/}
+      {/*    className={styles.inputAdd}*/}
+      {/*    options={[*/}
+      {/*      { value: "ALL", label: "Quét toàn bộ" },*/}
+      {/*      { value: "ONE", label: "Quét một trang" },*/}
+      {/*    ]}*/}
+      {/*  />*/}
+      {/*</Form.Item>*/}
     </Form>
   )
 

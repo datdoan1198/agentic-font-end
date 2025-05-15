@@ -5,6 +5,7 @@
   position: fixed;
   width: calc(100% - 285px);
   transition: all .3s;
+  z-index: 20;
   .mainHeader {
     height: 64px;
     width: 100%;

@@ -42,3 +42,35 @@ export const TYPE_CONVERSATION = {
 }
 
 export const ColorMain = "#4ca1f5"
+
+export const DEFAULT_FORM_ORDER = [
+    {
+        label: 'Họ và tên',
+        value: 'name'
+    },
+    {
+        label: 'Số điện thoại',
+        value: 'phone'
+    },
+    {
+        label: 'Địa chỉ',
+        value: 'address'
+    },
+    {
+        label: 'Số lượng',
+        value: 'quantity'
+    },
+    {
+        label: 'Sản phẩm',
+        value: 'product'
+    },
+    {
+        label: 'Thời gian',
+        value: 'date_time'
+    }
+]
+
+export const STATUS_ORDER = {
+    ACTIVE: 'ACTIVE',
+    DE_ACTIVE: 'DE_ACTIVE',
+}

@@ -1,3 +1,7 @@
+.layoutLeftWrap {
+  padding-bottom: 200px;
+}
+
 .headerWrap {
   position: sticky;
   top: 0;
@@ -12,5 +16,25 @@
   .title {
     font-size: 20px;
     font-weight: 600;
+  }
+}
+
+.sessionWrap {
+  padding: 10px;
+  //border-bottom: 1px solid rgba(5, 5, 5, 0.2);
+  .headerSessionWrap {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #0505050f;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    color: #4ca1f5;
+    .icon {
+      //color: #6e6e6e;
+    }
   }
 }

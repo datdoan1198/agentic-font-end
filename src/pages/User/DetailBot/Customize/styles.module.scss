@@ -2,6 +2,12 @@
   @apply flex flex-col h-full overflow-hidden relative;
 }
 
+.boxLeftWrap {
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid #e5e7eb;
+}
+
 .mainWrap {
   @apply p-[10px] overflow-y-auto flex-1;
 }

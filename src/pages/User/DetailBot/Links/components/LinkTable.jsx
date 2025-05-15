@@ -86,14 +86,6 @@ const LinkTable = ({
       },
     },
     {
-      title: "Thể loại",
-      key: "scan_type",
-      dataIndex: "scan_type",
-      render: (scan_type) => {
-        return <TagCustom>{scan_type === "ALL" ? "Quét toàn bộ" : "Quét một trang"}</TagCustom>
-      },
-    },
-    {
       title: "Ngày cập nhật",
       key: "updated_at",
       dataIndex: "updated_at",

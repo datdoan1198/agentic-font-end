@@ -17,7 +17,9 @@ export default function Service() {
                 </div>
 
                 <Row gutter={20}>
-                    <Col span={8}>
+                    <Col xl={8} md={12} xs={24} style={{
+                        marginBottom: '20px'
+                    }}>
                         <div className={styles.itemServiceWrap}>
                             <div className={styles.headerWrap}>
                                 <div className={styles.icon}><InlineSVG src={Box} width={32}/></div>
@@ -59,7 +61,9 @@ export default function Service() {
                             </div>
                         </div>
                     </Col>
-                    <Col span={8}>
+                    <Col xl={8} md={12} xs={24} style={{
+                        marginBottom: '20px'
+                    }}>
                         <div className={styles.itemServiceWrap}>
                             <div className={styles.headerWrap}>
                                 <div className={styles.icon}><InlineSVG src={Rocket} width={28}/></div>
@@ -111,7 +115,9 @@ export default function Service() {
                             </div>
                         </div>
                     </Col>
-                    <Col span={8}>
+                    <Col xl={8} md={12} xs={24} style={{
+                        marginBottom: '20px'
+                    }}>
                         <div className={`${styles.itemServiceWrap} ${styles.itemServiceActive}`}>
                             <div className={styles.headerWrap}>
                                 <div className={styles.icon}><InlineSVG src={Bolt} width={28}/></div>
