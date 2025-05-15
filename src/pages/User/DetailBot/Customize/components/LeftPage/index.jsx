@@ -1,141 +1,163 @@
-import React  from "react"
+import React from "react"
 import styles from "./styles.module.scss"
-import { CustomButton } from "@/components/Button"
+import {CustomButton} from "@/components/Button"
 import InputForm from "@/components/InputForm"
-import { Divider } from "antd"
 import InputUpload from "../../../../../../components/InputUpload"
-import InputSelect from "../../../../../../components/Select"
 import InputColor from "../../../../../../components/InputColor"
 import useCustomize from "../../useCustomize"
-import styleCustomize from "../../styles.module.scss"
-
-const dispayAutoBotOptions = [
-  { value: "3", label: "3 giây" },
-  { value: "5", label: "5 giây" },
-  { value: "10", label: "10 giây" },
-  { value: "30", label: "30 giây" },
-  { value: "off", label: "Tắt" },
-]
+import InlineSVG from "react-inlinesvg";
+import Business from "@/assets/images/icons/solid/building.svg";
+import Card from "@/assets/images/icons/solid/cart-shopping.svg";
+import Robot from "@/assets/images/icons/solid/robot.svg";
+import {Select, Switch} from "antd";
+import {DEFAULT_FORM_ORDER} from "@/utils/constants.js";
+import ErrorMessage from "@/components/ErrorMessage/index.jsx";
 
 export default function LeftPage() {
-  const {
-    formData,
-    errorFormData,
-    loadingUpdate,
-    messageError,
-    handleChangeData,
-    onFocusInputLesson,
-    handleSaveCustomize,
-  } = useCustomize()
+    const {
+        formData,
+        errorFormData,
+        loadingUpdate,
+        messageError,
+        handleChangeData,
+        onFocusInputLesson,
+        handleSaveCustomize,
+    } = useCustomize()
 
-  return (
-    <>
-      <div className={`${styleCustomize.container}`}>
-        <div className={styles.headerWrap}>
-          <span className={styles.title}>Tùy chỉnh</span>
-          <CustomButton onClick={handleSaveCustomize} loading={loadingUpdate}>
-            Lưu
-          </CustomButton>
-        </div>
-        {messageError && <div className={styles.errorMessage}>{messageError}</div>}
-        <div className={`${styleCustomize.mainWrap} no-scrollbar`}>
-          <InputForm
-            label="Tên"
-            required={false}
-            type="name"
-            value={formData.name}
-            error={errorFormData.name}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-          />
-          <InputUpload
-            label="Logo"
-            type="favicon"
-            formData={formData}
-            error={errorFormData.favicon}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-          />
-          <Divider />
-          <InputUpload
-            label="Nút trò chuyện"
-            type="logo_message"
-            formData={formData}
-            error={errorFormData.logo_message}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-          />
-          <Divider />
-          <InputColor
-            label={"Màu sắc"}
-            type="color"
-            value={formData.color}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-            error={errorFormData.color}
-          />
-          <Divider />
-          {/* Các trường khác không thay đổi */}
-          <InputForm
-            label="Mô tả"
-            isTextArea={true}
-            type="description"
-            value={formData.description}
-            error={errorFormData.description}
-            handleChangeData={handleChangeData}
-            onFocusInputLesson={onFocusInputLesson}
-          />
-          {/* <InputForm
-          label="Tính cách"
-          isTextArea={true}
-          type="genitive"
-          value={formData.genitive}
-          error={errorFormData.genitive}
-          handleChangeData={handleChangeData}
-          onFocusInputLesson={onFocusInputLesson}
-        /> */}
-          {/*<InputForm*/}
-          {/*  label="Tin nhắn chào mừng"*/}
-          {/*  required={false}*/}
-          {/*  isTextArea={true}*/}
-          {/*  type="welcome_messages"*/}
-          {/*  value={formData.welcome_messages}*/}
-          {/*  error={errorFormData.welcome_messages}*/}
-          {/*  handleChangeData={handleChangeData}*/}
-          {/*  onFocusInputLesson={onFocusInputLesson}*/}
-          {/*/>*/}
-          {/*<InputForm*/}
-          {/*  label="Lời nhắc nhanh"*/}
-          {/*  required={false}*/}
-          {/*  isTextArea={true}*/}
-          {/*  type="quick_prompts"*/}
-          {/*  value={formData.quick_prompts}*/}
-          {/*  error={errorFormData.quick_prompts}*/}
-          {/*  handleChangeData={handleChangeData}*/}
-          {/*  onFocusInputLesson={onFocusInputLesson}*/}
-          {/*/>*/}
-          {/* <InputForm
-          label="Chữ ký"
-          desc='Nhập nội dung, ví dụ "Thông tin tham vấn bởi AI"'
-          required={false}
-          isTextArea={true}
-          type="sig"
-          value={formData.sig}
-          error={errorFormData.sig}
-          handleChangeData={handleChangeData}
-          onFocusInputLesson={onFocusInputLesson}
-        /> */}
-          {/*<InputSelect*/}
-          {/*  label={"Tự động hiển thị khung chat"}*/}
-          {/*  defaultValue={"off"}*/}
-          {/*  options={dispayAutoBotOptions}*/}
-          {/*  type="auto_display_chatbox"*/}
-          {/*  handleChangeData={handleChangeData}*/}
-          {/*  onFocusInputLesson={onFocusInputLesson}*/}
-          {/*  error={errorFormData.auto_display_chatbox}*/}
-          {/*/>*/}
-        </div>
-      </div>
-    </>
-  )
+    return (
+        <>
+            <div className={styles.layoutLeftWrap}>
+                <div className={styles.headerWrap}>
+                    <span className={styles.title}>Tùy chỉnh</span>
+                    <CustomButton onClick={handleSaveCustomize} loading={loadingUpdate}>
+                        Lưu
+                    </CustomButton>
+                </div>
+                {messageError && <div>{messageError}</div>}
+                <div>
+                    <div className={styles.sessionWrap}>
+                        <div className={styles.headerSessionWrap}>
+                            <div className={styles.icon}>
+                                <InlineSVG src={Robot} width={24}/>
+                            </div>
+                            <div>
+                                Thông tin bot
+                            </div>
+                        </div>
+
+                        <InputForm
+                            label="Tên Bot"
+                            type="name"
+                            value={formData.name}
+                            error={errorFormData.name}
+                            handleChangeData={handleChangeData}
+                            onFocusInputLesson={onFocusInputLesson}
+                        />
+                        <InputForm
+                            label="Mô tả công việc"
+                            isTextArea={true}
+                            type="description"
+                            value={formData.description}
+                            error={errorFormData.description}
+                            handleChangeData={handleChangeData}
+                            onFocusInputLesson={onFocusInputLesson}
+                        />
+                        <InputUpload
+                            label="Nút trò chuyện"
+                            type="logo_message"
+                            formData={formData}
+                            error={errorFormData.logo_message}
+                            handleChangeData={handleChangeData}
+                            onFocusInputLesson={onFocusInputLesson}
+                        />
+                        <InputColor
+                            label={"Màu sắc"}
+                            type="color"
+                            value={formData.color}
+                            handleChangeData={handleChangeData}
+                            onFocusInputLesson={onFocusInputLesson}
+                            error={errorFormData.color}
+                        />
+
+                    </div>
+
+                    <div className={styles.sessionWrap}>
+                        <div className={styles.headerSessionWrap}>
+                            <div className={styles.icon}>
+                                <InlineSVG src={Business} width={17}/>
+                            </div>
+                            <div>
+                                Thông tin doanh nghiệp
+                            </div>
+                        </div>
+
+                        <InputForm
+                            label="Tên doanh nghiệp"
+                            type="name_business"
+                            value={formData.name_business}
+                            error={errorFormData.name_business}
+                            handleChangeData={handleChangeData}
+                            onFocusInputLesson={onFocusInputLesson}
+                        />
+
+                        <InputUpload
+                            label="Logo"
+                            type="logo"
+                            formData={formData}
+                            error={errorFormData.logo}
+                            handleChangeData={handleChangeData}
+                            onFocusInputLesson={onFocusInputLesson}
+                        />
+                    </div>
+
+                    <div className={styles.sessionWrap}>
+                        <div className={styles.headerSessionWrap}>
+                            <div className={styles.icon}>
+                                <InlineSVG src={Card} width={22}/>
+                            </div>
+                            <div>
+                                Cấu hình đặt hàng
+                            </div>
+                        </div>
+
+                        <div className={`input-wrap`}>
+                            <div className={"label-wrap"}>
+                                Trạng thái bán hàng
+                            </div>
+
+                            <div className={'switch-bot'}>
+                                <Switch
+                                    onChange={(value) => handleChangeData('is_order', value)}
+                                    value={formData.is_order}
+                                />
+                            </div>
+                        </div>
+
+                        {
+                            formData.is_order &&
+                            <div className={`input-wrap`}>
+                                <div className={"label-wrap"}>
+                                    Thông tin đặt hàng
+                                    <span className={"required"}>*</span>
+                                </div>
+
+                                <Select
+                                    className={`main-select`}
+                                    mode="multiple"
+                                    allowClear
+                                    style={{ width: '100%' }}
+                                    placeholder="Chọn các thông tin đặt hàng"
+                                    value={formData.form_order}
+                                    onChange={(value) => handleChangeData('form_order', value)}
+                                    options={DEFAULT_FORM_ORDER}
+                                />
+                                {errorFormData.form_order && errorFormData.form_order.length > 0 ? <ErrorMessage message={errorFormData.form_order} /> : ""}
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </>
+    )
 }

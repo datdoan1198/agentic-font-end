@@ -478,5 +478,11 @@ html *::-webkit-scrollbar-track {
 
 html *::-webkit-scrollbar-thumb {
   @apply bg-[#bec3cd];
-  @apply rounded-lg;
+  border-radius: 20px;
+}
+
+.general-dialog-wrap {
+  max-height: 97vh;
+  overflow: auto;
+  border-radius: 6px;
 }

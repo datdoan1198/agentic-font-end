@@ -2,10 +2,11 @@ import React from "react"
 import MainLayout from "@/layouts/User/MainLayout/index.jsx"
 import styles from "./styles.module.scss"
 import './styles.scss';
-import {Button, Col, Empty, Modal, Popover, Row, Switch, Tooltip, Upload, message} from "antd"
+import {Button, Col, Empty, Modal, Popover, Row, Switch, Upload, message} from "antd"
 import InlineSVG from "react-inlinesvg"
 import Robot from "@/assets/images/icons/solid/robot.svg"
-import RoTate from "@/assets/images/icons/solid/right-left.svg"
+import Business from "@/assets/images/icons/solid/building.svg"
+import Knowledge from "@/assets/images/icons/solid/head-side-brain.svg"
 import Ellipsis from "@/assets/images/icons/solid/ellipsis-vertical.svg"
 import Trash from "@/assets/images/icons/solid/trash.svg"
 import LogoDefault from "@/assets/images/logos/logo_default.png"
@@ -22,10 +23,10 @@ const { Dragger } = Upload;
 
 export default function Bot() {
     const {
-        dataForm, errorDataForm, botChats, loadingListBot, loadingBtnSubmitUrl,
+        dataForm, errorDataForm, botChats, loadingListBot, loadingBtnCreateBot,
         visibleDeleteBot, setVisibleDeleteBot, loadingBtnDelete,
-        visibleCreateBot, setVisibleCreateBot, isCreateUrl, setIsCreateUrl,
-        handleChangeData, onFocusInputLesson, handleConfirmSubmitLink, handleRedirectDetailBot, handleCreateBotWithFile,
+        visibleCreateBot, setVisibleCreateBot,
+        handleChangeData, onFocusInputLesson, handleRedirectDetailBot, handleConfirmCreateBot,
         handleOpenModelDelete, handleConfirmDelete, handleChangeStatus
     } = Handle()
 
@@ -56,7 +57,7 @@ export default function Bot() {
                 <div className={styles.boxFilterWrap}>
                     <Button
                         className={styles.btnAddBot}
-                        loading={loadingBtnSubmitUrl}
+                        loading={loadingBtnCreateBot}
                         onClick={() => setVisibleCreateBot(true)}
                     >
                         <InlineSVG src={Robot} width={24}/>
@@ -72,7 +73,7 @@ export default function Bot() {
                                     {botChats.map((bot) => {
                                         return (
                                             <Col
-                                                key={bot._id} xl={6} lg={8} md={12} xs={24}
+                                                key={bot._id} xxl={6} xl={8} md={12} xs={24}
                                                 className={styles.itemBotWrap}
                                             >
                                                 <div className={styles.itemBot}>
@@ -167,49 +168,44 @@ export default function Bot() {
                 onCancel={() => setVisibleCreateBot(!visibleCreateBot)}
                 footer={false}
                 closable={false}
-                width={600}
+                width={1000}
                 centered
             >
                 <div className={styles.boxFormSubmitLink}>
                     <div className={styles.headerForm}>
                         <div className={styles.title}>
-                            Tạo bot bằng {isCreateUrl ? 'đường dẫn' : 'file'}
-                        </div>
-                        <div className={styles.iconWrap} onClick={() => setIsCreateUrl(!isCreateUrl)}>
-                            <Tooltip
-                                placement="top"
-                                title={`Tạo bằng ${!isCreateUrl ? 'đường dẫn' : 'file'}`}
-                            >
-                                <InlineSVG src={RoTate} width={16}/>
-                            </Tooltip>
+                            Tạo bot
                         </div>
                     </div>
                     <div className={styles.formSubmitLink}>
-                        {
-                            isCreateUrl?
-                                <InputForm
-                                    placeholder={"Nhập địa chỉ Website"}
-                                    type={"url"}
-                                    value={dataForm.url}
-                                    error={errorDataForm.url}
-                                    handleChangeData={(type, value) => handleChangeData(type, value)}
-                                    onFocusInputLesson={(type) => onFocusInputLesson(type)}
-                                />:
-                                <>
+                        <Row gutter={20}>
+                            <Col md={12} xs={24}>
+                                <div className={styles.groupSubForm}>
+                                    <div className={styles.titleWrap}>
+                                        <div className={styles.icon}>
+                                            <InlineSVG src={Robot} width={24}/>
+                                        </div>
+                                        <div>
+                                            Thông tin bot
+                                        </div>
+                                    </div>
                                     <InputForm
-                                        label="Tên doanh nghiệp"
-                                        placeholder={"Nhập tên doanh nghiệp"}
+                                        label="Tên bot"
+                                        placeholder={"Nhập tên bot"}
                                         type={"name"}
                                         value={dataForm.name}
                                         error={errorDataForm.name}
                                         handleChangeData={(type, value) => handleChangeData(type, value)}
                                         onFocusInputLesson={(type) => onFocusInputLesson(type)}
                                     />
-                                    <InputUpload
-                                        label="Logo"
-                                        type="logo"
-                                        formData={dataForm}
-                                        error={errorDataForm.logo}
+
+                                    <InputForm
+                                        label="Mô tả công việc của bot"
+                                        isTextArea={true}
+                                        type="description"
+                                        placeholder={"Nhập mô tả công việc của bot"}
+                                        value={dataForm.description}
+                                        error={errorDataForm.description}
                                         handleChangeData={handleChangeData}
                                         onFocusInputLesson={onFocusInputLesson}
                                     />
@@ -231,21 +227,31 @@ export default function Bot() {
                                         onFocusInputLesson={onFocusInputLesson}
                                         error={errorDataForm.color}
                                     />
+                                </div>
 
+                                <div className={styles.groupSubForm}>
+                                    <div className={styles.titleWrap}>
+                                        <div className={styles.icon}>
+                                            <InlineSVG src={Knowledge} width={20}/>
+                                        </div>
+                                        <div>
+                                            Thông tin tri thức
+                                        </div>
+                                    </div>
                                     <InputForm
-                                        label="Mô tả"
-                                        isTextArea={true}
-                                        type="description"
-                                        placeholder={"Nhập mô tả doanh nghiệp"}
-                                        value={dataForm.description}
-                                        error={errorDataForm.description}
-                                        handleChangeData={handleChangeData}
-                                        onFocusInputLesson={onFocusInputLesson}
+                                        required={false}
+                                        label="Đường dẫn"
+                                        placeholder={"Nhập địa chỉ Website"}
+                                        type={"url"}
+                                        value={dataForm.url}
+                                        error={errorDataForm.url}
+                                        handleChangeData={(type, value) => handleChangeData(type, value)}
+                                        onFocusInputLesson={(type) => onFocusInputLesson(type)}
                                     />
 
                                     <div className={`input-wrap`}>
                                         <div className={"label-wrap"}>
-                                            File <span className={"required"}>*</span>
+                                            File
                                         </div>
                                         <Dragger {...props}>
                                             <p className="ant-upload-drag-icon">
@@ -254,17 +260,46 @@ export default function Bot() {
                                             <p className="ant-upload-text">Vui lòng tải lên tệp định dạng excel (tối đa 10MB/tệp)</p>
                                         </Dragger>
                                     </div>
-                                </>
-                        }
+                                </div>
+                            </Col>
+
+                            <Col md={12} xs={24}>
+                                <div className={styles.groupSubForm}>
+                                    <div className={styles.titleWrap}>
+                                        <div className={styles.icon}>
+                                            <InlineSVG src={Business} width={17}/>
+                                        </div>
+                                        <div>
+                                            Thông tin doanh nghiệp
+                                        </div>
+                                    </div>
+
+                                    <InputForm
+                                        label="Tên doanh nghiệp"
+                                        placeholder={"Nhập tên doanh nghiệp"}
+                                        type={"name_business"}
+                                        value={dataForm.name_business}
+                                        error={errorDataForm.name_business}
+                                        handleChangeData={(type, value) => handleChangeData(type, value)}
+                                        onFocusInputLesson={(type) => onFocusInputLesson(type)}
+                                    />
+
+                                    <InputUpload
+                                        label="Logo doanh nghiệp"
+                                        type="logo"
+                                        formData={dataForm}
+                                        error={errorDataForm.logo}
+                                        handleChangeData={handleChangeData}
+                                        onFocusInputLesson={onFocusInputLesson}
+                                    />
+                                </div>
+                            </Col>
+                        </Row>
 
                         <div className={styles.btnWrap}>
                             <Button
-                                loading={loadingBtnSubmitUrl}
-                                onClick={
-                                    isCreateUrl ?
-                                    () => handleConfirmSubmitLink():
-                                    () => handleCreateBotWithFile()
-                                }
+                                loading={loadingBtnCreateBot}
+                                onClick={() => handleConfirmCreateBot()}
                                 className={styles.btnConfirm}
                             ><InlineSVG src={Robot} width={24}/>
                                 Tạo Bot

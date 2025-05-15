@@ -1,42 +1,39 @@
 import {useEffect, useState} from "react";
 import _ from "lodash";
 import {
-    changeStatusBot,
-    createBotChat,
-    createBotChatWithFile,
-    deleteBot,
-    getListBotChats
+    changeStatusBot, createBotChat, deleteBot, getListBotChats
 } from "@/api/user/bot/index.js";
-
 import {getNotification} from "@/utils/helper.js";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {setBotChats} from "@/states/modules/bot/index.js";
 import {ColorMain, STATUS_BOT} from "@/utils/constants.js";
 import {validate} from "@/utils/validates/validate.js";
-import {createBotWithFileSchema, createBotWithUrlSchema} from "@/pages/User/Bot/schema.js";
+import {createBotSchema} from "@/pages/User/Bot/schema.js";
 
 export default function Handle() {
     const [visibleDeleteBot, setVisibleDeleteBot] = useState(false)
     const [dataForm, setDataForm] = useState({
         name: '',
-        url: '',
-        file: null,
-        logo: null,
+        description: "",
         logo_message: null,
         color: ColorMain,
-        description: "",
+        url: '',
+        file: null,
+        name_business: '',
+        logo: null,
     })
     const [errorDataForm, setErrorDataForm] = useState({
         name: '',
-        url: '',
-        file: '',
-        logo: '',
+        description: '',
         logo_message: '',
         color: '',
-        description: '',
+        url: '',
+        file: '',
+        name_business: '',
+        logo: '',
     })
-    const [loadingBtnSubmitUrl, setLoadingBtnSubmitUrl] = useState(false)
+    const [loadingBtnCreateBot, setLoadingBtnCreateBot] = useState(false)
     const botChats = useSelector(state => state.bot.botChats)
     const [loadingListBot, setLoadingListBot] = useState(false)
     const dispatch = useDispatch()
@@ -44,7 +41,6 @@ export default function Handle() {
     const [botSelect, setBotSelect] = useState(null)
     const [loadingBtnDelete, setLoadingBtnDelete] = useState(false)
     const [visibleCreateBot, setVisibleCreateBot] = useState(false)
-    const [isCreateUrl, setIsCreateUrl] = useState(true)
 
     useEffect(() => {
         handleGetListBotChats()
@@ -62,50 +58,29 @@ export default function Handle() {
         setErrorDataForm(errorData)
     }
 
-    const handleConfirmSubmitLink = () => {
-        validate(createBotWithUrlSchema, dataForm, {
+    const handleConfirmCreateBot = async () => {
+        await handleGetPageOfLink(dataForm.url)
+        validate(createBotSchema, dataForm, {
             onSuccess: () => {
-                setLoadingBtnSubmitUrl(true);
-                const formData = new FormData()
-                formData.append("url", dataForm.url)
-                createBotChat(formData).then(() => {
-                    getNotification('success', 'Tạo bot thành công.');
-                    setTimeout(() => {
-                        handleGetListBotChats();
-                    }, 1000)
-                    setVisibleCreateBot(false)
-                })
-                    .catch((error) => {
-                        let statusError = error.response.status
-                        if (statusError === 400) {
-                            let errors = error.response.data.detail
-                            setErrorDataForm({
-                                url: _.get(errors, 'url', ''),
-                            })
-                        } else {
-                            getNotification('error', 'Có lỗi xảy ra, vui lòng thử lại sau.');
-                        }
-                    })
-                    .finally(() => setLoadingBtnSubmitUrl(false));
-            },
-            onError: (error) => setErrorDataForm(error)
-        });
-    }
-
-    const handleCreateBotWithFile = () => {
-        validate(createBotWithFileSchema, dataForm, {
-            onSuccess: () => {
-                setLoadingBtnSubmitUrl(true);
+                setLoadingBtnCreateBot(true);
                 const formData = new FormData()
 
                 formData.append("name", dataForm.name)
                 formData.append("description", dataForm.description)
                 formData.append("color", dataForm.color)
-                formData.append("logo", dataForm.logo)
                 formData.append("logo_message", dataForm.logo_message)
-                formData.append("file", dataForm.file)
+                formData.append("name_business", dataForm.name_business)
+                formData.append("logo", dataForm.logo)
 
-                createBotChatWithFile(formData).then(() => {
+                if (dataForm.file) {
+                    formData.append("file", dataForm.file)
+                }
+
+                if (dataForm.url) {
+                    formData.append("url", dataForm.url)
+                }
+
+                createBotChat(formData).then(() => {
                     getNotification('success', 'Tạo bot thành công.');
                     setTimeout(() => {
                         handleGetListBotChats();
@@ -128,7 +103,7 @@ export default function Handle() {
                             getNotification('error', 'Có lỗi xảy ra, vui lòng thử lại sau.');
                         }
                     })
-                    .finally(() => setLoadingBtnSubmitUrl(false));
+                    .finally(() => setLoadingBtnCreateBot(false));
             },
             onError: (error) => setErrorDataForm(error)
         });
@@ -175,10 +150,10 @@ export default function Handle() {
     }
 
     return {
-        dataForm, errorDataForm, botChats, loadingListBot, loadingBtnSubmitUrl,
+        dataForm, errorDataForm, botChats, loadingListBot, loadingBtnCreateBot,
         visibleDeleteBot, setVisibleDeleteBot, loadingBtnDelete,
-        visibleCreateBot, setVisibleCreateBot, isCreateUrl, setIsCreateUrl,
-        handleChangeData, onFocusInputLesson, handleConfirmSubmitLink, handleRedirectDetailBot, handleCreateBotWithFile,
+        visibleCreateBot, setVisibleCreateBot,
+        handleChangeData, onFocusInputLesson, handleRedirectDetailBot, handleConfirmCreateBot,
         handleOpenModelDelete, handleConfirmDelete, handleChangeStatus
     }
 }

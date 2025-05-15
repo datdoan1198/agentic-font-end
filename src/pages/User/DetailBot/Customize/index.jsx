@@ -1,23 +1,25 @@
 import React from "react"
 import BotLayout from "@/layouts/User/BotLayout"
-import {Splitter} from "antd"
+import {Col, Row} from "antd"
 import LeftPage from "./components/LeftPage"
 import ChatBox from "@/components/Feature/ChatBox";
 import {useSelector} from "react-redux";
+import styles from './styles.module.scss'
 
 export default function CustomizeBotPage() {
     const bot = useSelector((state) => state.detailBot.bot);
     return (
         <>
             <BotLayout>
-                <Splitter>
-                    <Splitter.Panel defaultSize="50%" min="30%" max="50%">
+                <Row>
+                    <Col span={12} className={styles.boxLeftWrap} >
                         <LeftPage/>
-                    </Splitter.Panel>
-                    <Splitter.Panel>
+                    </Col>
+
+                    <Col span={12}>
                         <ChatBox botId={bot._id}/>
-                    </Splitter.Panel>
-                </Splitter>
+                    </Col>
+                </Row>
             </BotLayout>
         </>
     )

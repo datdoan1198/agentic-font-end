@@ -1,12 +1,17 @@
 import Joi from "joi"
 
 export const CustomizeSchema = Joi.object({
-  name: Joi.string().required().label("Tên"),
-  favicon: Joi.any().label("Nút trò chuyện"),
-  description: Joi.string().label("Mô tả"),
-  logo_message: Joi.any().label("Logo nút trò chuyện"),
-  welcome_messages: Joi.array().items(Joi.string()).default([]).label("Tin nhắn chào mừng"),
-  quick_prompts: Joi.array().items(Joi.string()).default([]).label("Lời nhắc nhanh"),
-  color: Joi.string().label("Màu sắc"),
-  auto_display_chatbox: Joi.string().label("Tự động hiển thị khung chat"),
+    name: Joi.string().required().label('Tên bot'),
+    description: Joi.string().required().label('Mô tả'),
+    logo_message: Joi.any().invalid(null).required().label('Logo nút trò chuyện'),
+    color: Joi.string().required().label('Màu sắc'),
+    logo: Joi.any().invalid(null).required().label('Logo doanh nghiệp'),
+    name_business: Joi.string().required().label('Tên doanh nghiệp'),
+    is_order: Joi.bool().required().label('Trạng thái đặt hàng'),
+    form_order: Joi.string()
+        .when('is_order', {
+            is: true,
+            then: Joi.string().required().label('Form đặt hàng'),
+            otherwise: Joi.string().allow('').label('Form đặt hàng'),
+        }),
 })

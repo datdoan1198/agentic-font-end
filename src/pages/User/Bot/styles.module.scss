@@ -85,6 +85,24 @@
   }
   .formSubmitLink {
 
+    .groupSubForm {
+      margin-bottom: 10px;
+      .titleWrap {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(159, 159, 159, 0.17);
+        padding: 10px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        .icon {
+          color: #6e6e6e;
+        }
+      }
+    }
+
     .btnWrap {
       display: flex;
       justify-content: flex-end;
