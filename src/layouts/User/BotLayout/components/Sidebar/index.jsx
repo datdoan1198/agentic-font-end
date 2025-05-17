@@ -9,7 +9,7 @@ import { handleCheckRoute } from "@/utils/helper.js"
 import { useDispatch, useSelector } from "react-redux"
 import { setIsShowSideBar } from "@/states/modules/detailBot/index.js"
 import { ChevronLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react"
-import Logo from "@/assets/images/logos/zent_logo_dark.png";
+import Logo from "@/assets/images/logos/logo_dark.png";
 import LogoDefault from "@/assets/images/logos/logo_default.png";
 
 export default function Sidebar() {

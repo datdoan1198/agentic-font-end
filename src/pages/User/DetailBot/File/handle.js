@@ -75,12 +75,14 @@ export default function Handle() {
         name: 'file',
         multiple: false,
         maxCount: 1,
-        accept: '.xls,.xlsx',
+        accept: '.xls,.xlsx,.doc,.docx',
         showUploadList: false,
         beforeUpload: (file) => {
-            const isExcel = file.type === 'application/vnd.ms-excel' ||
-                file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-            if (!isExcel) {
+            const isAccept = file.type === 'application/vnd.ms-excel' ||
+                file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                file.type === 'application/msword' ||
+                file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            if (!isAccept) {
                 message.error('Only Excel files (.xls, .xlsx) are allowed!');
                 return Upload.LIST_IGNORE;
             }

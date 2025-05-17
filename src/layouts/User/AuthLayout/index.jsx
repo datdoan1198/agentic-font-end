@@ -3,7 +3,7 @@ import './styles.scss'
 import styles from './styles.module.scss';
 import {Col, Row} from "antd";
 import Banner from "@/assets/images/banners/banner1.webp";
-import Logo from "@/assets/images/logos/zent_logo_dark.png";
+import Logo from "@/assets/images/logos/logo_dark.png";
 
 function AuthLayout({ children }) {
 

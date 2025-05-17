@@ -32,7 +32,7 @@ export default function File() {
                         <p className="ant-upload-drag-icon">
                             <InboxOutlined />
                         </p>
-                        <p className="ant-upload-text">Vui lòng tải lên tệp định dạng excel (tối đa 10MB/tệp)</p>
+                        <p className="ant-upload-text">Vui lòng tải lên tệp định dạng .xls, .xlsx, .doc, .docx (tối đa 10MB/tệp)</p>
                     </Dragger>
                 </div>
                 <div className={styles.filterWrap}>
