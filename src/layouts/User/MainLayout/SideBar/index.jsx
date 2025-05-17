@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import InlineSVG from "react-inlinesvg";
 import Robot from "@/assets/images/icons/solid/robot.svg";
 import {useLocation, useNavigate} from "react-router-dom";
-import Logo from "@/assets/images/logos/zent_logo_dark.png";
+import Logo from "@/assets/images/logos/logo_dark.png";
 import User from "@/assets/images/icons/solid/user.svg";
 import Crow from "@/assets/images/icons/solid/crown.svg";
 
