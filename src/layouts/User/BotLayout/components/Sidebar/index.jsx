@@ -1,16 +1,16 @@
-import React from "react"
-import styles from "./styles.module.scss"
-import { Avatar, Button, Popover } from "antd"
-import { routeBotMap } from "@/router/routeBotMap.js"
-import InlineSVG from "react-inlinesvg"
-import _ from "lodash"
-import { useLocation, useNavigate } from "react-router-dom"
-import { handleCheckRoute } from "@/utils/helper.js"
-import { useDispatch, useSelector } from "react-redux"
-import { setIsShowSideBar } from "@/states/modules/detailBot/index.js"
-import { ChevronLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react"
-import Logo from "@/assets/images/logos/logo_dark.png";
-import LogoDefault from "@/assets/images/logos/logo_default.png";
+import React from 'react'
+import styles from './styles.module.scss'
+import { Avatar, Button, Popover } from 'antd'
+import { routeBotMap } from '@/router/routeBotMap.js'
+import InlineSVG from 'react-inlinesvg'
+import _ from 'lodash'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { handleCheckRoute } from '@/utils/helper.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsShowSideBar } from '@/states/modules/detailBot/index.js'
+import { ChevronLeft, CircleChevronLeft, CircleChevronRight } from 'lucide-react'
+import Logo from '@/assets/images/logos/logo_dark.png'
+import LogoDefault from '@/assets/images/logos/logo_default.png'
 
 export default function Sidebar() {
   const isShowSideBar = useSelector((state) => state.detailBot.isShowSideBar)
@@ -36,10 +36,10 @@ export default function Sidebar() {
         </div>
         {!_.isEmpty(handleGetBotSelect()) && (
           <div className={styles.boxListBotChats}>
-            {isShowSideBar && <Button icon={<ChevronLeft />} onClick={() => navigate("/bot-chats")}></Button>}
+            {isShowSideBar && <Button icon={<ChevronLeft />} onClick={() => navigate('/bot-chats')}></Button>}
             <Popover
               className={`popover-info-wrap`}
-              placement={isShowSideBar ? "bottom" : "right"}
+              placement={isShowSideBar ? 'bottom' : 'right'}
               content={
                 <div className={styles.groupBotChatsWrap}>
                   {botChats.map((botChat) => {
@@ -53,7 +53,7 @@ export default function Sidebar() {
                       </div>
                     )
                   })}
-                  <div className={`${styles.botItemWrap}`} onClick={() => navigate("/bot-chats")}>
+                  <div className={`${styles.botItemWrap}`} onClick={() => navigate('/bot-chats/create')}>
                     Tạo Bot
                   </div>
                 </div>
@@ -61,10 +61,7 @@ export default function Sidebar() {
               trigger="hover"
             >
               <div className={styles.botSelected}>
-                {!isShowSideBar ?
-                    <Avatar size={20} src={bot.favicon || LogoDefault} /> :
-                    <>{bot.name}</>
-                }
+                {!isShowSideBar ? <Avatar size={20} src={bot.favicon || LogoDefault} /> : <>{bot.name}</>}
               </div>
             </Popover>
           </div>

@@ -486,3 +486,13 @@ html *::-webkit-scrollbar-thumb {
   overflow: auto;
   border-radius: 6px;
 }
+
+.ant-steps-item-process {
+  .ant-steps-item-icon {
+    background-color: $mainColor !important;
+    border-color: $mainColor !important;
+    .ant-steps-icon {
+      color: $mainColor;
+    }
+  }
+}
