@@ -70,10 +70,20 @@ export default function ChatBox({botId}) {
         setMessages([])
     }
 
+    const handleCheckUrl = () => {
+        if (!bot?.active_urls || bot.active_urls.length === 0) return false;
+        const currentDomain = normalizeUrl(window.location.origin);
+        return bot.active_urls.some(url => normalizeUrl(url) === currentDomain);
+    }
+
+    const normalizeUrl = (url) => {
+        return url.replace(/\/+$/, '');
+    }
+
     return (
         <>
             {
-                !_.isEmpty(bot) &&
+                !_.isEmpty(bot) && handleCheckUrl()  &&
                 <div className={styles.boxChat}>
                     <div
                         className={`${styles.boxIconChat} ${isShowFormChat && styles.boxIconChatClose}`}
