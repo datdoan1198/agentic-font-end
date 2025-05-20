@@ -15,7 +15,7 @@ const RenderStatusText = (link) => {
         }
     } else {
         return {
-            text: "Chưa xử lý",
+            text: "Đang huấn luyện",
             color: "blue",
         }
     }
