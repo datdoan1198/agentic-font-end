@@ -23,6 +23,14 @@ export const changeStatusBot = (data, botId) => {
   })
 }
 
+export const updateActiveUrlsBotChat = (botId, data) => {
+    return apiAxios({
+        method: "put",
+        url: `/bots/${botId}/active-urls`,
+        data
+    })
+}
+
 export const deleteBot = (botId) => {
   return apiAxios({
     method: "delete",
