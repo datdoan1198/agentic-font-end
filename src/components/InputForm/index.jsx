@@ -19,6 +19,7 @@ const InputForm = (props) => {
     isDisabled = false,
     handleChangeData,
     onFocusInputLesson,
+    onKeyDown,
   } = props
 
   return (
@@ -41,6 +42,7 @@ const InputForm = (props) => {
           value={value}
           onChange={(e) => handleChangeData(type, e.target.value)}
           onFocus={() => onFocusInputLesson(type)}
+          onKeyDown={(e) => onKeyDown(e)}
         />
       ) : isTextArea ? (
         <Input.TextArea
@@ -52,6 +54,7 @@ const InputForm = (props) => {
           value={value}
           onChange={(e) => handleChangeData(type, e.target.value)}
           onFocus={() => onFocusInputLesson(type)}
+          onKeyDown={(e) => onKeyDown(e)}
         />
       ) : (
         <Input
@@ -62,6 +65,7 @@ const InputForm = (props) => {
           disabled={isDisabled}
           onChange={(e) => handleChangeData(type, e.target.value)}
           onFocus={() => onFocusInputLesson(type)}
+          onKeyDown={(e) => onKeyDown(e)}
         />
       )}
 
