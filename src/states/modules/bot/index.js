@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 const botSlice = createSlice({
-  name: "bot",
+  name: 'bot',
   initialState: {
     botChats: [],
     // ========= DELETE BOT ========== //
@@ -10,9 +10,9 @@ const botSlice = createSlice({
     links: [],
     isLoadingGetLinks: false,
     paginationLinks: {
-        total: 0,
-        per_page: 10,
-        page: 1,
+      total: 0,
+      per_page: 10,
+      page: 1,
     },
     // ========== CREATE LINK ========== //
     isLoadingCreateLink: false,
@@ -49,14 +49,14 @@ const botSlice = createSlice({
       isLoadingGetLinks: true,
     }),
     getLinksSuccess: (state, action) => ({
-        ...state,
-        links: action.payload.data.links,
-        paginationLinks: {
-            total: action.payload.data.total,
-            per_page: action.payload.data.per_page,
-            page: action.payload.data.page,
-        },
-        isLoadingGetLinks: false,
+      ...state,
+      links: action.payload.data.links,
+      paginationLinks: {
+        total: action.payload.data.total,
+        per_page: action.payload.data.per_page,
+        page: action.payload.data.page,
+      },
+      isLoadingGetLinks: false,
     }),
     getLinksFailed: (state) => ({
       ...state,
