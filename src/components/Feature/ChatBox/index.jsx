@@ -1,89 +1,89 @@
-import styles from './styles.module.scss'
-import InlineSVG from 'react-inlinesvg'
-import Rotate from '@/assets/images/icons/solid/rotate.svg'
-import Minus from '@/assets/images/icons/solid/minus.svg'
-import { Button, Input } from 'antd'
-import Send from '@/assets/images/icons/solid/paper-plane-top.svg'
-import React, { useEffect, useRef, useState } from 'react'
-import { activeSendMessage, getInfoBotOfChat } from '@/api/user/chat/index.js'
-import _ from 'lodash'
-import { getAllMessageFlowConversation } from '@/api/user/conversation/index.js'
+import styles from "./styles.module.scss";
+import InlineSVG from "react-inlinesvg";
+import Rotate from "@/assets/images/icons/solid/rotate.svg";
+import Minus from "@/assets/images/icons/solid/minus.svg";
+import {Button, Input} from "antd";
+import Send from "@/assets/images/icons/solid/paper-plane-top.svg";
+import React, {useEffect, useRef, useState} from "react";
+import {activeSendMessage, getInfoBotOfChat} from "@/api/user/chat/index.js";
+import _ from "lodash";
+import {getAllMessageFlowConversation} from "@/api/user/conversation/index.js";
 
-export default function ChatBox({ botId }) {
-  const [isShowFormChat, setIsShowFormChat] = useState(false)
-  const [sendMessage, setSendMessage] = useState('')
-  const [loadingSendMessage, setLoadingSendMessage] = useState('')
-  const [textSending, setTextSending] = useState('')
-  const [messages, setMessages] = useState([])
-  const [bot, setBot] = useState({})
-  const bottomRef = useRef(null)
-  const conversation_id = localStorage.getItem(`bot_${botId}`)
+export default function ChatBox({botId}) {
+  const [isShowFormChat, setIsShowFormChat] = useState(false);
+  const [sendMessage, setSendMessage] = useState("");
+  const [loadingSendMessage, setLoadingSendMessage] = useState("");
+  const [textSending, setTextSending] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [bot, setBot] = useState({});
+  const bottomRef = useRef(null);
+  const conversation_id = localStorage.getItem(`bot_${botId}`);
 
   useEffect(() => {
     getInfoBotOfChat(botId)
       .then((res) => {
-        setBot(res.data.data)
+        setBot(res.data.data);
       })
       .catch(() => {
-        setBot({})
-      })
-  }, [botId])
+        setBot({});
+      });
+  }, [botId]);
 
   useEffect(() => {
     if (isShowFormChat && conversation_id) {
-      handleGetAllMessageFlowConversation()
+      handleGetAllMessageFlowConversation();
     }
-    isShowFormChat && bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [isShowFormChat])
+    isShowFormChat && bottomRef.current?.scrollIntoView({behavior: "smooth"});
+  }, [isShowFormChat]);
 
   const handleGetAllMessageFlowConversation = () => {
     getAllMessageFlowConversation(botId, conversation_id)
       .then((res) => {
-        setMessages(res.data.data.messages)
+        setMessages(res.data.data.messages);
       })
       .catch(() => {
-        handleReloadConversation()
-      })
-  }
+        handleReloadConversation();
+      });
+  };
 
   const handleSendMessage = () => {
     if (!loadingSendMessage && sendMessage) {
       const data = {
         send_message: sendMessage,
-        ...(conversation_id && { conversation_id }),
-      }
-      setLoadingSendMessage(true)
-      setSendMessage('')
-      setTextSending(sendMessage)
+        ...(conversation_id && {conversation_id}),
+      };
+      setLoadingSendMessage(true);
+      setSendMessage("");
+      setTextSending(sendMessage);
       activeSendMessage(botId, data)
         .then((res) => {
-          localStorage.setItem(`bot_${botId}`, res.data.data.conversation_id)
-          setMessages(res.data.data.messages)
+          localStorage.setItem(`bot_${botId}`, res.data.data.conversation_id);
+          setMessages(res.data.data.messages);
         })
         .catch(() => {
-          setMessages([])
+          setMessages([]);
         })
         .finally(() => {
-          setTextSending('')
-          setLoadingSendMessage(false)
-        })
+          setTextSending("");
+          setLoadingSendMessage(false);
+        });
     }
-  }
+  };
 
   const handleReloadConversation = () => {
-    localStorage.removeItem(`bot_${botId}`)
-    setMessages([])
-  }
+    localStorage.removeItem(`bot_${botId}`);
+    setMessages([]);
+  };
 
   const handleCheckUrl = () => {
-    if (!bot?.active_urls || bot.active_urls.length === 0) return false
-    const currentDomain = normalizeUrl(window.location.origin)
-    return bot.active_urls.some((url) => normalizeUrl(url) === currentDomain)
-  }
+    if (!bot?.active_urls || bot.active_urls.length === 0) return false;
+    const currentDomain = normalizeUrl(window.location.origin);
+    return bot.active_urls.some((url) => normalizeUrl(url) === currentDomain);
+  };
 
   const normalizeUrl = (url) => {
-    return url.replace(/\/+$/, '')
-  }
+    return url.replace(/\/+$/, "");
+  };
 
   return (
     <>
@@ -93,13 +93,13 @@ export default function ChatBox({ botId }) {
             className={`${styles.boxIconChat} ${isShowFormChat && styles.boxIconChatClose}`}
             onClick={() => setIsShowFormChat(!isShowFormChat)}
           >
-            <div className={styles.imgWrap} style={{ background: bot?.color }}>
+            <div className={styles.imgWrap} style={{background: bot?.color}}>
               <img src={bot?.logo_message} alt="" />
             </div>
           </div>
 
           <div className={`${styles.boxLayoutChat} ${isShowFormChat && styles.boxLayoutChatShow}`}>
-            <div className={styles.headerLayout} style={{ background: bot?.color }}>
+            <div className={styles.headerLayout} style={{background: bot?.color}}>
               <div className={styles.logoWrap}>
                 <div className={styles.boxImg}>
                   <div className={styles.imgWrap}>
@@ -141,7 +141,12 @@ export default function ChatBox({ botId }) {
 
                   <div className={`${styles.itemMessage} ${styles.itemRight}`}>
                     <div className={`${styles.contextWrap} ${styles.contextUserWrap}`}>
-                      <div className={`${styles.contextItem} ${styles.contextItemUser}`}>{textSending}</div>
+                      <div
+                        className={`${styles.contextItem} ${styles.contextItemUser}`}
+                        style={{background: bot?.color}}
+                      >
+                        {textSending}
+                      </div>
                     </div>
                   </div>
                 </>
@@ -153,13 +158,13 @@ export default function ChatBox({ botId }) {
                     return (
                       <div
                         key={message._id}
-                        className={`${styles.itemMessage} ${message.type === 'USER' && styles.itemRight}`}
+                        className={`${styles.itemMessage} ${message.type === "USER" && styles.itemRight}`}
                       >
-                        {message.type === 'USER' ? (
+                        {message.type === "USER" ? (
                           <div className={`${styles.contextWrap} ${styles.contextUserWrap} `}>
                             <div
                               className={`${styles.contextItem} ${styles.contextItemUser}`}
-                              style={{ background: bot?.color }}
+                              style={{background: bot?.color}}
                             >
                               {message.content}
                             </div>
@@ -171,13 +176,13 @@ export default function ChatBox({ botId }) {
                             </div>
                             <div className={`${styles.contextWrap}`}>
                               <div className={styles.contextItem}>
-                                <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                                <div dangerouslySetInnerHTML={{__html: message.content}} />
                               </div>
                             </div>
                           </>
                         )}
                       </div>
-                    )
+                    );
                   })}
                 </>
               ) : (
@@ -197,15 +202,15 @@ export default function ChatBox({ botId }) {
               <div className={styles.inputSendWrap}>
                 <Input
                   className={styles.inputSend}
-                  placeholder={'Nhập lời nhắn'}
-                  size={'large'}
+                  placeholder={"Nhập lời nhắn"}
+                  size={"large"}
                   value={sendMessage}
                   onChange={(e) => setSendMessage(e.target.value)}
                   onPressEnter={() => handleSendMessage()}
                 />
                 <Button
                   onClick={() => handleSendMessage()}
-                  style={{ background: bot?.config_bot?.color }}
+                  style={{background: bot?.config_bot?.color}}
                   className={`${styles.btnSend} ${!sendMessage && styles.btnSendDisabled}`}
                 >
                   <InlineSVG src={Send} width={20} />
@@ -220,5 +225,5 @@ export default function ChatBox({ botId }) {
         </div>
       )}
     </>
-  )
+  );
 }
