@@ -242,4 +242,15 @@
     transform: translateY(0%);
     opacity: 1;
   }
+
+  table {
+    border: 1px solid rgba(107, 127, 141, 0.35);
+    tr {
+      border-bottom: 1px solid rgba(107, 127, 141, 0.35);
+      th, td {
+        padding: 5px;
+        border-right: 1px solid rgba(107, 127, 141, 0.35);
+      }
+    }
+  }
 }
