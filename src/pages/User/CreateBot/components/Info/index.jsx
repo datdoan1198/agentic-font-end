@@ -2,11 +2,13 @@ import React from 'react'
 import styles from '../../styles.module.scss'
 import InlineSVG from 'react-inlinesvg'
 import Robot from '@/assets/images/icons/solid/robot.svg'
+import Continue from '@/assets/images/icons/solid/continue.svg'
 import InputForm from '@/components/InputForm/index.jsx'
 import InputUpload from '@/components/InputUpload/index.jsx'
 import InputColor from '@/components/InputColor/index.jsx'
+import {Button} from 'antd'
 
-const BotInfo = ({ dataForm, errorDataForm, handleChangeData, onFocusInputLesson }) => {
+const BotInfo = ({dataForm, errorDataForm, handleChangeData, onFocusInputLesson, handleNextStep}) => {
   return (
     <div className={styles.groupSubForm}>
       <div className={styles.titleWrap}>
@@ -54,8 +56,15 @@ const BotInfo = ({ dataForm, errorDataForm, handleChangeData, onFocusInputLesson
         onFocusInputLesson={onFocusInputLesson}
         error={errorDataForm.color}
       />
-    </div>
-  )
-}
 
-export default BotInfo
+      <div className={styles.btnWrap}>
+        <Button onClick={handleNextStep} className={styles.btnConfirm}>
+          Tiếp tục
+          <InlineSVG src={Continue} width={20} />
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default BotInfo;

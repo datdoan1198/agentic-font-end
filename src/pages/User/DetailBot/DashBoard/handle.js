@@ -82,7 +82,12 @@ export default function Handle() {
   useEffect(() => {
     const handleGetLatestMessageStats = async () => {
       const res = await getLastestMessageStats(bot._id);
-      setLatestMessageStats(res.data.data);
+      const uniqueConversations = Array.from(
+        new Set(res.data.data.map(item => item.conversation._id))
+      ).map(conversation_id => 
+        res.data.data.find(item => item.conversation._id === conversation_id)
+      );
+      setLatestMessageStats(uniqueConversations);
     };
     handleGetLatestMessageStats();
   }, []);
@@ -92,8 +97,8 @@ export default function Handle() {
       const res = await getMessageStatsByDay(bot._id);
       const chartData = res.data.data.map((item) => {
         return {
-          date: moment(item.day).format("MMM-DD"),
-          value: item.number_message,
+          date: moment(item.day).format("DD/MM"),
+          "Số tin nhắn": item.number_message,
         };
       });
       setChartData(chartData);
@@ -105,7 +110,7 @@ export default function Handle() {
     const config = {
       data: chartData,
       xField: "date",
-      yField: "value",
+      yField: "Số tin nhắn",
       point: {
         shapeField: "circle",
         sizeField: 2,

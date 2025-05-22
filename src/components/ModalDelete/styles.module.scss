@@ -3,11 +3,11 @@
 .mainWrap {
   @apply p-[20px] flex justify-center items-center flex-col;
   .btnCancel {
-    background: #4ca1f5;
+    background: $mainColor;
     margin-right: 5px;
     color: #ffffff;
     &:hover {
-      background: #4ca1f5 !important;
+      background: $mainColor !important;
       color: #ffffff !important;
     }
   }

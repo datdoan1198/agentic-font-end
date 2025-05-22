@@ -1,6 +1,6 @@
 import React from 'react'
 import BotLayout from '@/layouts/User/BotLayout'
-import { Button, Col, Empty, Input, Row, Segmented } from 'antd'
+import { Empty, Input, Segmented} from 'antd'
 import styles from './styles.module.scss'
 import './styles.scss'
 import LogoMessage from '@/assets/images/logos/messenger.png'
@@ -29,9 +29,9 @@ export default function Conversation() {
     handleSwitchTab,
     handleSelectConversation,
     handleSearch,
-  } = Handle()
+  } = Handle();
 
-  const { facebookLogin } = Integration()
+  const {facebookLogin} = Integration();
 
   return (
     <BotLayout>
@@ -68,7 +68,7 @@ export default function Conversation() {
                 <div className="flex justify-center px-2 ">
                   <button
                     onClick={() => facebookLogin()}
-                    className="w-full bg-[#4ca1f5] text-white h-[40px] border-none rounded-md hover:bg-[#4ca1f5]/80 transition-all duration-300"
+                    className="w-full bg-mainColor text-white h-[40px] border-none rounded-md hover:bg-[#4ca1f5]/80 transition-all duration-300"
                   >
                     Đăng nhập
                   </button>
@@ -120,7 +120,7 @@ export default function Conversation() {
                               <div className={styles.lastMessage}>{conversationItem?.lastMessage.content}</div>
                             </div>
                           </div>
-                        )
+                        );
                       })}
                     </>
                   )}
@@ -155,9 +155,9 @@ export default function Conversation() {
 
                                   <div
                                     className={`${styles.context} ${message.type === 'USER' && styles.contextUser}`}
-                                    style={{ background: message.type === 'USER' && bot?.color }}
+                                    style={{background: message.type === 'USER' && bot?.color}}
                                   >
-                                    <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                                    <div dangerouslySetInnerHTML={{__html: message.content}} />
                                     <div className={styles.time}>{formatDateSecond(message.created_at)}</div>
                                   </div>
 
@@ -168,7 +168,7 @@ export default function Conversation() {
                                   )}
                                 </div>
                               </div>
-                            )
+                            );
                           })}
                         </>
                       )}
@@ -186,5 +186,5 @@ export default function Conversation() {
         </div>
       </div>
     </BotLayout>
-  )
+  );
 }

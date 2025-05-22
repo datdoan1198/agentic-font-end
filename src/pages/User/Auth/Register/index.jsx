@@ -1,9 +1,7 @@
-import React from "react"
-import AuthLayout from "@/layouts/User/AuthLayout"
-import styles from "./styles.module.scss"
-import InputForm from "@/components/InputForm/index.jsx"
-import { Button } from "antd"
-import Handle from "./handle.js"
+import React from 'react'
+import AuthLayout from '@/layouts/User/AuthLayout'
+import { Input } from 'antd'
+import Handle from './handle.js'
 
 function Register() {
   const {
@@ -19,78 +17,99 @@ function Register() {
 
   return (
     <AuthLayout>
-      <div className={styles.boxRegister}>
-        <div className={styles.formRegisterWrap}>
-          <div className={styles.headerForm}>
-            <div className={styles.title}>Tạo tài khoản</div>
-            <div className={styles.description}>Đăng ký để trải nghiệm ngay bây giờ</div>
-          </div>
-
-          <div className={styles.formRegister}>
-            <InputForm
-              placeholder={"Họ và tên"}
-              type={"name"}
+      <div className="w-full">
+        <h2 className="mb-1 text-2xl font-bold text-mainColor ">Tạo tài khoản</h2>
+        <p className="mb-6 text-sm font-semibold text-gray-500">Đăng ký để trải nghiệm ngay bây giờ</p>
+        {messageErrorRegister && messageErrorRegister.length > 0 && (
+          <div className="mb-4 text-red-500">{messageErrorRegister}</div>
+        )}
+        <div className="space-y-4">
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">Họ và tên</label>
+            <Input
+              className={`w-full px-3 py-2 border rounded-md ${
+                errorFormData.name
+                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              }`}
+              placeholder="Họ và tên"
               value={formData.name}
-              error={errorFormData.name}
-              handleChangeData={(type, value) => handleChangeData(type, value)}
-              onFocusInputLesson={(type) => onFocusInputLesson(type)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleConfirmRegister()
-              }}
+              onChange={(e) => handleChangeData('name', e.target.value)}
+              onFocus={() => onFocusInputLesson('name')}
+              onKeyDown={(e) => e.key === 'Enter' && handleConfirmRegister()}
             />
-
-            <InputForm
-              placeholder={"Email"}
-              type={"email"}
-              value={formData.email}
-              error={errorFormData.email}
-              handleChangeData={(type, value) => handleChangeData(type, value)}
-              onFocusInputLesson={(type) => onFocusInputLesson(type)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleConfirmRegister()
-              }}
-            />
-
-            <InputForm
-              placeholder={"Mật khẩu"}
-              type={"password"}
-              isPassword={true}
-              value={formData.password}
-              error={errorFormData.password}
-              handleChangeData={(type, value) => handleChangeData(type, value)}
-              onFocusInputLesson={(type) => onFocusInputLesson(type)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleConfirmRegister()
-              }}
-            />
-
-            <InputForm
-              placeholder={"Xác nhận mật khẩu"}
-              type={"password_confirm"}
-              isPassword={true}
-              value={formData.password_confirm}
-              error={errorFormData.password_confirm}
-              handleChangeData={(type, value) => handleChangeData(type, value)}
-              onFocusInputLesson={(type) => onFocusInputLesson(type)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleConfirmRegister()
-              }}
-            />
-
-            <Button className={styles.btnRegister} onClick={() => handleConfirmRegister()} loading={loadingRegister}>
-              Đăng ký
-            </Button>
+            {errorFormData.name && <p className="mt-1 text-xs text-red-500">{errorFormData.name}</p>}
           </div>
 
-          <div className={styles.tooltipWrap}>
-            <div className={styles.policyWrap}>
-              Bằng cách{" "}
-              <span onClick={() => handleRedirectRoute("/login")} className={styles.textActive}>
-                Đăng nhập
-              </span>{" "}
-              hoặc Đăng ký, tôi đồng ý với <span className={styles.textActive}>Thỏa thuận sử dụng Dịch vụ</span> và
-              Chính sách Quyền riêng tư của AI CSKH.
-            </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">Email</label>
+            <Input
+              className={`w-full px-3 py-2 border rounded-md ${
+                errorFormData.email
+                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              }`}
+              placeholder="Email của bạn"
+              value={formData.email}
+              onChange={(e) => handleChangeData('email', e.target.value)}
+              onFocus={() => onFocusInputLesson('email')}
+              onKeyDown={(e) => e.key === 'Enter' && handleConfirmRegister()}
+            />
+            {errorFormData.email && <p className="mt-1 text-xs text-red-500">{errorFormData.email}</p>}
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">Mật khẩu</label>
+            <Input.Password
+              className={`w-full px-3 py-2 border rounded-md ${
+                errorFormData.password
+                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              }`}
+              placeholder="Mật khẩu của bạn"
+              value={formData.password}
+              onChange={(e) => handleChangeData('password', e.target.value)}
+              onFocus={() => onFocusInputLesson('password')}
+              onKeyDown={(e) => e.key === 'Enter' && handleConfirmRegister()}
+            />
+            {errorFormData.password && <p className="mt-1 text-xs text-red-500">{errorFormData.password}</p>}
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">Xác nhận mật khẩu</label>
+            <Input.Password
+              className={`w-full px-3 py-2 border rounded-md ${
+                errorFormData.password_confirm
+                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              }`}
+              placeholder="Xác nhận mật khẩu"
+              value={formData.password_confirm}
+              onChange={(e) => handleChangeData('password_confirm', e.target.value)}
+              onFocus={() => onFocusInputLesson('password_confirm')}
+              onKeyDown={(e) => e.key === 'Enter' && handleConfirmRegister()}
+            />
+            {errorFormData.password_confirm && (
+              <p className="mt-1 text-xs text-red-500">{errorFormData.password_confirm}</p>
+            )}
+          </div>
+
+          <button
+            loading={loadingRegister}
+            className="w-full h-10 py-2 text-white transition-opacity rounded-md bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90"
+            onClick={() => handleConfirmRegister()}
+          >
+            Đăng ký
+          </button>
+
+          <div className="mt-4 text-sm text-center text-gray-600">
+            Đã có tài khoản?{' '}
+            <span
+              onClick={() => handleRedirectRoute('/login')}
+              className="text-blue-600 cursor-pointer hover:underline"
+            >
+              Đăng nhập
+            </span>
           </div>
         </div>
       </div>

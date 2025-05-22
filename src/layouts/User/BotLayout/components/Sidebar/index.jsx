@@ -53,11 +53,12 @@ export default function Sidebar() {
                       </div>
                     )
                   })}
-                    <Button
-                        className={styles.btnCreateBot}
-                        onClick={() => navigate('/bot-chats/create')}
-                    >Tạo Bot
-                    </Button>
+                  <div
+                    className="p-2 text-center text-white transition-all duration-300 rounded-md cursor-pointer bg-mainColor hover:bg-mainColor/80"
+                    onClick={() => navigate('/bot-chats/create')}
+                  >
+                    Tạo Bot
+                  </div>
                 </div>
               }
               trigger="hover"

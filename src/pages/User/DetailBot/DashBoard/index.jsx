@@ -13,7 +13,6 @@ import {
 import {Line} from "@ant-design/plots";
 import Handle from "./handle";
 import moment from "moment";
-import {useNavigate} from "react-router-dom";
 
 export default function DashBoard() {
   const {
@@ -190,7 +189,7 @@ export default function DashBoard() {
       <div style={{padding: "20px"}}>
         <div style={{display: "flex", justifyContent: "space-between"}}>
           <Title level={3} style={{margin: 0}}>
-            Dashboard
+            Tổng quan
           </Title>
           <Popover
             content={dateFilterContent}
@@ -210,7 +209,11 @@ export default function DashBoard() {
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12} md={8}>
             <Card>
-              <Statistic title="Người dùng truy cập" value={generalStats.total_user_access} prefix={<UserOutlined />} />
+              <Statistic
+                title="Người dùng truy cập"
+                value={generalStats.number_user_access}
+                prefix={<UserOutlined />}
+              />
             </Card>
           </Col>
           <Col xs={24} sm={12} md={8}>
@@ -270,7 +273,7 @@ export default function DashBoard() {
 
         <Row gutter={[16, 16]} style={{marginTop: "20px"}}>
           <Col xs={24} lg={24}>
-            <Card
+            <div
               title="Tin nhắn gần đây"
               extra={
                 <a onClick={() => handleNavigateToConversation()} href="#">
@@ -278,13 +281,17 @@ export default function DashBoard() {
                 </a>
               }
             >
-              <div>Bạn nhận được {latestMessageStats?.length} tin nhắn trong tháng này</div>
+              {/* <div>Bạn nhận được {latestMessageStats?.length} tin nhắn trong tháng này</div> */}
               <List
                 itemLayout="horizontal"
                 dataSource={recentMessages}
                 renderItem={(item) => (
-                  <List.Item onClick={() => handleNavigateToConversation(item.id)}>
+                  <List.Item
+                    onClick={() => handleNavigateToConversation(item.id)}
+                    className="duration-100 rounded-md cursor-pointer  transition-easy hover:bg-gray-200 !p-4 "
+                  >
                     <List.Item.Meta
+                      className="flex !items-center"
                       avatar={item.avatar}
                       title={
                         <span>
@@ -299,7 +306,7 @@ export default function DashBoard() {
                   </List.Item>
                 )}
               />
-            </Card>
+            </div>
           </Col>
         </Row>
         <Row gutter={[16, 16]} style={{marginTop: "20px"}}>
