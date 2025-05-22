@@ -17,7 +17,17 @@
   .sessionWrap {
     margin-bottom: 15px;
     .tooltip {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
       margin-bottom: 10px;
+      font-weight: 600;
+
+      .iconQuestion {
+        margin-left: 3px;
+        color: rgba(119, 111, 111, 0.49);
+        cursor: pointer;
+      }
     }
 
     .embedCodeWrap {
@@ -42,10 +52,8 @@
 
     .formSaveUrlActiveWrap {
       display: flex;
-      flex-direction: column;
       align-items: flex-end;
       .btnSave {
-        margin-top: 20px;
         width: max-content;
         border: none;
         background: $mainColor;
@@ -53,6 +61,7 @@
         font-weight: 600;
         height: 40px;
         opacity: 1;
+        margin-left: 10px;
 
         &:hover {
           background: $mainColor !important;
