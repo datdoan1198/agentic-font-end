@@ -11,6 +11,7 @@ import {dataURLtoFile} from "@/utils/dataURLtoFile.js"
 import {getInfoBot, getListBotChats} from "@/api/user/bot/index.js"
 import {setBot} from "@/states/modules/detailBot/index.js"
 import {setBotChats} from "@/states/modules/bot/index.js";
+import IconChat from "@/assets/images/logos/icon_chat.png";
 
 const initialFormData = {
     name: "",
@@ -31,7 +32,7 @@ export default function useCustomize() {
     const [formData, setFormData] = useState({
         name: bot?.name || "",
         description: bot?.description || "",
-        logo_message: bot?.logo_message || "",
+        logo_message: bot?.logo_message || IconChat,
         color: bot?.color || ColorMain,
         welcome_messages: bot?.welcome_messages ? bot.welcome_messages.join("\n") : "",
         name_business: bot?.business.name || "",
@@ -46,7 +47,7 @@ export default function useCustomize() {
         setFormData({
             name: bot?.name || "",
             description: bot?.description || "",
-            logo_message: bot?.logo_message || "",
+            logo_message: bot?.logo_message || IconChat,
             color: bot?.color || ColorMain,
             welcome_messages: bot?.welcome_messages ? bot.welcome_messages.join("\n") : "",
             name_business: bot?.business.name || "",

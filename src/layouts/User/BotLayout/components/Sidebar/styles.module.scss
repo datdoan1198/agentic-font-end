@@ -1,3 +1,5 @@
+@import "@/assets/scss/variables";
+
 .boxSideBar {
   position: fixed;
   left: 0;
@@ -130,6 +132,21 @@
     cursor: pointer;
     &:hover {
       background: #f3f4f6;
+    }
+  }
+
+  .btnCreateBot {
+    border: none;
+    background: $mainColor;
+    color: $colorWhite;
+    font-weight: 600;
+    height: 40px;
+    opacity: 1;
+
+    &:hover {
+      background: $mainColor !important;
+      color: $colorWhite !important;
+      opacity: 0.9;
     }
   }
 

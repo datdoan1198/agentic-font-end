@@ -13,6 +13,7 @@ import {
   createBotKnowledgeSchema,
   createBotCompanySchema,
 } from '@/pages/User/Bot/schema.js'
+import IconChat from "@/assets/images/logos/icon_chat.png";
 
 export default function Handle() {
   const [visibleDeleteBot, setVisibleDeleteBot] = useState(false)
@@ -20,7 +21,7 @@ export default function Handle() {
   const [dataForm, setDataForm] = useState({
     name: '',
     description: '',
-    logo_message: null,
+    logo_message: IconChat,
     color: ColorMain,
     url: '',
     file: null,

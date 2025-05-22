@@ -2,12 +2,15 @@ import React, {useEffect, useState} from 'react'
 import BotLayout from "@/layouts/User/BotLayout";
 import styles from "./styles.module.scss";
 import {useSelector} from "react-redux";
-import {Button, Select} from 'antd';
+import {Button, Select, Tooltip} from 'antd';
 import {validate} from "@/utils/validates/validate.js";
 import {UpdateActiveUrlsBotChatSchema} from "@/pages/User/DetailBot/Embed/schema.js";
 import {updateActiveUrlsBotChat} from "@/api/user/bot/index.js";
 import ErrorMessage from "@/components/ErrorMessage/index.jsx";
 import {getNotification} from "@/utils/helper.js";
+import _ from 'lodash';
+import InlineSVG from "react-inlinesvg";
+import Question from "@/assets/images/icons/solid/circle-question.svg";
 
 export default function Embed() {
     const [copied, setCopied] = useState(false);
@@ -40,9 +43,7 @@ export default function Embed() {
     }
 
     const handleConfirmSave = () => {
-        const stringActiveUrls = activeUrls.length > 0 ?
-            JSON.stringify(activeUrls) : ''
-        validate(UpdateActiveUrlsBotChatSchema, {active_urls: stringActiveUrls}, {
+        validate(UpdateActiveUrlsBotChatSchema, {active_urls: activeUrls}, {
             onSuccess: (data) => {
                 setLoading(true)
                 updateActiveUrlsBotChat(bot._id, data)
@@ -57,7 +58,17 @@ export default function Embed() {
                     })
                     .finally(() => setLoading(false));
             },
-            onError: setErrorData,
+            onError: (error) => {
+                const firstActiveUrlErrorKey = Object.keys(error).find(key => key.startsWith('active_urls.'));
+
+                if (firstActiveUrlErrorKey) {
+                    setErrorData({
+                        active_urls: error[firstActiveUrlErrorKey]
+                    });
+                } else {
+                    setErrorData(error);
+                }
+            },
         });
     }
 
@@ -70,7 +81,14 @@ export default function Embed() {
             </div>
             <div className={styles.mainWrap}>
                 <div className={styles.sessionWrap}>
-                    <div className={styles.tooltip}>Cấu hình đường dẫn hiển thị</div>
+                    <div className={styles.tooltip}>
+                        Cấu hình domain
+                        <div className={styles.iconQuestion}>
+                            <Tooltip placement="top" title={'Nhập danh sách domain vào ô bên dưới để hiển thị bong bóng chat ở phần tùy chỉnh'}>
+                                <InlineSVG src={Question} width={16}/>
+                            </Tooltip>
+                        </div>
+                    </div>
                     <div className={styles.formSaveUrlActiveWrap}>
                         <Select
                             size={"large"}

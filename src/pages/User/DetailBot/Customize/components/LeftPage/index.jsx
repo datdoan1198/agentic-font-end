@@ -54,15 +54,23 @@ export default function LeftPage() {
                             onFocusInputLesson={onFocusInputLesson}
                         />
                         <InputForm
-                            label="Mô tả công việc"
+                            label="Mô tả công việc của bot"
                             isTextArea={true}
                             type="description"
                             value={formData.description}
                             error={errorFormData.description}
                             handleChangeData={handleChangeData}
                             onFocusInputLesson={onFocusInputLesson}
+                            isDescription={true}
+                            description={(
+                                <div>
+                                    <div>- Đây là mô tả chi tiết vai trò và nhiệm vụ của bot sẽ thực hiện khi người dùng cần tư vấn.</div>
+                                    <div>- Ví dụ cho bot thương mại điện tử: Là trợ lý AI thông minh của doanh nghiệp, có nhiệm vụ tư vấn sản phẩm và hỗ trợ kinh doanh.</div>
+                                </div>
+                            )}
                         />
                         <InputUpload
+                            required={false}
                             label="Nút trò chuyện"
                             type="logo_message"
                             formData={formData}
@@ -71,6 +79,7 @@ export default function LeftPage() {
                             onFocusInputLesson={onFocusInputLesson}
                         />
                         <InputColor
+                            required={false}
                             label={"Màu sắc"}
                             type="color"
                             value={formData.color}

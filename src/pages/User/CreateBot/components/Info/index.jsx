@@ -37,6 +37,7 @@ const BotInfo = ({ dataForm, errorDataForm, handleChangeData, onFocusInputLesson
       />
 
       <InputUpload
+          required={false}
         label="Nút trò chuyện"
         type="logo_message"
         formData={dataForm}

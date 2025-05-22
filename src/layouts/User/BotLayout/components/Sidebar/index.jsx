@@ -53,9 +53,11 @@ export default function Sidebar() {
                       </div>
                     )
                   })}
-                  <div className={`${styles.botItemWrap}`} onClick={() => navigate('/bot-chats/create')}>
-                    Tạo Bot
-                  </div>
+                    <Button
+                        className={styles.btnCreateBot}
+                        onClick={() => navigate('/bot-chats/create')}
+                    >Tạo Bot
+                    </Button>
                 </div>
               }
               trigger="hover"
