@@ -1,6 +1,6 @@
 import React from 'react'
 import BotLayout from '@/layouts/User/BotLayout'
-import { Empty, Input, Segmented} from 'antd'
+import { Empty, Input, Segmented } from 'antd'
 import styles from './styles.module.scss'
 import './styles.scss'
 import LogoMessage from '@/assets/images/logos/messenger.png'
@@ -13,6 +13,7 @@ import LogoFB from '@/assets/images/logos/messenger.png'
 import { TYPE_CONVERSATION } from '@/utils/constants.js'
 import Integration from '../Integration/handle.js'
 import Handle from './handle.js'
+import formatViTime from '../../../../utils/formatTime.js'
 
 export default function Conversation() {
   const {
@@ -29,9 +30,11 @@ export default function Conversation() {
     handleSwitchTab,
     handleSelectConversation,
     handleSearch,
-  } = Handle();
+  } = Handle()
 
-  const {facebookLogin} = Integration();
+  const { facebookLogin } = Integration()
+
+  
 
   return (
     <BotLayout>
@@ -116,11 +119,18 @@ export default function Conversation() {
                             )}
 
                             <div className={styles.mainConversation}>
-                              <div className={styles.name}>Guest #{conversationItem.platform_user_id}</div>
-                              <div className={styles.lastMessage}>{conversationItem?.lastMessage.content}</div>
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="flex-1 text-sm font-medium">
+                                  Guest #{conversationItem.platform_user_id}
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                  {formatViTime(conversationItem?.lastMessage?.created_at)}
+                                </span>
+                              </div>
+                              <div className={styles.lastMessage}>{conversationItem?.lastMessage?.content}</div>
                             </div>
                           </div>
-                        );
+                        )
                       })}
                     </>
                   )}
@@ -155,9 +165,9 @@ export default function Conversation() {
 
                                   <div
                                     className={`${styles.context} ${message.type === 'USER' && styles.contextUser}`}
-                                    style={{background: message.type === 'USER' && bot?.color}}
+                                    style={{ background: message.type === 'USER' && bot?.color }}
                                   >
-                                    <div dangerouslySetInnerHTML={{__html: message.content}} />
+                                    <div dangerouslySetInnerHTML={{ __html: message.content }} />
                                     <div className={styles.time}>{formatDateSecond(message.created_at)}</div>
                                   </div>
 
@@ -168,7 +178,7 @@ export default function Conversation() {
                                   )}
                                 </div>
                               </div>
-                            );
+                            )
                           })}
                         </>
                       )}
@@ -176,7 +186,9 @@ export default function Conversation() {
                     </div>
                   </>
                 ) : (
-                  <Empty />
+                  <div className="flex items-center justify-center h-full">
+                    <Empty description="Không có cuộc hội thoại nào" />
+                  </div>
                 )}
               </>
             ) : (
@@ -186,5 +198,5 @@ export default function Conversation() {
         </div>
       </div>
     </BotLayout>
-  );
+  )
 }
