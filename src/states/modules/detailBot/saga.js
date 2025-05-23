@@ -50,7 +50,7 @@ function* handleActions () {
     });
 
     yield takeLatest(rescanLinkFailed, function* (error) {
-        yield call(getNotification, "error", error.message || "Có lỗi xảy ra khi quét link.");
+        yield call(getNotification, "error", error.payload.data.message || "Có lỗi xảy ra khi quét link.");
         yield* reloadLinks();
     });
 

@@ -55,7 +55,9 @@ export default function Bot() {
                   <Row gutter={10} className={styles.mainWrap}>
                     <div className="flex items-center flex-1">
                       <Col span={3} onClick={() => handleRedirectDetailBot(bot._id)}>
-                        <img className={styles.imgWrap} src={bot.favicon || LogoDefault} alt="" />
+                        <div className={styles.imgWrap} >
+                            <img src={bot?.business?.logo || LogoDefault} alt="" />
+                        </div>
                       </Col>
 
                       <Col span={18}>
