@@ -273,8 +273,8 @@ export default function DashBoard() {
 
         <Row gutter={[16, 16]} style={{marginTop: "20px"}}>
           <Col xs={24} lg={24}>
-            <div
-              title="Tin nhắn gần đây"
+            <Card
+              title="Cuộc hội thoại nhắn gần đây"
               extra={
                 <a onClick={() => handleNavigateToConversation()} href="#">
                   Xem tất cả
@@ -306,7 +306,7 @@ export default function DashBoard() {
                   </List.Item>
                 )}
               />
-            </div>
+            </Card>
           </Col>
         </Row>
         <Row gutter={[16, 16]} style={{marginTop: "20px"}}>
