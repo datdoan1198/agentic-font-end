@@ -1,14 +1,23 @@
 import React from 'react'
 import styles from '../../styles.module.scss'
-import { Upload } from 'antd'
+import {Button, Upload} from 'antd'
 import InlineSVG from 'react-inlinesvg'
 import Knowledge from '@/assets/images/icons/solid/head-side-brain.svg'
 import InputForm from '@/components/InputForm/index.jsx'
-import { InboxOutlined } from '@ant-design/icons'
+import {InboxOutlined} from '@ant-design/icons'
+import Continue from '@/assets/images/icons/solid/continue.svg'
+import Previous from '@/assets/images/icons/solid/previous.svg'
 
-const { Dragger } = Upload
+const {Dragger} = Upload;
 
-const BotKnowledge = ({ dataForm, errorDataForm, handleChangeData, onFocusInputLesson }) => {
+const BotKnowledge = ({
+  dataForm,
+  errorDataForm,
+  handleChangeData,
+  onFocusInputLesson,
+  handlePrevStep,
+  handleNextStep,
+}) => {
   const props = {
     name: 'file',
     multiple: false,
@@ -17,19 +26,19 @@ const BotKnowledge = ({ dataForm, errorDataForm, handleChangeData, onFocusInputL
     beforeUpload: (file) => {
       const isExcel =
         file.type === 'application/vnd.ms-excel' ||
-        file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
       if (!isExcel) {
-        message.error('Only Excel files (.xls, .xlsx) are allowed!')
-        return Upload.LIST_IGNORE
+        message.error('Only Excel files (.xls, .xlsx) are allowed!');
+        return Upload.LIST_IGNORE;
       }
 
-      handleChangeData('file', file)
-      return false
+      handleChangeData('file', file);
+      return false;
     },
     onRemove: () => {
-      handleChangeData('file', null)
+      handleChangeData('file', null);
     },
-  }
+  };
   return (
     <div className={styles.groupSubForm}>
       <div className={styles.titleWrap}>
@@ -58,8 +67,18 @@ const BotKnowledge = ({ dataForm, errorDataForm, handleChangeData, onFocusInputL
           <p className="ant-upload-text">Vui lòng tải lên tệp định dạng excel (tối đa 10MB/tệp)</p>
         </Dragger>
       </div>
+      <div className={styles.btnWrap}>
+        <Button onClick={handlePrevStep}>
+          <InlineSVG src={Previous} width={20} />
+          Trở lại
+        </Button>
+        <Button onClick={handleNextStep} className={styles.btnConfirm}>
+          Tiếp tục
+          <InlineSVG src={Continue} width={20} />
+        </Button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default BotKnowledge
+export default BotKnowledge;

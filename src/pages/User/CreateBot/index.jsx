@@ -1,12 +1,9 @@
 import React from 'react'
 import MainLayout from '@/layouts/User/MainLayout/index.jsx'
 import styles from './styles.module.scss'
-import { Button, Col, Row, Upload } from 'antd'
-import InlineSVG from 'react-inlinesvg'
-import Robot from '@/assets/images/icons/solid/robot.svg'
+import { Col, Row, Steps } from 'antd'
 import Handle from '@/pages/User/Bot/handle.js'
 import BotInfo from './components/Info'
-import BotSteps from './components/Steps'
 import BotKnowledge from './components/Knowledge'
 import BotBussiness from './components/Bussiness'
 
@@ -31,54 +28,58 @@ const CreateBot = () => {
         </div>
         <div className={styles.formSubmitLink}>
           <Row gutter={20}>
-            <Col md={12} xs={24}>
-              {currentStep === 0 && (
-                <BotInfo
-                  dataForm={dataForm}
-                  errorDataForm={errorDataForm}
-                  handleChangeData={handleChangeData}
-                  onFocusInputLesson={onFocusInputLesson}
-                />
-              )}
-              {currentStep === 1 && (
-                <BotKnowledge
-                  dataForm={dataForm}
-                  errorDataForm={errorDataForm}
-                  handleChangeData={handleChangeData}
-                  onFocusInputLesson={onFocusInputLesson}
-                />
-              )}
-              {currentStep === 2 && (
-                <BotBussiness
-                  dataForm={dataForm}
-                  errorDataForm={errorDataForm}
-                  handleChangeData={handleChangeData}
-                  onFocusInputLesson={onFocusInputLesson}
-                />
-              )}
-            </Col>
-
-            <Col md={12} xs={24}>
-              <BotSteps currentStep={currentStep} />
+            <Col md={24} xs={24}>
+              <Steps
+                direction="vertical"
+                current={currentStep}
+                className={styles.steps}
+                items={[
+                  {
+                    title: 'Thông tin bot',
+                    description:
+                      currentStep === 0 ? (
+                        <BotInfo
+                          dataForm={dataForm}
+                          errorDataForm={errorDataForm}
+                          handleChangeData={handleChangeData}
+                          onFocusInputLesson={onFocusInputLesson}
+                          handleNextStep={handleNextStep}
+                        />
+                      ) : null,
+                  },
+                  {
+                    title: 'Thông tin tri thức',
+                    description:
+                      currentStep === 1 ? (
+                        <BotKnowledge
+                          dataForm={dataForm}
+                          errorDataForm={errorDataForm}
+                          handleChangeData={handleChangeData}
+                          onFocusInputLesson={onFocusInputLesson}
+                          handlePrevStep={handlePrevStep}
+                          handleNextStep={handleNextStep}
+                        />
+                      ) : null,
+                  },
+                  {
+                    title: 'Thông tin doanh nghiệp',
+                    description:
+                      currentStep === 2 ? (
+                        <BotBussiness
+                          dataForm={dataForm}
+                          errorDataForm={errorDataForm}
+                          handleChangeData={handleChangeData}
+                          onFocusInputLesson={onFocusInputLesson}
+                          handlePrevStep={handlePrevStep}
+                          handleConfirmCreateBot={handleConfirmCreateBot}
+                          loadingBtnCreateBot={loadingBtnCreateBot}
+                        />
+                      ) : null,
+                  },
+                ]}
+              />
             </Col>
           </Row>
-
-          <div className={styles.btnWrap}>
-            {currentStep > 0 && (
-              <Button onClick={handlePrevStep}>
-                <InlineSVG src={Robot} width={24} />
-                Trở lại
-              </Button>
-            )}
-            <Button
-              loading={loadingBtnCreateBot}
-              onClick={currentStep === 2 ? handleConfirmCreateBot : handleNextStep}
-              className={styles.btnConfirm}
-            >
-              <InlineSVG src={Robot} width={24} />
-              {currentStep === 2 ? 'Tạo Bot' : 'Tiếp tục'}
-            </Button>
-          </div>
         </div>
       </div>
     </MainLayout>

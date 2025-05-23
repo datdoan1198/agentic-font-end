@@ -1,9 +1,7 @@
-import React from "react"
-import AuthLayout from "@/layouts/User/AuthLayout"
-import styles from "./styles.module.scss"
-import { Button } from "antd"
-import InputForm from "@/components/InputForm/index.jsx"
-import Handle from "./handle.js"
+import React from 'react'
+import AuthLayout from '@/layouts/User/AuthLayout'
+import { Input } from 'antd'
+import Handle from './handle.js'
 
 function Login() {
   const {
@@ -19,57 +17,78 @@ function Login() {
 
   return (
     <AuthLayout>
-      <div className={styles.boxLogin}>
-        <div className={styles.formLoginWrap}>
-          <div className={styles.headerForm}>
-            <div className={styles.title}>Đăng nhập</div>
-            <div className={styles.description}>Đăng nhập để trải nghiệm ngay bây giờ</div>
-            {messageErrorLogin && messageErrorLogin.length > 0 && (
-              <div className={styles.messageError}>{messageErrorLogin}</div>
-            )}
-          </div>
-
-          <div className={styles.formLogin}>
-            <InputForm
-              placeholder={"Email"}
-              type={"email"}
+      <div className="w-full">
+        <h2 className="mb-1 text-2xl font-bold text-mainColor t">Đăng nhập</h2>
+        <p className="mb-6 text-xs font-semibold text-gray-500">
+          Truy cập an toàn vào bảng điều khiển AI CSKH của bạn.
+        </p>
+        {messageErrorLogin && messageErrorLogin.length > 0 && (
+          <div className="mb-4 text-red-500">{messageErrorLogin}</div>
+        )}
+        <div className="space-y-4">
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">Email</label>
+            <Input
+              className={`w-full px-3 py-2 border rounded-md ${
+                errorFormData.email
+                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              }`}
+              placeholder="Email của bạn"
               value={formData.email}
-              error={errorFormData.email}
-              handleChangeData={(type, value) => handleChangeData(type, value)}
-              onFocusInputLesson={(type) => onFocusInputLesson(type)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleConfirmLogin()
-              }}
+              onChange={(e) => handleChangeData('email', e.target.value)}
+              onFocus={() => onFocusInputLesson('email')}
+              onKeyDown={(e) => e.key === 'Enter' && handleConfirmLogin()}
             />
-
-            <InputForm
-              placeholder={"Mật khẩu"}
-              type={"password"}
-              isPassword={true}
-              value={formData.password}
-              error={errorFormData.password}
-              handleChangeData={(type, value) => handleChangeData(type, value)}
-              onFocusInputLesson={(type) => onFocusInputLesson(type)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleConfirmLogin()
-              }}
-            />
-
-            <Button className={styles.btnLogin} onClick={() => handleConfirmLogin()} loading={loadingLogin}>
-              Đăng nhập
-            </Button>
+            {errorFormData.email && <p className="mt-1 text-xs text-red-500">{errorFormData.email}</p>}
           </div>
 
-          <div className={styles.tooltipWrap}>
-            {/*<div className={styles.btnForgotPassword}>Quên mật khẩu?</div>*/}
-            <div className={styles.policyWrap}>
-              Bằng cách{" "}
-              <span onClick={() => handleRedirectRoute("/register")} className={styles.textActive}>
-                Tạo tài khoản
-              </span>{" "}
-              hoặc Đăng nhập, tôi đồng ý với <span className={styles.textActive}>Thỏa thuận sử dụng Dịch vụ</span> và
-              Chính sách Quyền riêng tư của AI CSKH.
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">Mật khẩu</label>
+
+            <Input.Password
+              className={`w-full px-3 py-2 border rounded-md ${
+                errorFormData.password
+                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              }`}
+              placeholder="Mật khẩu của bạn"
+              value={formData.password}
+              onChange={(e) => handleChangeData('password', e.target.value)}
+              onFocus={() => onFocusInputLesson('password')}
+              onKeyDown={(e) => e.key === 'Enter' && handleConfirmLogin()}
+            />
+            {errorFormData.password && <p className="mt-1 text-xs text-red-500">{errorFormData.password}</p>}
+          </div>
+
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center">
+              <input type="checkbox" id="remember-me" className="mr-2 text-blue-600 rounded focus:ring-blue-500" />
+              <label htmlFor="remember-me" className="text-sm text-gray-600">
+                Ghi nhớ
+              </label>
             </div>
+            <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">
+              Quên mật khẩu?
+            </a>
+          </div>
+
+          <button
+            loading={loadingLogin}
+            className="w-full h-10 py-2 text-white transition-opacity rounded-md bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90"
+            onClick={() => handleConfirmLogin()}
+          >
+            Đăng nhập
+          </button>
+
+          <div className="mt-4 text-sm text-center text-gray-600">
+            Không có tài khoản?{' '}
+            <span
+              onClick={() => handleRedirectRoute('/register')}
+              className="text-blue-600 cursor-pointer hover:underline"
+            >
+              Đăng ký
+            </span>
           </div>
         </div>
       </div>

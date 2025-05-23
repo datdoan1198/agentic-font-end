@@ -4,6 +4,7 @@ import {rootLoader} from "./rootLoader.js";
 import UserHome from "@/pages/User/Home";
 import UserLogin from "@/pages/User/Auth/Login";
 import UserRegister from "@/pages/User/Auth/Register";
+import UserForgotPassword from "@/pages/User/Auth/ForgotPassword";
 import UserBotChats from "@/pages/User/Bot";
 import UserProfile from "@/pages/User/Profile";
 import UserService from "@/pages/User/Service";
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <UserRegister />,
+    loader: ({request, params}) => rootLoader({request, params}, false),
+  },
+  {
+    path: "/forgot-password",
+    element: <UserForgotPassword />,
     loader: ({request, params}) => rootLoader({request, params}, false),
   },
   {

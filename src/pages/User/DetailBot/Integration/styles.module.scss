@@ -1,3 +1,5 @@
+@import "@/assets/scss/variables";
+
 .headerWrap {
   display: flex;
   align-items: center;
@@ -45,7 +47,7 @@
         .btnLoginFB {
           width: 100%;
           color: #ffffff;
-          background: cadetblue;
+          background: $mainColor;
         }
 
         .selectPage {

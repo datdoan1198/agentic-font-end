@@ -1,4 +1,4 @@
-@import '@/assets/scss/variables';
+@import "@/assets/scss/variables";
 
 .boxBotChats {
   display: flex;
@@ -15,9 +15,10 @@
 
     .btnAddBot {
       width: 100%;
-      height: 3rem;
+      height: 5rem;
       color: $colorWhite;
       background: $mainColor;
+      box-shadow: 0 4px 8px 0 #9e9e9e87;
       &:hover {
         color: $colorWhite;
         background: $mainColor;
@@ -27,7 +28,7 @@
 
   .itemBotWrap {
     .itemBot {
-      box-shadow: 0 4px 8px 0 #9e9e9e87;
+      border: 1px solid #e0e0e0;
       border-radius: 8px;
       transition: all 0.3s;
       height: 100%;
@@ -38,10 +39,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px;
+        padding: 20px;
         .imgWrap {
           width: 100%;
           cursor: pointer;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 1px solid #e0e0e0;
         }
 
         .boxStatus {

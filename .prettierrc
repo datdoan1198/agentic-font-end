@@ -1,11 +1,11 @@
 {
   "printWidth": 120,
-  "semi": true,
-  "singleQuote": false,
+  "semi": false,
+  "singleQuote": true,
   "files": "*.js",
   "trailingComma": "es5",
   "tabWidth": 2,
-  "bracketSpacing": false,
+  "bracketSpacing": true,
   "arrowParens": "always",
   "endOfLine": "lf"
 }
