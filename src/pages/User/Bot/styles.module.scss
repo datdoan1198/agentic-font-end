@@ -27,6 +27,7 @@
   }
 
   .itemBotWrap {
+    width: 100%;
     .itemBot {
       border: 1px solid #e0e0e0;
       border-radius: 8px;
@@ -41,11 +42,17 @@
         align-items: center;
         padding: 20px;
         .imgWrap {
-          width: 100%;
+          width: 35px;
+          height: 35px;
           cursor: pointer;
           border-radius: 50%;
           overflow: hidden;
           border: 1px solid #e0e0e0;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
 
         .boxStatus {
