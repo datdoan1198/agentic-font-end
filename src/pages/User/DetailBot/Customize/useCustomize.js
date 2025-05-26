@@ -12,6 +12,7 @@ import {getInfoBot, getListBotChats} from "@/api/user/bot/index.js"
 import {setBot} from "@/states/modules/detailBot/index.js"
 import {setBotChats} from "@/states/modules/bot/index.js";
 import IconChat from "@/assets/images/logos/icon_chat.png";
+import {getListDescriptionJobs} from "@/api/user/descriptionJob/index.js";
 
 const initialFormData = {
     name: "",
@@ -29,6 +30,7 @@ export default function useCustomize() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
+    const [descriptionJobs, setDescriptionJobs] = useState([])
     const [formData, setFormData] = useState({
         name: bot?.name || "",
         description: bot?.description || "",
@@ -57,6 +59,10 @@ export default function useCustomize() {
         })
     }, [bot])
 
+    useEffect(() => {
+        handleGetListDescriptionJobs()
+    }, [])
+
     const getConfigBot = async () => {
         await getInfoBot(bot._id)
             .then((res) => {
@@ -64,6 +70,16 @@ export default function useCustomize() {
             })
             .catch(() => {
                 dispatch(setBot({}))
+            })
+    }
+
+    const handleGetListDescriptionJobs = () => {
+        getListDescriptionJobs()
+            .then((res) => {
+                setDescriptionJobs(res.data.data)
+            })
+            .catch(() => {
+                setDescriptionJobs([])
             })
     }
 
@@ -183,6 +199,7 @@ export default function useCustomize() {
         errorFormData,
         loadingUpdate,
         messageError,
+        descriptionJobs,
         getConfigBot,
         handleChangeData,
         onFocusInputLesson,

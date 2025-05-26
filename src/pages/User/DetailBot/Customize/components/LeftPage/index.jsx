@@ -19,6 +19,7 @@ export default function LeftPage() {
         errorFormData,
         loadingUpdate,
         messageError,
+        descriptionJobs,
         handleChangeData,
         onFocusInputLesson,
         handleSaveCustomize,
@@ -53,22 +54,28 @@ export default function LeftPage() {
                             handleChangeData={handleChangeData}
                             onFocusInputLesson={onFocusInputLesson}
                         />
-                        <InputForm
-                            label="Mô tả công việc của bot"
-                            isTextArea={true}
-                            type="description"
-                            value={formData.description}
-                            error={errorFormData.description}
-                            handleChangeData={handleChangeData}
-                            onFocusInputLesson={onFocusInputLesson}
-                            isDescription={true}
-                            description={(
-                                <div>
-                                    <div>- Đây là mô tả chi tiết vai trò và nhiệm vụ của bot sẽ thực hiện khi người dùng cần tư vấn.</div>
-                                    <div>- Ví dụ cho bot thương mại điện tử: Là trợ lý AI thông minh của doanh nghiệp, có nhiệm vụ tư vấn sản phẩm và hỗ trợ kinh doanh.</div>
-                                </div>
-                            )}
-                        />
+
+                        <div className={`input-wrap`}>
+                            <div className={"label-wrap"}>
+                                Ngành nghề
+                                <span className={"required"}>*</span>
+                            </div>
+
+                            <Select
+                                className={`main-select`}
+                                allowClear
+                                style={{ width: '100%' }}
+                                placeholder="Chọn ngành nghề"
+                                value={formData.description}
+                                onChange={(value) => handleChangeData('description', value)}
+                                options={descriptionJobs ? descriptionJobs.map(item => ({
+                                    value: item.code,
+                                    label: `${item.name}`,
+                                })) : []}
+                            />
+                            {errorFormData.description && errorFormData.description > 0 ? <ErrorMessage message={errorFormData.description} /> : ""}
+                        </div>
+
                         <InputUpload
                             required={false}
                             label="Nút trò chuyện"
