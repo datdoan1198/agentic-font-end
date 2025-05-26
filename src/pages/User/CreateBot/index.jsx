@@ -13,6 +13,7 @@ const CreateBot = () => {
     loadingBtnCreateBot,
     dataForm,
     errorDataForm,
+    descriptionJobs,
     handleChangeData,
     onFocusInputLesson,
     handleConfirmCreateBot,
@@ -44,6 +45,7 @@ const CreateBot = () => {
                           handleChangeData={handleChangeData}
                           onFocusInputLesson={onFocusInputLesson}
                           handleNextStep={handleNextStep}
+                          descriptionJobs={descriptionJobs}
                         />
                       ) : null,
                   },

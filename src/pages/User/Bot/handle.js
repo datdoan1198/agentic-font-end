@@ -14,13 +14,14 @@ import {
   createBotCompanySchema,
 } from '@/pages/User/Bot/schema.js'
 import IconChat from "@/assets/images/logos/icon_chat.png";
+import {getListDescriptionJobs} from "@/api/user/descriptionJob/index.js";
 
 export default function Handle() {
   const [visibleDeleteBot, setVisibleDeleteBot] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [dataForm, setDataForm] = useState({
     name: '',
-    description: '',
+    description: null,
     logo_message: IconChat,
     color: ColorMain,
     url: '',
@@ -46,9 +47,11 @@ export default function Handle() {
   const navigate = useNavigate()
   const [botSelect, setBotSelect] = useState(null)
   const [loadingBtnDelete, setLoadingBtnDelete] = useState(false)
+  const [descriptionJobs, setDescriptionJobs] = useState([])
 
   useEffect(() => {
     handleGetListBotChats()
+    handleGetListDescriptionJobs()
   }, [])
 
   const handleChangeData = (type, value) => {
@@ -160,6 +163,16 @@ export default function Handle() {
       .finally(() => setLoadingListBot(false))
   }
 
+  const handleGetListDescriptionJobs = () => {
+      getListDescriptionJobs()
+          .then((res) => {
+              setDescriptionJobs(res.data.data)
+          })
+          .catch(() => {
+              setDescriptionJobs([])
+          })
+  }
+
   const handleRedirectDetailBot = (botId) => {
     navigate(`/bot-chats/${botId}`)
   }
@@ -206,6 +219,7 @@ export default function Handle() {
     visibleDeleteBot,
     setVisibleDeleteBot,
     loadingBtnDelete,
+    descriptionJobs,
     handleChangeData,
     onFocusInputLesson,
     handleRedirectDetailBot,
