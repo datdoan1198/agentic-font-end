@@ -5,7 +5,7 @@ import UserHome from "@/pages/User/Home";
 import UserLogin from "@/pages/User/Auth/Login";
 import UserRegister from "@/pages/User/Auth/Register";
 import UserForgotPassword from "@/pages/User/Auth/ForgotPassword";
-import UserChangePassword from "@/pages/User/Auth/ChangePassword";
+import UserResetPassword from "@/pages/User/Auth/ResetPassword";
 import UserBotChats from "@/pages/User/Bot";
 import UserProfile from "@/pages/User/Profile";
 import UserService from "@/pages/User/Service";
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
     loader: ({request, params}) => rootLoader({request, params}, false),
   },
   {
-    path: "/change-password",
-    element: <UserChangePassword />,
+    path: "/reset-password",
+    element: <UserResetPassword />,
     loader: ({request, params}) => rootLoader({request, params}, false),
   },
   {

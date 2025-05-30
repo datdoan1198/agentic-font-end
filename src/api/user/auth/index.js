@@ -45,3 +45,19 @@ export const changePassword = (data = {}) => {
         data,
     });
 };
+
+export const forgotPassword = (email) => {
+  return apiAxios({
+    method: "post",
+    url: "/auth/forgot-password",
+    data: { email },
+  });
+}
+
+export const resetPassword = (data) => {
+  return apiAxios({
+    method: "put",
+    url: "/auth/reset-password",
+    data,
+  });
+}
