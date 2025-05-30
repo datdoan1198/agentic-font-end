@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../../../../api/user/auth";
-// import { validateEmail, validatePassword } from '@/utils/validation'
 import { getNotification } from '@/utils/helper.js';
 
 export default function Handle() {
@@ -71,8 +70,8 @@ export default function Handle() {
         code: code,
       });
       if (response && response.data && response.data.success) {
-        getNotification("Thay đổi mật khẩu thành công!");
-        navigate("/login");
+        getNotification("success", "Thay đổi mật khẩu thành công!");
+        handleRedirectRoute("/login");
       } else {
         setMessageErrorChangePassword(response.data.message || "Có lỗi xảy ra. Vui lòng thử lại.");
       }
