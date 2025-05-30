@@ -1,6 +1,6 @@
 import React from "react";
 import AuthLayout from "@/layouts/User/AuthLayout";
-import {Button, Input} from "antd";
+import { Input } from "antd";
 import Handle from "./handle.js";
 
 function ForgotPassword() {

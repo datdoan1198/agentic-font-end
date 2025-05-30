@@ -1,19 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// Import your API service for forgot password
-// import { forgotPasswordService } from "@/services/auth";
+import { getNotification } from "@/utils/helper"
+import { forgotPassword } from '@/api/user/auth/index';
 
 export default function Handle() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-  });
-
-  const [errorFormData, setErrorFormData] = useState({
-    email: "",
-  });
-
+  const [formData, setFormData] = useState({ email: "" });
+  const [errorFormData, setErrorFormData] = useState({ email: "" });
   const [loadingForgotPassword, setLoadingForgotPassword] = useState(false);
   const [messageErrorForgotPassword, setMessageErrorForgotPassword] = useState("");
 
@@ -54,10 +48,7 @@ export default function Handle() {
   };
 
   const handleConfirmForgotPassword = async () => {
-    // Reset previous error
     setMessageErrorForgotPassword("");
-
-    // Validate form
     if (!validateForm()) {
       return;
     }
@@ -65,16 +56,10 @@ export default function Handle() {
     setLoadingForgotPassword(true);
 
     try {
-      // Uncomment and implement actual forgot password service
-      // const response = await forgotPasswordService(formData.email);
-      
-      // Placeholder for successful response handling
-      // For example:
-      // navigate("/reset-password");
-      
-      console.log("Forgot password request sent");
+      await forgotPassword(formData.email);
+      getNotification("success", "Đã gửi yêu cầu đặt lại mật khẩu. Vui lòng kiểm tra email của bạn.");
+      handleRedirectRoute("/login");
     } catch (error) {
-      // Handle error
       setMessageErrorForgotPassword(
         error.response?.data?.message || "Đã có lỗi xảy ra. Vui lòng thử lại."
       );
