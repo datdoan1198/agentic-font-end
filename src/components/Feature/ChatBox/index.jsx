@@ -14,14 +14,13 @@ import {getAllMessageFlowConversation} from '@/api/user/conversation/index.js'
 export default function ChatBox({ botId }) {
   const [isShowFormChat, setIsShowFormChat] = useState(false)
   const [sendMessage, setSendMessage] = useState('')
-  const [loadingSendMessage, setLoadingSendMessage] = useState('')
+  const [loadingSendMessage, setLoadingSendMessage] = useState(false)
   const [textSending, setTextSending] = useState('')
   const [messages, setMessages] = useState([])
   const [bot, setBot] = useState({})
   const bottomRef = useRef(null)
   const conversation_id = localStorage.getItem(`bot_${botId}`)
   const controllerRef = useRef(null);
-  const [isLoadingSendMessage, setIsLoadingSendMessage] = useState(false);
 
   useEffect(() => {
     getInfoBotOfChat(botId)
@@ -61,7 +60,6 @@ export default function ChatBox({ botId }) {
       setTextSending(sendMessage)
       const controller = new AbortController();
       controllerRef.current = controller;
-      setIsLoadingSendMessage(true);
       activeSendMessage(botId, data, controller.signal)
         .then((res) => {
           localStorage.setItem(`bot_${botId}`, res.data.data.conversation_id)
@@ -96,9 +94,9 @@ export default function ChatBox({ botId }) {
   }
 
   const handleCancelSendMessage = () => {
-    if (controllerRef.current && isLoadingSendMessage) {
+    if (controllerRef.current && loadingSendMessage) {
       controllerRef.current.abort();
-      setIsLoadingSendMessage(false);
+      setLoadingSendMessage(false);
     }
   };
 
@@ -224,7 +222,7 @@ export default function ChatBox({ botId }) {
                   onPressEnter={() => handleSendMessage()}
                 />
                 {
-                  !isLoadingSendMessage ?
+                  !loadingSendMessage ?
                     <Button
                       onClick={() => handleSendMessage()}
                       style={{ background: bot?.color }}
@@ -235,7 +233,7 @@ export default function ChatBox({ botId }) {
                     <Button
                       onClick={() => handleCancelSendMessage()}
                       style={{ background: bot?.color }}
-                      className={`${styles.btnSend} ${!isLoadingSendMessage && styles.btnSendDisabled}`}
+                      className={`${styles.btnSend}`}
                     >
                       <InlineSVG src={Stop} width={20} />
                     </Button>
