@@ -3,12 +3,13 @@ import InlineSVG from 'react-inlinesvg'
 import Rotate from '@/assets/images/icons/solid/rotate.svg'
 import Minus from '@/assets/images/icons/solid/minus.svg'
 import IconChat from '@/assets/images/logos/icon_chat.png'
-import { Button, Input } from 'antd'
+import {Button, Input} from 'antd'
 import Send from '@/assets/images/icons/solid/paper-plane-top.svg'
-import React, { useEffect, useRef, useState } from 'react'
-import { activeSendMessage, getInfoBotOfChat } from '@/api/user/chat/index.js'
+import Stop from '@/assets/images/icons/solid/stop.svg'
+import React, {useEffect, useRef, useState} from 'react'
+import {activeSendMessage, getInfoBotOfChat} from '@/api/user/chat/index.js'
 import _ from 'lodash'
-import { getAllMessageFlowConversation } from '@/api/user/conversation/index.js'
+import {getAllMessageFlowConversation} from '@/api/user/conversation/index.js'
 
 export default function ChatBox({ botId }) {
   const [isShowFormChat, setIsShowFormChat] = useState(false)
@@ -19,6 +20,8 @@ export default function ChatBox({ botId }) {
   const [bot, setBot] = useState({})
   const bottomRef = useRef(null)
   const conversation_id = localStorage.getItem(`bot_${botId}`)
+  const controllerRef = useRef(null);
+  const [isLoadingSendMessage, setIsLoadingSendMessage] = useState(false);
 
   useEffect(() => {
     getInfoBotOfChat(botId)
@@ -56,13 +59,19 @@ export default function ChatBox({ botId }) {
       setLoadingSendMessage(true)
       setSendMessage('')
       setTextSending(sendMessage)
-      activeSendMessage(botId, data)
+      const controller = new AbortController();
+      controllerRef.current = controller;
+      setIsLoadingSendMessage(true);
+      activeSendMessage(botId, data, controller.signal)
         .then((res) => {
           localStorage.setItem(`bot_${botId}`, res.data.data.conversation_id)
           setMessages(res.data.data.messages)
         })
-        .catch(() => {
-          setMessages([])
+        .catch((error) => {
+          const errorCode = error.code
+          if (errorCode !== "ERR_CANCELED") {
+            setMessages([])
+          }
         })
         .finally(() => {
           setTextSending('')
@@ -85,6 +94,13 @@ export default function ChatBox({ botId }) {
   const normalizeUrl = (url) => {
     return url.replace(/\/+$/, '')
   }
+
+  const handleCancelSendMessage = () => {
+    if (controllerRef.current && isLoadingSendMessage) {
+      controllerRef.current.abort();
+      setIsLoadingSendMessage(false);
+    }
+  };
 
   return (
     <>
@@ -207,13 +223,23 @@ export default function ChatBox({ botId }) {
                   onChange={(e) => setSendMessage(e.target.value)}
                   onPressEnter={() => handleSendMessage()}
                 />
-                <Button
-                  onClick={() => handleSendMessage()}
-                  style={{ background: bot?.color }}
-                  className={`${styles.btnSend} ${!sendMessage && styles.btnSendDisabled}`}
-                >
-                  <InlineSVG src={Send} width={20} />
-                </Button>
+                {
+                  !isLoadingSendMessage ?
+                    <Button
+                      onClick={() => handleSendMessage()}
+                      style={{ background: bot?.color }}
+                      className={`${styles.btnSend} ${!sendMessage && styles.btnSendDisabled}`}
+                    >
+                      <InlineSVG src={Send} width={20} />
+                    </Button> :
+                    <Button
+                      onClick={() => handleCancelSendMessage()}
+                      style={{ background: bot?.color }}
+                      className={`${styles.btnSend} ${!isLoadingSendMessage && styles.btnSendDisabled}`}
+                    >
+                      <InlineSVG src={Stop} width={20} />
+                    </Button>
+                }
               </div>
               <div className={styles.introduceWrap}>
                 <div className={styles.description}>Đối tác triển khai ứng dụng AI hàng đầu cho doanh nghiệp</div>
