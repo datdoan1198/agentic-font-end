@@ -7,10 +7,11 @@ export const getInfoBotOfChat = (botId) => {
     })
 }
 
-export const activeSendMessage = (botId, data) => {
+export const activeSendMessage = (botId, data, signal) => {
     return apiAxios({
         method: "post",
         url: `/bots/${botId}/chat`,
-        data
+        data,
+        signal
     })
 }
