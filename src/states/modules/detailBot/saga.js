@@ -11,6 +11,7 @@ import {
 } from "@/states/modules/bot/index.js";
 import {getLinks} from "@/api/bot/index.js";
 import {getNotification} from "@/utils/helper.js";
+import {setLoadingRowIds} from "@/states/modules/link/index.js";
 
 function* loadRouteData () {
     yield
@@ -44,7 +45,10 @@ function* handleActions () {
         yield* reloadLinks();
     });
 
-    yield takeLatest(rescanLinkSuccess, function* () {
+    yield takeLatest(rescanLinkSuccess, function* (data) {
+        const {link} = yield select();
+        const updatedLoadingRowIds = link.loadingRowIds.filter(id => id !== data.payload.data._id);
+        yield put(setLoadingRowIds(updatedLoadingRowIds))
         yield call(getNotification, "success", "Quét link thành công.");
         yield* reloadLinks();
     });

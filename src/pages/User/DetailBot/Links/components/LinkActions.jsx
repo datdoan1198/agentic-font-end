@@ -4,9 +4,9 @@ import {CustomButton} from "@/components/Button/index.jsx"
 import styles from "../styles.module.scss"
 import {Eye, RefreshCcw, Trash2} from "lucide-react"
 
-const LinkActions = ({lickSelect, isLoading, onRefresh, onView, onDelete}) => {
+const LinkActions = ({linkId, onRefresh, onView, onDelete, loadingRowIds}) => {
     const renderRefreshIcon = () => {
-        if (isLoading) {
+        if (loadingRowIds.includes(linkId)) {
             return <RefreshCcw className={`${styles.icon} ${styles.loading}`}/>
         } else {
             return <RefreshCcw className={styles.icon}/>
@@ -16,7 +16,7 @@ const LinkActions = ({lickSelect, isLoading, onRefresh, onView, onDelete}) => {
     return (
         <Space size="small">
             {
-                lickSelect ?
+                loadingRowIds.includes(linkId) ?
                     <Tooltip placement="bottom" title="Đang quét">
                         <CustomButton className={styles.button} variant="secondary" icon={renderRefreshIcon()}/>
                     </Tooltip>:
