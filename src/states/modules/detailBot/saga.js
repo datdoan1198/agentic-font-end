@@ -54,6 +54,11 @@ function* handleActions () {
     });
 
     yield takeLatest(rescanLinkFailed, function* (error) {
+        const parts = error.payload.config.url.split("/");
+        const linkId = parts[4];
+        const {link} = yield select();
+        const updatedLoadingRowIds = link.loadingRowIds.filter(id => id !== linkId);
+        yield put(setLoadingRowIds(updatedLoadingRowIds))
         yield call(getNotification, "error", error.payload.data.message || "Có lỗi xảy ra khi quét link.");
         yield* reloadLinks();
     });
