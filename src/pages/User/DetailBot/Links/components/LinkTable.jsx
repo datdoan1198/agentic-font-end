@@ -10,16 +10,22 @@ import {setLoadingRowIds} from "@/states/modules/link/index.js";
 
 const RenderStatusText = (link) => {
     const status = link.status
-    if (status === 'TRAINED') {
-        return {
-            text: 'Đã huấn luyện',
-            color: 'green',
-        }
-    } else {
-        return {
-            text: 'Đang huấn luyện',
-            color: 'blue',
-        }
+    switch (status) {
+        case "TRAINED":
+            return {
+                text: 'Đã huấn luyện',
+                color: 'green',
+            }
+        case "PENDING":
+            return {
+                text: 'Đang huấn luyện',
+                color: 'blue',
+            }
+        default:
+            return {
+                text: 'Chờ huấn luyện',
+                color: 'blue',
+            }
     }
 }
 
