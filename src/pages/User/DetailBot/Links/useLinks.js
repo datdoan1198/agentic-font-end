@@ -4,6 +4,7 @@ import {getLinks, createLink, deleteLink, viewLinkContent, rescanLink} from "@/a
 import {useParams} from "react-router-dom"
 import _ from "lodash";
 import {handleSetTimeOut} from "@/utils/helper.js";
+import {setPagination} from "@/states/modules/link/index.js";
 
 export function useLinks() {
     const [timeoutId, setTimeoutId] = useState(null)
@@ -24,12 +25,7 @@ export function useLinks() {
     const [openModalDetail, setOpenModalDetail] = useState(false)
     const [openModalDelete, setOpenModalDelete] = useState(false)
     const [selectedLink, setSelectedLink] = useState(null)
-    const [pagination, setPagination] = useState({
-        keySearch: "",
-        page: 1,
-        perPage: 10,
-        status: "",
-    })
+    const pagination = useSelector(state => state.link.pagination)
 
     useEffect(() => {
         dispatch(getLinks(botId, pagination))
@@ -45,7 +41,7 @@ export function useLinks() {
         let newDataFilter = _.cloneDeep(pagination);
         newDataFilter.keySearch = e.target.value;
         newDataFilter.page = 1;
-        setPagination(newDataFilter);
+        dispatch(setPagination(newDataFilter));
         let newTimeoutId = handleSetTimeOut(() => {
             dispatch(getLinks(botId, newDataFilter))
         }, 500, timeoutId)
@@ -56,7 +52,7 @@ export function useLinks() {
         let newDataFilter = _.cloneDeep(pagination);
         newDataFilter.status = value;
         newDataFilter.page = 1;
-        setPagination(newDataFilter);
+        dispatch(setPagination(newDataFilter));
         dispatch(getLinks(botId, newDataFilter))
     }
 
@@ -64,7 +60,7 @@ export function useLinks() {
         let newDataFilter = _.cloneDeep(pagination);
         newDataFilter.page = page;
         newDataFilter.perPage = pageSize;
-        setPagination(newDataFilter);
+        dispatch(setPagination(newDataFilter));
         dispatch(getLinks(botId, newDataFilter))
     }
 

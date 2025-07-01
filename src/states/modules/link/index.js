@@ -6,7 +6,13 @@ const linkSlice = createSlice({
     initialState: {
         openModalDelete: false,
         selectedLink: null,
-        loadingRowIds: []
+        loadingRowIds: [],
+        pagination: {
+            keySearch: "",
+            page: 1,
+            perPage: 10,
+            status: "",
+        }
     },
     reducers: {
         handleOpenModalDelete: (state, action) => {
@@ -26,6 +32,10 @@ const linkSlice = createSlice({
         setLoadingRowIds: (state, action) => ({
             ...state,
             loadingRowIds: action.payload
+        }),
+        setPagination: (state, action) => ({
+            ...state,
+            pagination: action.payload
         })
     },
 })
@@ -33,6 +43,6 @@ const linkSlice = createSlice({
 export const {
     handleOpenModalDelete,
     handleCloseModalDelete,
-    setLoadingRowIds
+    setLoadingRowIds, setPagination
 } = linkSlice.actions
 export default linkSlice.reducer

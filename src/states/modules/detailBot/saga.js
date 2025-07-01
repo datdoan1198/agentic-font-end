@@ -46,11 +46,11 @@ function* handleActions () {
     });
 
     yield takeLatest(rescanLinkSuccess, function* (data) {
-        const {link} = yield select();
+        const {link, detailBot} = yield select();
         const updatedLoadingRowIds = link.loadingRowIds.filter(id => id !== data.payload.data._id);
         yield put(setLoadingRowIds(updatedLoadingRowIds))
         yield call(getNotification, "success", "Quét link thành công.");
-        yield* reloadLinks();
+        yield put(getLinks(detailBot.bot._id, link.pagination))
     });
 
     yield takeLatest(rescanLinkFailed, function* (error) {

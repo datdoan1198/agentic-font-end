@@ -60,6 +60,7 @@ export default function Links() {
             placeholder="Lọc trạng thái các đường dẫn"
             options={[
               { value: 'TRAINED', label: 'Đã huấn luyện' },
+              { value: 'PENDING', label: 'Đang xử lý' },
               { value: 'UNTRAINED', label: 'Chưa xử lý' },
             ]}
           />
